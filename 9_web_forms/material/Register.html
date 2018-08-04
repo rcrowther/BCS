@@ -1,0 +1,1033 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width,  initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"><meta http-equiv="Content-Style-Type" content="text/css"><meta http-equiv="Content-Script-Type" content="text/javascript">
+
+<!--[if gte IE 7]>
+<style type="text/css">
+#pageC { min-height: 900px; }
+</style>
+<![endif]-->
+<!--[if gte IE 5.5]>
+<![if lt IE 7]>
+<style type="text/css">
+#pageC { height: 900px; }
+</style>
+<![endif]>
+<![endif]-->
+<!--[if IE 5]>
+<style type="text/css"> 
+/* place css box model fixes for IE 5* in this conditional comment */
+.thrColAbsHdr #sidebar1 { width: 180px; }
+.thrColAbsHdr #sidebar2 { width: 190px; }
+</style>
+<![endif]-->
+    
+    
+<link href="./Register_files/TelerikBase.3.0.0.0.css" rel="Stylesheet" type="text/css">
+<link href="./Register_files/controls.3.0.0.0.css" rel="Stylesheet" type="text/css">
+<link href="./Register_files/jquery-ui-1.10.4.custom.css" rel="Stylesheet" type="text/css">
+
+    
+    <link href="./Register_files/AtsBase.2.6.0.1.css" rel="Stylesheet" type="text/css">
+    <link href="./Register_files/Ats.2.6.0.3.css" rel="Stylesheet" type="text/css">
+    
+       <link href="./Register_files/CJLayout.2.6.0.3.css" rel="Stylesheet" type="text/css">
+    
+<script type="text/javascript" src="./Register_files/jquery-1.11.0.min.js.download"></script>
+<script type="text/javascript" src="./Register_files/jquery-migrate-1.2.1.min.js.download"></script>
+<script type="text/javascript" src="./Register_files/jquery-ui-1.10.4.custom.min.js.download"></script>
+<script type="text/javascript" src="./Register_files/html5-shim.2.5.0.1.js.download"></script>
+<script type="text/javascript" src="./Register_files/Generic.2.6.0.3.js.download"></script>
+<script type="text/javascript" src="./Register_files/jquery.cookie.js.download"></script>
+    
+
+        <script type="text/javascript" language="javascript">
+
+            var windowManagerClientId = 'ctl00_WindowManager';
+            var rwfNotificationCheckerEventHandlerFn;
+            var rwfExportQueueNotificationInterval = 60000;
+            var rwfExportQueueNotificationRemindMeLaterInterval = 300000;
+            var toastCount = 0;
+            var rwfNotificationEventHandler = function () {
+                $.ajax({
+                    type: "GET",
+                    url: 'Reporting/RwfExportNotification/GetNotificationFormRwfExportQueue',
+                    data: '',
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+                    success: onSuccess,
+                    failure: function (response) {
+                        clearInterval(rwfNotificationCheckerEventHandlerFn);
+                    },
+                    error: function (response) {
+                        clearInterval(rwfNotificationCheckerEventHandlerFn);
+                    }
+                });
+            };
+
+            function onSuccess(response) {
+                if (response.length == 0 || response == 'undefined') {
+                    //clearInterval(rwfNotificationCheckerEventHandlerFn);
+                    return;
+                } else {
+                    loadToastrScriptAndCss();
+                }
+                for (var i = 0; i < response.length; i++) {
+                    var queueExport = response[i];
+                    var queueToaster = $('#toastr' + queueExport.RwfReportExportQueueId);
+                    if (queueToaster.length > 0) continue;
+                    initializeNewToastr();
+                    var toastrType;
+                    if (queueExport.Succeed) {
+                        toastrType = "success";
+                        var toastrSuccessButtonsTemplate = "<br/><br/> <button type='button' class='btn clear' onclick='cleartoastr(this,true);' RwfReportExportQueueId='" + queueExport.RwfReportExportQueueId + "'>Close</button>&nbsp;&nbsp;<button type='button' class='btn clear' onclick='cleartoastr(this,false);'>Remind me later</button>";
+                        var successTemplate = '<div id="{DivId}">Export - {ReportName} - is now ready for download. <br/><br/> <a href="{DownloadLink}">Click here</a> to download the report.</div>';
+                        successTemplate = successTemplate.replace("{ReportName}", queueExport.ReportName);
+                        successTemplate = successTemplate.replace("{DivId}", "toastr" + queueExport.RwfReportExportQueueId);
+                        successTemplate = successTemplate.replace("{DownloadLink}", "DownloadReportingSuiteWithFilterReport.aspx?RwfReportExportQueueId=" + queueExport.RwfReportExportQueueId);
+                        successTemplate = successTemplate + toastrSuccessButtonsTemplate;
+                        toastr[toastrType](successTemplate, "Download");
+                    }
+                    else if (queueExport.Failed) {
+                        toastrType = "error";
+                        var toastrErrorButtonsTemplate = "<br/><br/> <button type='button' class='btn clear' onclick='cleartoastr(this,true);' RwfReportExportQueueId='" + queueExport.RwfReportExportQueueId + "'>Close</button>";
+                        var errorTemplate = '<div id="{DivId}">Export - {ReportName} - has failed to generate.</div>';
+                        errorTemplate = errorTemplate.replace("{ReportName}", queueExport.ReportName);
+                        errorTemplate = errorTemplate.replace("{DivId}", "toastr" + queueExport.RwfReportExportQueueId);
+                        errorTemplate = errorTemplate + toastrErrorButtonsTemplate;
+                        toastr[toastrType](errorTemplate, "Error");
+                    }
+                }
+            }
+
+            $(document).ready(function() {
+                GetRwfNotification(rwfReportExportQueuesExist, rwfExportQueueNotificationInterval);
+            });
+
+            function loadToastrScriptAndCss() {
+                var head = document.getElementsByTagName('head')[0];
+                if (!document.getElementById("toastrCss")) {
+                    var link = document.createElement('link');
+                    link.id = "toastrCss";
+                    link.rel = 'stylesheet';
+                    link.type = 'text/css';
+                    link.href = '/Assets/Css/toastr.min.css';
+                    head.appendChild(link);
+                }
+
+                if (!document.getElementById("toastrJS")) {
+                    var script = document.createElement('script');
+                    script.id = "toastrJS";
+                    script.type = 'text/javascript';
+                    script.language = 'javascript';
+                    script.src = '/Assets/Javascript/toastr.min.js';
+                    head.appendChild(script);
+                }
+            }
+
+            function initializeNewToastr() {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": false,
+                    "positionClass": "toast-bottom-right",
+                    "preventDuplicates": false,
+                    "showDuration": "0",
+                    "hideDuration": "0",
+                    "timeOut": "0",
+                    "extendedTimeOut": "0",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut",
+                    "tapToDismiss": false
+                };
+            }
+
+            function cleartoastr(ele, updateFlag) {
+                var curToastr = $(ele).closest('.toast');
+                curToastr.remove();
+                //clearInterval(rwfNotificationCheckerEventHandlerFn);
+                GetRwfNotification(rwfReportExportQueuesExist, rwfExportQueueNotificationRemindMeLaterInterval);
+                if (updateFlag) {
+
+                    var rwfReportExportQueueId = $(ele).attr("RwfReportExportQueueId");
+                    $.ajax({
+                        type: "POST",
+                        url: 'Reporting/RwfExportNotification/CloseNotificationQueue?rwfReportExportQueueId=' + rwfReportExportQueueId,
+                        data: '',
+                        dataType: 'json',
+                        contentType: "application/json; charset=utf-8",
+                    });
+                }
+            }
+
+            function GetRwfNotification(exportQueuesExist,interval) {
+                clearInterval(rwfNotificationCheckerEventHandlerFn);
+                rwfReportExportQueuesExist = exportQueuesExist;
+                if (exportQueuesExist == 'True') {
+                    rwfNotificationCheckerEventHandlerFn = setInterval(rwfNotificationEventHandler, interval);
+                }
+            }
+
+            
+        </script>
+    <link href="./Register_files/Pitch.css" type="text/css" rel="stylesheet"><title>
+	Register
+</title></head>
+<body class="normal noBg">
+<!--
+    <form method="post" action="https://buryjobs.engageats.co.uk/RegistrationFormV2.aspx?VacancyId=158717&amp;LocationId=16120&amp;RedirectToAppForm=true" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+-->
+    <form method="post" action="/home/rob/Desktop/better_computer_syllabus/9_web_forms/material/Submit.html" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="hdnRedirectToApp" id="hdnRedirectToApp" value="true">
+<input type="hidden" name="Gi_Rssm_TSSM" id="Gi_Rssm_TSSM" value="">
+<input type="hidden" name="Mgr1_TSM" id="Mgr1_TSM" value=";;System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35:en-GB:d28568d3-e53e-4706-928f-3765912b66ca:ea597d4b:b25378d2;Telerik.Web.UI, Version=2013.1.417.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4:en-GB:df833b2e-28ee-45e7-8320-6f2a9cb883d7:16e4e7cd:ed16cbdc:f7645509:24ee1bba:f46195d3:2003d0b8:1e771326:aa288e2d:b7778d6c:874f8ea2:19620875:39040b5c:490a9d4e:bd8f85e4">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="ctl00$Cph1$LoginCtrl$Login1$LoginButton">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__APP_FORM_CLIENT_STATE_HIDDEN" id="__APP_FORM_CLIENT_STATE_HIDDEN" value="">
+<input type="hidden" name="__VIEWSTATE_UNIQUE_KEY" id="__VIEWSTATE_UNIQUE_KEY" value="fd9f7359-0f1d-45bb-81ea-3e98ccf3ddc0">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./Register_files/WebResource.axd" type="text/javascript"></script>
+
+<script type="text/javascript" language="javascript"> var rwfReportExportQueuesExist = 'False' </script>
+<script src="./Register_files/ScriptResource.axd" type="text/javascript"></script>
+<script src="./Register_files/Telerik.Web.UI.WebResource.axd" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$Mgr1', 'form1', ['tctl00$ctl00$RadAjaxPanel1Panel','','tctl00$Cph1$ctl00$Cph1$LoginCtrl$rap1Panel','','tctl00$Cph1$RadAjaxManager1SU','Cph1_RadAjaxManager1SU','tctl00$Cph1$ctl00$SessUc$SessLblPanel','','tctl00$Cph1$ctl00$SessUc$OutLblPanel',''], ['ctl00$Cph1$LoginCtrl$Login1','Cph1_LoginCtrl_Login1','ctl00$SessUc$LogoutBtn','SessUc_LogoutBtn'], [], 90, 'ctl00');
+//]]>
+</script>
+
+    <div class="RadAjaxPanel" id="ctl00_ctl00_RadAjaxPanel1Panel" style="height: 1px; width: 1px; display: block;">
+	<div id="ctl00_RadAjaxPanel1" style="height: 100%;">
+		<!-- 2013.1.417.40 -->
+    
+	</div>
+</div>
+    
+    <div id="container">
+        <div id="header" class="header topjpg" style="background-image:url(Register_files/top.jpg)">
+        <a id="hlHome" title="Header - Home Link" class="headeranchor" href="https://buryjobs.engageats.co.uk/Login.aspx">
+            &nbsp;
+        </a>
+        
+        
+
+
+
+        
+        <div class="sharedServiceRightLogo"></div>
+        <div class="sharedServiceLeftLogo"></div>
+        </div>
+        
+        <div id="maincontent" class="divClearBoth">
+            
+
+    <div class="topbarcontainer">
+        <div class="topbar" style="overflow:auto;">
+          <h1 style="text-align:center;">
+            This is a Test Form for learning. It will not send data to anyone.
+            </h1>
+        </div>
+    </div>
+    
+    <div class="topbarcontainer">
+        <div class="topbar" style="overflow:auto;">
+            
+                <div style="float:left;margin:0 1em;width:280px;"><h1><span id="CphTopBar_TopBar_HeadingLit">Register or Sign-In</span></h1>
+                
+                    
+                </div>
+            
+            
+                <div style="float:left;margin:3px 1em;width:280px;">
+                    <span class="vacName">Care Assistants</span><br>
+                    <span class="vacCat"></span>
+                </div>
+                <div id="CphTopBar_TopBar_viewvac" style="float:left;margin-top:5px; margin-bottom: 5px; margin-left: 1px; margin-right: 1px; font-size: 1.1em;">
+                    View vacancy details<img src="./Register_files/chevron-expand.png" alt="button to expand vacancy details" style="margin:-3px 5px;">
+                </div>
+            
+                <div style="float:right;padding-bottom:5px;" id="navDiv">
+                    <div id="CphTopBar_TopBar_HomeLink" class="navIcon">
+                        <a id="CphTopBar_TopBar_HomeHl" href="https://buryjobs.engageats.co.uk/Login.aspx"><img src="./Register_files/home-white.png" alt="Home"><span>Home</span></a>
+                    </div>
+                    <div class="navIcon" id="FAQLink">
+                        <a onclick="return OpenWindow(&#39;FAQsV2.aspx?mode=View&amp;RadWindow=true&#39;, &#39;popup&#39;, 600, 600);" id="CphTopBar_TopBar_FaqLnk" href="javascript:__doPostBack(&#39;ctl00$CphTopBar$TopBar$FaqLnk&#39;,&#39;&#39;)"><img src="./Register_files/FAQ-white.png" alt="FAQs"><span>FAQ</span></a>
+                    </div>
+                </div>
+            
+            <div id="CphTopBar_TopBar_VacJobDesc" class="vacdesc unorderListPadding" style="display: none;">
+	
+                <p style="margin-bottom: 1.5em;"><span style="font-size:1em;"></span></p>
+                <p style="margin: 0cm 0cm 0pt; text-align: justify;"><span>The post is offered on a Casual basis working for Bury ACES the council’s casual recruitment Agency.</span> <span>Bury ACES is a casual/bank recruitment agency for the Department of Communities and Wellbeing, Bury Council.&nbsp; We recruit staff to cover for absences, such as annual leave, sickness, peaks in workloads, maternity, paternity and adoption leave and training for example, for the substantive/contracted workforce.&nbsp; ACES employees are offered work on a non mutuality obligation basis, meaning that you do not have to accept work offered and we do not have to offer you work.</span> <span>You will work with other ACES employees’ as well as contracted/substantive employees of Bury Council; occasionally you may work with other external agency staff, you will work with our Customers (service users)</span><b><span style="text-decoration: underline;"> <br>
+</span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;"><b><span style="text-decoration: underline;">Casual Care Assistants/</span></b><b><span style="text-decoration: underline;">Support Workers</span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">Bury Aces (Casual pool of workers) are seeking Care Assistants/<span>Support Workers to cover for current short term vacancies and to support busy periods.</span></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">These positions are on a casual basis working for Adult Care Services and is a&nbsp;very rewarding career, as you can make a real difference to the lives of vulnerable adults.<span>&nbsp; </span>We have a training programme in place and all Bury ACES&nbsp;employees&nbsp;are required to complete a training plan before commencing any assignment.</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">Our service operates 24/7 365 days a year. You will be expected to be available for a minimum of 15 hours per week.</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt;"><span>Appointment is subject to a satisfactory disclosure from the Disclosure and Barring Service’</span></p>
+<p style="margin: 0cm 0cm 0pt;"><span>&nbsp;</span></p>
+<p style="margin: 0cm 0cm 0pt;"><span>Please click on the links below for more information</span></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;"><b><span style="text-decoration: underline;">Bury ACES</span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">Joining our in house Casual Bank of staff (Bury ACES), you will be offered work as and when suits the needs of the service.<span>&nbsp; </span></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt 36pt; text-align: justify;"><span>As a Casual Care Assistant working with Bury Aces you will support service users with daily life tasks such as personal care, enabling them to undertake these themselves where it is identified that they have the potential to do so, in line with care plans and risk assessments and</span> assist service users with identified needs stated in their service user plan.</p>
+<p style="margin: 0cm 0cm 0pt 36pt;">You will participate in a designated carer system to provide the level of care necessary to ensure all service users experience a high quality of life including help with social activities and an understanding of any emotional difficulty or needs the service user may express or require assistance with.</p>
+<p style="margin: 0cm 0cm 0pt 36pt; text-align: justify;">You will use equipment to support service users as stated in the service user plan where required (eg moving and handling aids etc)<b><span style="text-decoration: underline;"> </span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;"><b><span style="text-decoration: underline;">&nbsp;</span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;"><b><span style="text-decoration: underline;">Bury ACES</span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">Joining our in house Casual Bank of staff (Bury ACES), you will be offered work as and when suits the needs of the service.<span>&nbsp; </span></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;"><b><span>The Benefits:</span></b></p>
+<p style="margin: 0cm 0cm 0pt; text-align: justify;"><b><span>&nbsp;</span></b></p>
+<ul style="margin-top: 0cm; list-style-type: disc;">
+    <li style="margin: 0cm 0cm 0pt; text-align: justify;">These Positions are on a casual basis but joining the ACES pool can open up longer term career opportunities as you can apply for any permanent roles within Bury Council. </li>
+    <li style="margin: 0cm 0cm 0pt; text-align: justify;">You will accrue paid leave entitlement, be able to access departmental training and development opportunities, employee discounts and benefits.</li>
+    <li style="margin: 0cm 0cm 0pt; text-align: justify;">You can work flexibly according to your own requirements.</li>
+</ul>
+<p style="background: white; margin: 2pt 0cm; text-align: justify;">&nbsp;</p>
+<p style="background: white; margin: 2pt 0cm; text-align: justify;"><span style="color: red;">Due to the nature of the service the successful candidate may be required to</span><span style="color: red;"> work any five days out of seven including weekends to meet service needs </span><span style="color: red;">(this is for social care posts)</span></p>
+<p style="margin: 0cm 0cm 0pt;"><span>&nbsp;</span></p>
+<p style="margin: 0cm 0cm 0pt;"><span>The Council is committed to safeguarding and promoting the welfare of children, young people and vulnerable adults and expects all staff to share this commitment.&nbsp; </span><span>Appointment is subject to a satisfactory disclosure from the Disclosure and Barring Service’</span></p>
+<p style="margin: 0cm 0cm 0pt;"><span>&nbsp;</span></p>
+<p style="margin: 5pt 0cm; text-align: justify;">In order to support budget reductions in Local Government, the Council looked at many ways to reduce spending that minimised the need to reduce employee numbers or impact on services. All employees up to and including the Chief Executive are required to take an additional 3 days (unpaid) annual leave. This can be taken at any time during the leave year. The cost of these additional days is spread over 12 months or pro rata to your start date. (N\A to Bury Aces Casual Staff)</p>
+<p style="margin: 0cm 0cm 0pt;">For further information, please click on the following links-</p>
+<p style="margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt;"><a href="https://greaterjobs.engageats.co.uk//ViewAttachment.aspx?enc=jmxpV+AcVus8i/wvT3FZXrrCOvCUGNWd9uca/tGZrAKV27CCFCEevuHb4iL29jIikSf+XHQyc4ZDrX6wp6Ty/Hhv1ycv57M1xaiEU9exVcaVIqLAY7dl2Km8PuFwp2rq" title="Job Description" target="_blank">Job Description</a></p>
+<p style="margin: 0cm 0cm 0pt;">&nbsp;</p>
+<p style="margin: 0cm 0cm 0pt;"><a href="https://greaterjobs.engageats.co.uk//ViewAttachment.aspx?enc=jmxpV+AcVus8i/wvT3FZXrrCOvCUGNWd9uca/tGZrAKV27CCFCEevuHb4iL29jIiScLiB2Zm2IV3ILNGAiBCeJMQeHbMhh/kaHtpkN/NWXhuDYFNNRb2+LOhgO0lFQxj" title="Work Demands Form" target="_blank">Work Demands Form</a></p>
+<p style="margin: 0cm 0cm 0pt;">&nbsp;</p>
+            
+</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".vacdesc").hide();
+            $('#CphTopBar_TopBar_viewvac').click(function (e) {
+                $(".vacdesc").slideToggle(300);
+                e.preventDefault();
+            });
+        });
+
+        $(document).ready(function () {
+            $('#CphTopBar_TopBar_LogoutDropDownBtn').click(function () {
+
+                var pos = $(this).position();
+                var logoutMenuDiv = $('#LogoutMenu');
+                logoutMenuDiv.css({
+                    'position': 'absolute',
+                    'left': pos.left - 100,
+                    'top': pos.top + 15
+                }).slideToggle(300);
+
+                $(document).click(function () {
+                    logoutMenuDiv.slideUp(300);
+                });
+                return false;
+            });
+        });
+    </script>
+
+
+            
+    <div id="Cph1_RadAjaxManager1SU" style="display: block;">
+	<span id="ctl00_Cph1_RadAjaxManager1" style="display:none;"></span>
+</div>
+    <div id="regcontent">
+        <div id="Cph1_Reginfo">
+	
+        
+</div>
+        
+        
+            <div id="regformex" class="regv2 contentPanel">
+                <div class="regFormPnlHeader">
+                    
+                        Existing users
+                    
+                </div>
+                <div class="RadAjaxPanel" id="ctl00_Cph1_ctl00_Cph1_LoginCtrl_rap1Panel" style="display: block;">
+	<div id="ctl00_Cph1_LoginCtrl_rap1" class="divWidth100pc">
+		
+    <table id="Cph1_LoginCtrl_Login1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+			<tbody><tr>
+				<td>
+            <div id="Cph1_LoginCtrl_Login1_LoginPanel" class="loginPnl" onkeypress="javascript:return WebForm_FireDefaultButton(event, &#39;Cph1_LoginCtrl_Login1_LoginButton&#39;)">
+					
+                <div class="loginconrolleft">
+                        <label for="Cph1_LoginCtrl_Login1_UserName" id="Cph1_LoginCtrl_Login1_UsernameLabel">Username</label>
+                        <input name="ctl00$Cph1$LoginCtrl$Login1$UserName" type="text" maxlength="250" id="Cph1_LoginCtrl_Login1_UserName" title="Email address" class="" onclick="HideFailure();" value="Email address" onfocus="clearDefaultText(this);" onblur="replaceDefaultText(this);">
+                        <span id="Cph1_LoginCtrl_Login1_UserNameRequired" title="Email address is required." style="visibility:hidden;">*</span>
+                    </div>
+                <div class="left">
+                    <label for="Cph1_LoginCtrl_Login1_Password" id="Cph1_LoginCtrl_Login1_PasswordLabel">Password</label>
+                        <input name="ctl00$Cph1$LoginCtrl$Login1$Password" type="password" id="Cph1_LoginCtrl_Login1_Password" title="Password" class="" onclick="HideFailure();" value="Password" autocomplete="off" onfocus="clearDefaultText(this);" onblur="replaceDefaultText(this);">
+                        <span id="Cph1_LoginCtrl_Login1_PasswordRequired" title="Password is required." style="visibility:hidden;">*</span>
+                    <div style="display: inline">
+                         <script >
+                           function loginOverride() {
+    alert('Login attempted.\nDisabled for test');
+}
+                         </script>
+                        <input type="button" name="ctl00$Cph1$LoginCtrl$Login1$LoginButton" value="Log In" onclick="loginOverride()" id="Cph1_LoginCtrl_Login1_LoginButton" class="buttonV2 loginButton">
+                    </div>
+                </div>
+                <div class="forgotPwd">
+                            
+                </div>
+                
+                <div class="loginfailwidth">
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+            
+				</div>
+        </td>
+			</tr>
+		</tbody></table>
+    <div id="Cph1_LoginCtrl_ValidationSummary1" style="font-size:0.7em;display:none;">
+
+		</div>
+    
+<noscript>
+  <span class="NoJavaMsg">The web browser you're using does not support JavaScript, or scripts are being blocked. This website requires JavaScript to be enabled.</span>
+</noscript>
+
+    <span id="Cph1_LoginCtrl_ResolutionLabel" class="NoJavaMsg" style="display: none;">This site is optimised for a screen resolution of at least 1024 x 768.  Please reset your resolution.</span>
+
+	</div>
+</div>
+<script type="text/javascript">
+    function HideFailure() {
+        $('.loginfail').hide();
+    }
+
+</script>
+
+                
+            </div>
+        
+     <div id="regform-column">
+            
+            <div id="regform" class="regv2 contentPanel">
+                <div class="regFormPnlHeader">
+                    
+                        New users
+                    
+                </div>
+                   
+            <div id="SocialLogin">
+            <div id="Cph1_SocialLogin1_RegFormSocialMediaLoginDiv" style="border-bottom: solid 1px">
+   <div style="font-weight: bold">
+    <b>Please complete the registration form below to create your account. Alternatively, please log in through one of your social media accounts by clicking here</b>
+    <br>
+    <div align="left" class="regSocialLogin">
+     <input type="image" name="ctl00$Cph1$SocialLogin1$FacebookLnk" id="Cph1_SocialLogin1_FacebookLnk" src="./Register_files/LoginWithFb.png" onclick="javascript:window.open(&#39;https://buryjobs.engageats.co.uk/FacebookLoginUser.aspx?SocialLoginMode=registration&amp;SocialMediaType=facebook&#39;, &#39;popup_window&#39;, &#39;width=400,height=500,left=200,top=200,resizable=yes&#39;);">
+            <input type="image" name="ctl00$Cph1$SocialLogin1$LinkedinLnk" id="Cph1_SocialLogin1_LinkedinLnk" src="./Register_files/LoginWithLinkedIn.png" onclick="javascript:window.open(&#39;https://buryjobs.engageats.co.uk/FacebookLoginUser.aspx?SocialLoginMode=registration&amp;SocialMediaType=linkedin&#39;, &#39;popup_window&#39;, &#39;width=400,height=500,left=200,top=200,resizable=yes&#39;);">
+    </div>
+    </div>
+</div>
+
+
+            </div>
+        <div id="Cph1_Form1">
+	<div>
+		<div id="Cph1_Form1_ctl00_p1" class="formSectionWrapper"><table id="Cph1_Form1_ctl00_t1" class="sectionTableReg">
+			<tbody><tr>
+				<td colspan="2"><div class="commentsControlFillMode"><span class="commentsLblFillMode"><span style="font-size: 14px;"><strong>Personal Details</strong>
+<div style="border-style: none none solid; border-color: #e4e8e9; width: auto; border-bottom: 1pt solid #e4e8e9;"></div>
+<br>
+Fields marked with a <strong>*</strong> are mandatory fields.<br>
+</span></span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><label class="rightPadding mandatory" for="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_Input">Title&nbsp;*</label></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><div id="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551" class="RadComboBox RadComboBox_Default appListNormal" style="width:160px;white-space:normal;">
+					<table summary="this table represnts the value of a combo box. please ignore." style="border-width:0;border-collapse:collapse;width:100%">
+						<tbody><tr>
+							<td class="rcbInputCell rcbInputCellLeft" style="width:100%;"><input name="ctl00$Cph1$Form1$ctl00$ctl01$field_165232_3897551" type="text" class="rcbInput radPreventDecorate" id="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_Input" value="Please Select" title="Select Title" autocomplete="off"></td><td class="rcbArrowCell rcbArrowCellRight"><a id="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_Arrow" style="overflow: hidden;display: block;position: relative;outline: none;">select</a></td>
+						</tr>
+					</tbody></table><div class="rcbSlide" style="z-index:6000;"><div id="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_DropDown" class="RadComboBoxDropDown RadComboBoxDropDown_Default " style="display:none;"><div class="rcbScroll rcbWidth" style="height:154px;width:100%;"><ul class="rcbList" style="list-style:none;margin:0;padding:0;zoom:1;"><li class="rcbItem ">Please Select</li><li class="rcbItem ">Dr</li><li class="rcbItem ">Miss</li><li class="rcbItem ">Mr</li><li class="rcbItem ">Mrs</li><li class="rcbItem ">Ms</li><li class="rcbItem ">Mx</li></ul></div></div></div><input id="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_ClientState" name="ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_ClientState" type="hidden" autocomplete="off">
+				</div> <span id="Cph1_Form1_ctl00_ctl01_ctl04" class="mandatoryField" style="display:none;">* Required Field</span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><label class="rightPadding mandatory" for="Cph1_Form1_ctl00_ctl02_field_165232_3897552">First Name&nbsp;*</label></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><input name="ctl00$Cph1$Form1$ctl00$ctl02$field_165232_3897552" type="text" maxlength="50" id="Cph1_Form1_ctl00_ctl02_field_165232_3897552" class="appTextBox NormalAppWidth"> <span id="Cph1_Form1_ctl00_ctl02_ctl04" class="mandatoryField" style="display:none;">* Required Field</span> <span id="Cph1_Form1_ctl00_ctl02_ctl06" style="display:none;">Maximum character limit exceeded. Allowed limit 50.</span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><label class="rightPadding mandatory" for="Cph1_Form1_ctl00_ctl03_field_165232_3897553">Last Name&nbsp;*</label></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><input name="ctl00$Cph1$Form1$ctl00$ctl03$field_165232_3897553" type="text" maxlength="50" id="Cph1_Form1_ctl00_ctl03_field_165232_3897553" class="appTextBox NormalAppWidth"> <span id="Cph1_Form1_ctl00_ctl03_ctl04" class="mandatoryField" style="display:none;">* Required Field</span> <span id="Cph1_Form1_ctl00_ctl03_ctl06" style="display:none;">Maximum character limit exceeded. Allowed limit 50.</span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlNotFillMode"><span class="commentsLblNotFillMode"></span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><label class="rightPadding mandatory" for="Cph1_Form1_ctl00_ctl05_field_165232_3897555">Email Address&nbsp;*</label></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><input name="ctl00$Cph1$Form1$ctl00$ctl05$field_165232_3897555" type="text" maxlength="50" id="Cph1_Form1_ctl00_ctl05_field_165232_3897555" class="appTextBox NormalAppWidth"> <span id="Cph1_Form1_ctl00_ctl05_ctl04" class="mandatoryField" style="display:none;">* Required Field</span> <span id="Cph1_Form1_ctl00_ctl05_ctl06" class="mandatoryField" style="display:none;">* Must be a valid E-mail address</span> <span id="Cph1_Form1_ctl00_ctl05_ctl08" class="mandatoryField" style="display:none;">This email address has already been registered. Please click <a href="https://buryjobs.engageats.co.uk/RecoverPassword.aspx" title="Forgotten password link">here</a> if you have forgotten your password.</span> <span id="Cph1_Form1_ctl00_ctl05_ctl10" style="display:none;">Maximum character limit exceeded. Allowed limit 50.</span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlFillMode"><span class="commentsLblFillMode">Please note this must be a private email address.</span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlNotFillMode"><span class="commentsLblNotFillMode"></span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><label class="rightPadding mandatory" for="ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556">Password&nbsp;*</label></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><span id="ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556_wrapper" class="RadInput RadInput_Default appPwd" style="white-space:normal;"><input id="ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556" name="ctl00$Cph1$Form1$ctl00$ctl08$field_165232_3897556" maxlength="50" class="riTextBox riEnabled appTextBox NormalAppWidth" type="password" autocomplete="off"><input id="ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556_ClientState" name="ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556_ClientState" type="hidden" autocomplete="off" value="{&quot;enabled&quot;:true,&quot;emptyMessage&quot;:&quot;&quot;,&quot;validationText&quot;:&quot;&quot;,&quot;valueAsString&quot;:&quot;&quot;,&quot;lastSetTextBoxValue&quot;:&quot;&quot;}"></span> <span id="Cph1_Form1_ctl00_ctl08_ctl04" class="mandatoryField" style="display:none;">* Required Field</span> <span id="Cph1_Form1_ctl00_ctl08_ctl06" style="display:none;">Maximum character limit exceeded. Allowed limit 50.</span><span id="strengthIndicator3897556"></span> <span id="Cph1_Form1_ctl00_ctl08_ctl09" class="mandatoryField" style="display:none;">Password must be at least 8 characters long and have at least one special character such as &amp; @ ! #</span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><label class="rightPadding mandatory" for="ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557">Password Confirmation&nbsp;*</label></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><span id="ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557_wrapper" class="RadInput RadInput_Default appPwd" style="white-space:normal;"><input id="ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557" name="ctl00$Cph1$Form1$ctl00$ctl09$field_165232_3897557" maxlength="50" class="riTextBox riEnabled appTextBox NormalAppWidth" type="password" autocomplete="off"><input id="ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557_ClientState" name="ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557_ClientState" type="hidden" autocomplete="off" value="{&quot;enabled&quot;:true,&quot;emptyMessage&quot;:&quot;&quot;,&quot;validationText&quot;:&quot;&quot;,&quot;valueAsString&quot;:&quot;&quot;,&quot;lastSetTextBoxValue&quot;:&quot;&quot;}"></span> <span id="Cph1_Form1_ctl00_ctl09_ctl04" class="mandatoryField" style="display:none;">* Required Field</span> <span id="Cph1_Form1_ctl00_ctl09_ctl06" style="display:none;">Maximum character limit exceeded. Allowed limit 50.</span> <span id="Cph1_Form1_ctl00_ctl09_ctl08" class="mandatoryField" style="display:none;">* Password and password confirmation must match</span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlNotFillMode"><span class="commentsLblNotFillMode"></span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlFillMode"><span class="commentsLblFillMode"><span style="font-size: 14px;"><strong>Terms and Conditions</strong>
+<div style="border-style: none none solid; border-color: #e4e8e9; width: auto; border-bottom-width: 1pt;"></div>
+<br>
+</span></span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><span class="rightPadding mandatory" for="Cph1_Form1_ctl00_ctl12_field_165232_3897558">I have read and understood the terms and conditions of the site&nbsp;*</span></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><ul id="Cph1_Form1_ctl00_ctl12_field_165232_3897558">
+					<li><input id="Cph1_Form1_ctl00_ctl12_field_165232_3897558_0" type="checkbox" name="ctl00$Cph1$Form1$ctl00$ctl12$field_165232_3897558$0" value="950583"><label for="Cph1_Form1_ctl00_ctl12_field_165232_3897558_0">Yes, I accept</label></li>
+
+				</ul><span class="assentDocUrl"><a href="https://buryjobs.engageats.co.uk/RegistrationFormV2.aspx?enc=mEgrBL4XQK0+ld8aNkwYmJz/WPdDEbWpU4xBSefeTMbgihQVJoMpECxEYkBrrR7E5nLUPGOAw42guMMGjPzh0yneAfqKhj74n28uPIyA9ZNPgDMZvQISKjMLI1Y0LqAvA/WqbdSGybYGiHyoGyQ/FUIC7Ztrs7bS23RIvmCy0mM=#" id="Cph1_Form1_ctl00_ctl12_AssentLnk"><span class="assentDocUrlIcon"></span><span class="assentDocUrlText NormalAppWidth">Click here to view the terms and conditions</span></a></span><div id="ctl00_Cph1_Form1_ctl00_ctl12_ctl04" style="display:none;position:absolute;">
+					<input id="ctl00_Cph1_Form1_ctl00_ctl12_ctl04_ClientState" name="ctl00_Cph1_Form1_ctl00_ctl12_ctl04_ClientState" type="hidden" autocomplete="off">
+				</div> <span id="Cph1_Form1_ctl00_ctl12_ctl06" class="mandatoryField" style="display:none;">* Required Field</span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlNotFillMode"><span class="commentsLblNotFillMode"></span></div></td>
+			</tr><tr>
+				<td class="sectionItemDescriptionCell" align="left"><span class="rightPadding mandatory" for="Cph1_Form1_ctl00_ctl14_field_165232_3897559">I have read and understood the data protection statement for this site&nbsp;*</span></td><td align="left" class="sectionItemControlCell"><div class="bottomPadding"><ul id="Cph1_Form1_ctl00_ctl14_field_165232_3897559">
+					<li><input id="Cph1_Form1_ctl00_ctl14_field_165232_3897559_0" type="checkbox" name="ctl00$Cph1$Form1$ctl00$ctl14$field_165232_3897559$0" value="950584"><label for="Cph1_Form1_ctl00_ctl14_field_165232_3897559_0">Yes, I accept</label></li>
+
+				</ul><span class="assentDocUrl"><a href="https://greaterjobs.engageats.co.uk/ViewAttachment.aspx?RA=false&amp;AttachmentId=119401&amp;AttachmentTypeId=4" id="Cph1_Form1_ctl00_ctl14_AssentLnk" target="_blank"><span class="assentDocUrlIcon"></span><span class="assentDocUrlText NormalAppWidth">Click here to view the data protection statement</span></a></span><div id="ctl00_Cph1_Form1_ctl00_ctl14_ctl04" style="display:none;position:absolute;">
+					<input id="ctl00_Cph1_Form1_ctl00_ctl14_ctl04_ClientState" name="ctl00_Cph1_Form1_ctl00_ctl14_ctl04_ClientState" type="hidden" autocomplete="off">
+				</div> <span id="Cph1_Form1_ctl00_ctl14_ctl06" class="mandatoryField" style="display:none;">* Required Field</span></div></td>
+			</tr><tr>
+				<td colspan="2"><div class="commentsControlNotFillMode"><span class="commentsLblNotFillMode"></span></div></td>
+			</tr>
+		</tbody></table></div>
+	</div><table class="registrationFormTable">
+		<tbody><tr>
+			<td><p id="regformsavebtnpara"><input type="submit" name="ctl00$Cph1$Form1$FrmSaveBtn55976" value="Register" onclick="ResetPrompt();" id="Cph1_Form1_FrmSaveBtn55976" class="button"></p></td>
+		</tr>
+	</tbody></table>
+</div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script language="javascript" type="text/javascript">
+    
+        function NoPrompt()
+        {
+        }
+        
+        function OnFormElementChanged()
+        {
+        }
+
+        function OnFormGroupElementChanged()
+        {
+        }
+        
+        function OnEducationElementChanged()
+        {
+        }
+
+        function OnLanguageElementChanged()
+        {
+        }
+
+        function OnRefereeElementChanged()
+        {
+        }
+
+        function ResetPrompt()
+        {
+        }
+        
+        function ResetGroupPrompt()
+        {
+        }
+        
+        function ResetEducationPrompt()
+        {
+        }
+
+        function ResetLanguagePrompt()
+        {
+        }
+
+        function ResetRefereePrompt()
+        {
+        }
+
+        function OnClientTabUnSelected(sender, args)
+        {
+        }
+
+        function OnClientTabSelecting(sender, eventArgs)
+        {
+        }    
+    
+    </script>
+
+
+        </div>
+        
+        <div id="footer" class="divClearBoth">
+            <div class="left">
+                
+                <div id="CU_ContactUsAppQuery">
+    <a id="CU_CuaLnk" title="Contact Us - Application query" href="https://buryjobs.engageats.co.uk/ContactUsV2.aspx?SubjectType=A" target="_blank">Questions about the vacancy/application? - Contact our Recruitment Team</a>
+</div>
+<div id="CU_ContactUsTechQuery">
+    <a id="CU_CutLnk" title="Contact Us - Technical query" href="https://buryjobs.engageats.co.uk/ContactUsV2.aspx?SubjectType=T" target="_blank">Questions about using the website? - Contact our Technical Team</a>
+</div>
+
+                
+                
+                <br>
+                
+            </div>
+            
+            <div class="right">
+                
+                <div id="Access_AccessHoldingDiv" class="accessibleArea">
+    <div style="float: left; width: 130px; padding-top: 10px; padding-left: 10px; padding-right:10px;">
+        <strong><span id="Access_AcLegEl">Change font size and colours (This will refresh your page)</span></strong>
+    </div>
+    <div style="float: left;">
+        <div>
+            <strong>Font size</strong>
+        </div>
+        <div id="AccessibilityBtn">
+            <input type="submit" name="ctl00$Access$Normal" value="A" id="Access_Normal" title="Normal font size" class="button" style="font-size:1em;width:30px;">
+            <input type="submit" name="ctl00$Access$Large" value="A" id="Access_Large" title="Large font size" class="button" style="font-size:1.3em;width:30px;">
+            <input type="submit" name="ctl00$Access$Largest" value="A" id="Access_Largest" title="Largest font size" class="button" style="font-size:1.5em;width:30px;">
+        </div>
+    </div>
+    <div style="float: left; padding-left: 10px; padding-right: 5px;">
+        <div>
+            <strong>Contrast</strong>
+        </div>
+        <div style="padding-top: 4px;">
+            <input type="image" name="ctl00$Access$NormalContrast" id="Access_NormalContrast" title="Normal Contrast" src="./Register_files/Normal.png" alt="Normal Contrast" style="height:20px;width:20px;background-color: Transparent;">
+            <input type="image" name="ctl00$Access$BlueContrast" id="Access_BlueContrast" title="Blue Contrast" src="./Register_files/BlueContrast.png" alt="Blue Contrast" style="height:20px;width:20px;background-color: Transparent;">
+            <input type="image" name="ctl00$Access$HighContrast" id="Access_HighContrast" title="High Contrast" src="./Register_files/HighContrast.png" alt="High Contrast" style="height:20px;width:20px;background-color: Transparent;">
+            <input type="image" name="ctl00$Access$SoftContrast" id="Access_SoftContrast" title="Soft Contrast" src="./Register_files/SoftContrast.png" alt="Soft Contrast" style="height:20px;width:20px;background-color: Transparent;">
+        </div>
+    </div>
+    <div id="Access_FontDv" style="float: left; padding-left: 10px; padding-right: 5px;">
+        <div>
+            <strong>Font face</strong>
+        </div>
+        <div style="padding-top: 4px;">
+            <div id="ctl00_Access_FontCbo" class="RadComboBox RadComboBox_Default" style="width:160px;white-space:normal;">
+	<table summary="this table represnts the value of a combo box. please ignore." style="border-width:0;border-collapse:collapse;width:100%">
+		<tbody><tr>
+			<td class="rcbInputCell rcbInputCellLeft" style="width:100%;"><input name="ctl00$Access$FontCbo" type="text" class="rcbInput radPreventDecorate" id="ctl00_Access_FontCbo_Input" value="Default" autocomplete="off"></td><td class="rcbArrowCell rcbArrowCellRight"><a id="ctl00_Access_FontCbo_Arrow" style="overflow: hidden;display: block;position: relative;outline: none;">select</a></td>
+		</tr>
+	</tbody></table><div class="rcbSlide" style="z-index:6000;"><div id="ctl00_Access_FontCbo_DropDown" class="RadComboBoxDropDown RadComboBoxDropDown_Default " style="display:none;"><div class="rcbScroll rcbWidth" style="height:88px;width:100%;"><ul class="rcbList" style="list-style:none;margin:0;padding:0;zoom:1;"><li class="rcbItem ">Default</li><li class="rcbItem ">Arial</li><li class="rcbItem ">Verdana</li><li class="rcbItem ">Times New Roman</li></ul></div></div></div><input id="ctl00_Access_FontCbo_ClientState" name="ctl00_Access_FontCbo_ClientState" type="hidden" autocomplete="off">
+</div>
+        </div>
+    </div>
+    
+</div>
+
+                
+            </div>
+            <div class="divClearBoth">
+            </div>
+        </div>
+        
+    </div>
+    
+    <div id="ctl00_WindowManager" style="display:none;">
+	<div id="ctl00_WindowManager_alerttemplate" style="display:none;">
+		<div class="rwDialogPopup radalert">			
+			<div class="rwDialogText">
+			{1}				
+			</div>
+			
+			<div>
+				<a onclick="$find(&#39;{0}&#39;).close(true);" class="rwPopupButton" href="javascript:void(0);">
+					<span class="rwOuterSpan">
+						<span class="rwInnerSpan">##LOC[OK]##</span>
+					</span>
+				</a>				
+			</div>
+		</div>
+		</div><div id="ctl00_WindowManager_prompttemplate" style="display:none;">
+		 <div class="rwDialogPopup radprompt">			
+			    <div class="rwDialogText">
+			    {1}				
+			    </div>		
+			    <div>
+				    <script type="text/javascript">
+				    function RadWindowprompt_detectenter(id, ev, input)
+				    {							
+					    if (!ev) ev = window.event;                
+					    if (ev.keyCode == 13)
+					    {															        
+					        var but = input.parentNode.parentNode.getElementsByTagName("A")[0];					        
+					        if (but)
+						    {							
+							    if (but.click) but.click();
+							    else if (but.onclick)
+							    {
+							        but.focus(); var click = but.onclick; but.onclick = null; if (click) click.call(but);							 
+							    }
+						    }
+					       return false;
+					    } 
+					    else return true;
+				    }	 
+				    </script>
+				    <input title="Enter Value" onkeydown="return RadWindowprompt_detectenter(&#39;{0}&#39;, event, this);" type="text" class="rwDialogInput" value="{2}">
+			    </div>
+			    <div>
+				    <a onclick="$find(&#39;{0}&#39;).close(this.parentNode.parentNode.getElementsByTagName(&#39;input&#39;)[0].value);" class="rwPopupButton" href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+				    <a onclick="$find(&#39;{0}&#39;).close(null);" class="rwPopupButton" href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+			    </div>
+		    </div>				       
+		</div><div id="ctl00_WindowManager_confirmtemplate" style="display:none;">
+		<div class="rwDialogPopup radconfirm">			
+			<div class="rwDialogText">
+			{1}				
+			</div>						
+			<div>
+				<a onclick="$find(&#39;{0}&#39;).close(true);" class="rwPopupButton" href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[OK]##</span></span></a>
+				<a onclick="$find(&#39;{0}&#39;).close(false);" class="rwPopupButton" href="javascript:void(0);"><span class="rwOuterSpan"><span class="rwInnerSpan">##LOC[Cancel]##</span></span></a>
+			</div>
+		</div>		
+		</div><input id="ctl00_WindowManager_ClientState" name="ctl00_WindowManager_ClientState" type="hidden">
+</div>
+    <div id="ctl00_SessUc_SessTt" style="display:none;position:absolute;">
+	
+    <div id="sessionTimeOut">
+        <img id="SessUc_SessWrnImg" src="./Register_files/warning.jpg" alt="Warning Icon">
+
+    <div class="RadAjaxPanel" id="ctl00_Cph1_ctl00_SessUc_SessLblPanel" style="display: block;">
+		<div id="SessUc_SessLbl">
+			
+        <p><strong>YOUR SESSION IS ABOUT TO EXPIRE</strong></p>
+        <p>You will be logged out automatically in <span id="sessionTimeoutRemaining">60</span>&nbsp;seconds.</p>
+        <p>You will lose any unsaved work.</p>
+        <p>Click <strong>OK</strong> to remain logged in.</p>
+    
+		</div>
+	</div>
+    
+    <div class="RadAjaxPanel" id="ctl00_Cph1_ctl00_SessUc_OutLblPanel" style="display: block;">
+
+	</div>
+    <div class="divClearBoth">
+        <input type="submit" name="ctl00$SessUc$OkBtn" value="OK" onclick="return sessionTimeoutOkClicked();" id="SessUc_OkBtn" class="button">
+        
+    </div>
+    <input type="button" name="ctl00$SessUc$LogoutBtn" value="Logout" onclick="javascript:__doPostBack(&#39;ctl00$SessUc$LogoutBtn&#39;,&#39;&#39;)" id="SessUc_LogoutBtn" style="display: none;">
+    </div>
+<input id="ctl00_SessUc_SessTt_ClientState" name="ctl00_SessUc_SessTt_ClientState" type="hidden" autocomplete="off">
+</div>
+
+    
+
+    
+<script type="text/javascript">
+//<![CDATA[
+var Page_ValidationSummaries =  new Array(document.getElementById("Cph1_LoginCtrl_ValidationSummary1"));
+var Page_Validators =  new Array(document.getElementById("Cph1_LoginCtrl_Login1_UserNameRequired"), document.getElementById("Cph1_LoginCtrl_Login1_PasswordRequired"), document.getElementById("Cph1_Form1_ctl00_ctl01_ctl04"), document.getElementById("Cph1_Form1_ctl00_ctl02_ctl04"), document.getElementById("Cph1_Form1_ctl00_ctl02_ctl06"), document.getElementById("Cph1_Form1_ctl00_ctl03_ctl04"), document.getElementById("Cph1_Form1_ctl00_ctl03_ctl06"), document.getElementById("Cph1_Form1_ctl00_ctl05_ctl04"), document.getElementById("Cph1_Form1_ctl00_ctl05_ctl06"), document.getElementById("Cph1_Form1_ctl00_ctl05_ctl08"), document.getElementById("Cph1_Form1_ctl00_ctl05_ctl10"), document.getElementById("Cph1_Form1_ctl00_ctl08_ctl04"), document.getElementById("Cph1_Form1_ctl00_ctl08_ctl06"), document.getElementById("Cph1_Form1_ctl00_ctl08_ctl09"), document.getElementById("Cph1_Form1_ctl00_ctl09_ctl04"), document.getElementById("Cph1_Form1_ctl00_ctl09_ctl06"), document.getElementById("Cph1_Form1_ctl00_ctl09_ctl08"), document.getElementById("Cph1_Form1_ctl00_ctl12_ctl06"), document.getElementById("Cph1_Form1_ctl00_ctl14_ctl06"));
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+var Cph1_LoginCtrl_Login1_UserNameRequired = document.all ? document.all["Cph1_LoginCtrl_Login1_UserNameRequired"] : document.getElementById("Cph1_LoginCtrl_Login1_UserNameRequired");
+Cph1_LoginCtrl_Login1_UserNameRequired.controltovalidate = "Cph1_LoginCtrl_Login1_UserName";
+Cph1_LoginCtrl_Login1_UserNameRequired.errormessage = "Email address is required.";
+Cph1_LoginCtrl_Login1_UserNameRequired.validationGroup = "Login1";
+Cph1_LoginCtrl_Login1_UserNameRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+Cph1_LoginCtrl_Login1_UserNameRequired.initialvalue = "";
+var Cph1_LoginCtrl_Login1_PasswordRequired = document.all ? document.all["Cph1_LoginCtrl_Login1_PasswordRequired"] : document.getElementById("Cph1_LoginCtrl_Login1_PasswordRequired");
+Cph1_LoginCtrl_Login1_PasswordRequired.controltovalidate = "Cph1_LoginCtrl_Login1_Password";
+Cph1_LoginCtrl_Login1_PasswordRequired.errormessage = "Password is required.";
+Cph1_LoginCtrl_Login1_PasswordRequired.validationGroup = "Login1";
+Cph1_LoginCtrl_Login1_PasswordRequired.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+Cph1_LoginCtrl_Login1_PasswordRequired.initialvalue = "";
+var Cph1_LoginCtrl_ValidationSummary1 = document.all ? document.all["Cph1_LoginCtrl_ValidationSummary1"] : document.getElementById("Cph1_LoginCtrl_ValidationSummary1");
+Cph1_LoginCtrl_ValidationSummary1.validationGroup = "Login1";
+var Cph1_Form1_ctl00_ctl01_ctl04 = document.all ? document.all["Cph1_Form1_ctl00_ctl01_ctl04"] : document.getElementById("Cph1_Form1_ctl00_ctl01_ctl04");
+Cph1_Form1_ctl00_ctl01_ctl04.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl01_ctl04.display = "Dynamic";
+Cph1_Form1_ctl00_ctl01_ctl04.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl01_ctl04.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl02_ctl04 = document.all ? document.all["Cph1_Form1_ctl00_ctl02_ctl04"] : document.getElementById("Cph1_Form1_ctl00_ctl02_ctl04");
+Cph1_Form1_ctl00_ctl02_ctl04.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl02_ctl04.display = "Dynamic";
+Cph1_Form1_ctl00_ctl02_ctl04.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl02_ctl04.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl02_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl02_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl02_ctl06");
+Cph1_Form1_ctl00_ctl02_ctl06.errormessage = "Maximum character limit exceeded. Allowed limit 50.";
+Cph1_Form1_ctl00_ctl02_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl02_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl02_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl03_ctl04 = document.all ? document.all["Cph1_Form1_ctl00_ctl03_ctl04"] : document.getElementById("Cph1_Form1_ctl00_ctl03_ctl04");
+Cph1_Form1_ctl00_ctl03_ctl04.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl03_ctl04.display = "Dynamic";
+Cph1_Form1_ctl00_ctl03_ctl04.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl03_ctl04.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl03_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl03_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl03_ctl06");
+Cph1_Form1_ctl00_ctl03_ctl06.errormessage = "Maximum character limit exceeded. Allowed limit 50.";
+Cph1_Form1_ctl00_ctl03_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl03_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl03_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl05_ctl04 = document.all ? document.all["Cph1_Form1_ctl00_ctl05_ctl04"] : document.getElementById("Cph1_Form1_ctl00_ctl05_ctl04");
+Cph1_Form1_ctl00_ctl05_ctl04.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl05_ctl04.display = "Dynamic";
+Cph1_Form1_ctl00_ctl05_ctl04.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl05_ctl04.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl05_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl05_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl05_ctl06");
+Cph1_Form1_ctl00_ctl05_ctl06.errormessage = "* Must be a valid E-mail address";
+Cph1_Form1_ctl00_ctl05_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl05_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl05_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl05_ctl08 = document.all ? document.all["Cph1_Form1_ctl00_ctl05_ctl08"] : document.getElementById("Cph1_Form1_ctl00_ctl05_ctl08");
+Cph1_Form1_ctl00_ctl05_ctl08.errormessage = "This email address has already been registered. Please click <a href=\"RecoverPassword.aspx\" title=\"Forgotten password link\">here</a> if you have forgotten your password.";
+Cph1_Form1_ctl00_ctl05_ctl08.display = "Dynamic";
+Cph1_Form1_ctl00_ctl05_ctl08.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl05_ctl08.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl05_ctl10 = document.all ? document.all["Cph1_Form1_ctl00_ctl05_ctl10"] : document.getElementById("Cph1_Form1_ctl00_ctl05_ctl10");
+Cph1_Form1_ctl00_ctl05_ctl10.errormessage = "Maximum character limit exceeded. Allowed limit 50.";
+Cph1_Form1_ctl00_ctl05_ctl10.display = "Dynamic";
+Cph1_Form1_ctl00_ctl05_ctl10.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl05_ctl10.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl08_ctl04 = document.all ? document.all["Cph1_Form1_ctl00_ctl08_ctl04"] : document.getElementById("Cph1_Form1_ctl00_ctl08_ctl04");
+Cph1_Form1_ctl00_ctl08_ctl04.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl08_ctl04.display = "Dynamic";
+Cph1_Form1_ctl00_ctl08_ctl04.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl08_ctl04.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl08_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl08_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl08_ctl06");
+Cph1_Form1_ctl00_ctl08_ctl06.errormessage = "Maximum character limit exceeded. Allowed limit 50.";
+Cph1_Form1_ctl00_ctl08_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl08_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl08_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl08_ctl09 = document.all ? document.all["Cph1_Form1_ctl00_ctl08_ctl09"] : document.getElementById("Cph1_Form1_ctl00_ctl08_ctl09");
+Cph1_Form1_ctl00_ctl08_ctl09.errormessage = "Password must be at least 8 characters long and have at least one special character such as & @ ! #";
+Cph1_Form1_ctl00_ctl08_ctl09.display = "Dynamic";
+Cph1_Form1_ctl00_ctl08_ctl09.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl08_ctl09.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl09_ctl04 = document.all ? document.all["Cph1_Form1_ctl00_ctl09_ctl04"] : document.getElementById("Cph1_Form1_ctl00_ctl09_ctl04");
+Cph1_Form1_ctl00_ctl09_ctl04.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl09_ctl04.display = "Dynamic";
+Cph1_Form1_ctl00_ctl09_ctl04.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl09_ctl04.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl09_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl09_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl09_ctl06");
+Cph1_Form1_ctl00_ctl09_ctl06.errormessage = "Maximum character limit exceeded. Allowed limit 50.";
+Cph1_Form1_ctl00_ctl09_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl09_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl09_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl09_ctl08 = document.all ? document.all["Cph1_Form1_ctl00_ctl09_ctl08"] : document.getElementById("Cph1_Form1_ctl00_ctl09_ctl08");
+Cph1_Form1_ctl00_ctl09_ctl08.errormessage = "* Password and password confirmation must match";
+Cph1_Form1_ctl00_ctl09_ctl08.display = "Dynamic";
+Cph1_Form1_ctl00_ctl09_ctl08.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl09_ctl08.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl12_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl12_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl12_ctl06");
+Cph1_Form1_ctl00_ctl12_ctl06.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl12_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl12_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl12_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+var Cph1_Form1_ctl00_ctl14_ctl06 = document.all ? document.all["Cph1_Form1_ctl00_ctl14_ctl06"] : document.getElementById("Cph1_Form1_ctl00_ctl14_ctl06");
+Cph1_Form1_ctl00_ctl14_ctl06.errormessage = "* Required Field";
+Cph1_Form1_ctl00_ctl14_ctl06.display = "Dynamic";
+Cph1_Form1_ctl00_ctl14_ctl06.validationGroup = "Section165232ValidationGroup";
+Cph1_Form1_ctl00_ctl14_ctl06.evaluationfunction = "CustomValidatorEvaluateIsValid";
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdABivVXD1oYELeveMr0vHCmYPJqNp3jq5p5hZY/rGalwwBWzo1sEQVoLfNEELXAIChzmLqwpAKqr45oliDqHgbBz04480I2k85TNaF4Ir9/GTsH4wPxpfdg0s1crb24wUcqTj+QxrpWJ7IFZHhUuvtYJTUs7VpevDleMtIVwlqKMLoLI1lfMSD1TDHNfKS3ACmq8tprc1x3Ma/LzQidfwAQzbCqboqkQYrnqdUcqSQP9H0U3D+Jxu6YE5QaQzRJhgGrm1T2Da7UraqH0L48Gn+o1XxK8ZfA5gvd+zVBHPEa3M07/0SlBXPsGgnqytMF4pextLki7zAMSXED77wpU08c8/h6pNAF2iNIe8tskeS8HmHUAw1TufFqQIpWNUT1kwk82S/M5Dyl6urgUviLqLZRIZuLFail2WUtDqe0/xkBJ2cLQT6bepk5Z4l42NCx6XgG2Br9s36I83DU3OYwGyOQnYAKSLoxTKO/MGXcacVeSxkz98IylXhLyGj8ldG6EB78pqwYCi6cRGt5ON3Q09vhtkye4qHA==">
+</div>
+<script type="text/javascript">
+//<![CDATA[
+if (screen.width < 1024)
+{
+var lbl = document.getElementById('ctl00_LoginCtrl_ResolutionLabel');
+if (lbl)
+{
+lbl.style.display = 'block';
+}
+}
+//]]>
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+
+var Page_ValidationActive = false;
+if (typeof(ValidatorOnLoad) == "function") {
+    ValidatorOnLoad();
+}
+
+function ValidatorOnSubmit() {
+    if (Page_ValidationActive) {
+        return ValidatorCommonOnSubmit();
+    }
+    else {
+        return true;
+    }
+}
+        
+(function(id) {
+    var e = document.getElementById(id);
+    if (e) {
+        e.dispose = function() {
+            Array.remove(Page_ValidationSummaries, document.getElementById(id));
+        }
+        e = null;
+    }
+})('Cph1_LoginCtrl_ValidationSummary1');
+tabStripClientId='';saveButtonClientId='';submitButtonClientId='';ajaxButtonClientId='';var currentEntityId=0; if (currentEntityId == 0) { allowPrompt = true; };Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxPanel, {"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"enableAJAX":true,"enableHistory":false,"links":[],"loadingPanelID":"","styles":[],"uniqueID":"ctl00$RadAjaxPanel1"}, null, null, $get("ctl00_RadAjaxPanel1"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxManager, {"_updatePanels":"","ajaxSettings":[{InitControlID : "Cph1_LoginCtrl_Login1",UpdatedControls : [{ControlID:"ctl00_Cph1_LoginCtrl_rap1",PanelID:""}]},{InitControlID : "SessUc_LogoutBtn",UpdatedControls : [{ControlID:"SessUc_SessLbl",PanelID:""}]},{InitControlID : "SessUc_LogoutBtn",UpdatedControls : [{ControlID:"SessUc_OutLbl",PanelID:""}]}],"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"defaultLoadingPanelID":"","enableAJAX":true,"enableHistory":false,"links":[],"styles":[],"uniqueID":"ctl00$Cph1$RadAjaxManager1","updatePanelsRenderMode":0}, null, null, $get("ctl00_Cph1_RadAjaxManager1"));
+});
+
+document.getElementById('Cph1_LoginCtrl_Login1_UserNameRequired').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_LoginCtrl_Login1_UserNameRequired'));
+}
+
+document.getElementById('Cph1_LoginCtrl_Login1_PasswordRequired').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_LoginCtrl_Login1_PasswordRequired'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadAjaxPanel, {"clientEvents":{OnRequestStart:"",OnResponseEnd:""},"enableAJAX":true,"enableHistory":false,"links":[],"loadingPanelID":"","styles":[],"uniqueID":"ctl00$Cph1$LoginCtrl$rap1"}, null, null, $get("ctl00_Cph1_LoginCtrl_rap1"));
+});
+
+WebForm_InitCallback();Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadComboBox, {"_dropDownWidth":0,"_height":154,"_skin":"Default","_text":"Please Select","_uniqueId":"ctl00$Cph1$Form1$ctl00$ctl01$field_165232_3897551","clientStateFieldID":"ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551_ClientState","collapseAnimation":"{\"duration\":450}","expandAnimation":"{\"duration\":450}","filter":1,"itemData":[{"selected":true},{"value":"945900"},{"value":"945901"},{"value":"945902"},{"value":"945903"},{"value":"945904"},{"value":"1423956"}],"localization":"{\"AllItemsCheckedString\":\"All items checked\",\"ItemsCheckedString\":\"items checked\",\"CheckAllString\":\"Check All\"}","markFirstMatch":true,"selectedIndex":0}, null, null, $get("ctl00_Cph1_Form1_ctl00_ctl01_field_165232_3897551"));
+});
+
+document.getElementById('Cph1_Form1_ctl00_ctl01_ctl04').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl01_ctl04'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl02_ctl04').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl02_ctl04'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl02_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl02_ctl06'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl03_ctl04').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl03_ctl04'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl03_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl03_ctl06'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl05_ctl04').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl05_ctl04'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl05_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl05_ctl06'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl05_ctl08').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl05_ctl08'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl05_ctl10').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl05_ctl10'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadTextBox, {"_focused":false,"_postBackEventReferenceScript":"setTimeout(\"__doPostBack(\\\u0027ctl00$Cph1$Form1$ctl00$ctl08$field_165232_3897556\\\u0027,\\\u0027\\\u0027)\", 0)","_skin":"Default","clientStateFieldID":"ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556_ClientState","enabled":true,"styles":{HoveredStyle: ["", "riTextBox riHover appTextBox NormalAppWidth"],InvalidStyle: ["", "riTextBox riError appTextBox NormalAppWidth"],DisabledStyle: ["", "riTextBox riDisabled appTextBox NormalAppWidth"],FocusedStyle: ["", "riTextBox riFocused appTextBox NormalAppWidth"],EmptyMessageStyle: ["", "riTextBox riEmpty appTextBox NormalAppWidth"],ReadOnlyStyle: ["", "riTextBox riRead appTextBox NormalAppWidth"],EnabledStyle: ["", "riTextBox riEnabled appTextBox NormalAppWidth"]}}, null, null, $get("ctl00_Cph1_Form1_ctl00_ctl08_field_165232_3897556"));
+});
+
+document.getElementById('Cph1_Form1_ctl00_ctl08_ctl04').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl08_ctl04'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl08_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl08_ctl06'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl08_ctl09').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl08_ctl09'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadTextBox, {"_focused":false,"_postBackEventReferenceScript":"setTimeout(\"__doPostBack(\\\u0027ctl00$Cph1$Form1$ctl00$ctl09$field_165232_3897557\\\u0027,\\\u0027\\\u0027)\", 0)","_skin":"Default","clientStateFieldID":"ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557_ClientState","enabled":true,"styles":{HoveredStyle: ["", "riTextBox riHover appTextBox NormalAppWidth"],InvalidStyle: ["", "riTextBox riError appTextBox NormalAppWidth"],DisabledStyle: ["", "riTextBox riDisabled appTextBox NormalAppWidth"],FocusedStyle: ["", "riTextBox riFocused appTextBox NormalAppWidth"],EmptyMessageStyle: ["", "riTextBox riEmpty appTextBox NormalAppWidth"],ReadOnlyStyle: ["", "riTextBox riRead appTextBox NormalAppWidth"],EnabledStyle: ["", "riTextBox riEnabled appTextBox NormalAppWidth"]}}, null, null, $get("ctl00_Cph1_Form1_ctl00_ctl09_field_165232_3897557"));
+});
+
+document.getElementById('Cph1_Form1_ctl00_ctl09_ctl04').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl09_ctl04'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl09_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl09_ctl06'));
+}
+
+document.getElementById('Cph1_Form1_ctl00_ctl09_ctl08').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl09_ctl08'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadToolTip, {"_cssClass":"","_manualCloseButtonText":"Close","animation":1,"clientStateFieldID":"ctl00_Cph1_Form1_ctl00_ctl12_ctl04_ClientState","formID":"form1","height":"270px","hideDelay":400,"hideEvent":4,"position":11,"showEvent":2,"skin":"Default","targetControlID":"Cph1_Form1_ctl00_ctl12_AssentLnk","text":"TERMS AND CONDITIONS\u003cbr\u003e\r\n\u003cbr\u003e\r\ngreater.jobs is a collaboration of public sector employers led by Wigan Council who are responsible for this system. The list of employers involved can be found in the Privacy and Cookies Policy.\u003cbr\u003e\r\n\u003cbr\u003e\r\nBy registering your application and agreeing to the terms and conditions, you have agreed that the information contained in your application may be used by us for recruitment and Human Resource purposes. This includes your consent that we can verify any of the information provided by you for recruitment purposes, such as taking references and verifying educational and other achievements. \u003cbr\u003e\r\n\u003cbr\u003e\r\nThe information you provide will be used by us for administrative and management purposes, for employees and prospective employees, and for compliance with applicable procedures, laws and regulations to which we are subject.\u003cbr\u003e\r\n\u003cbr\u003e\r\nYou agree that your personal details may be held, processed and disclosed to third parties, both electronically and manually, by the greater.jobs employers for the purposes of the recruitment or employment process.\u003cbr\u003e\r\n\u003cbr\u003e\r\nYou agree that we will keep your application in line with the Privacy and Cookies Policy. You have the right to delete your personal data at any time.\u003cbr\u003e\r\n\u003cbr\u003e\r\nOnce you register your details you agree to notify us of any changes to your personal data whilst you are registered on this site. \u003cbr\u003e\r\n\u003cbr\u003e\r\nYou agree that the information provided by you is true, accurate and up-to-date and is in no way misleading, deceptive or inaccurate or likely to mislead or deceive. You understand that if any of the information is found to be untrue, inaccurate or misleading, we reserve the right to withdraw any offer of employment or to terminate any employment already commenced.\u003cbr\u003e","width":"770px"}, null, null, $get("ctl00_Cph1_Form1_ctl00_ctl12_ctl04"));
+});
+
+document.getElementById('Cph1_Form1_ctl00_ctl12_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl12_ctl06'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadToolTip, {"_cssClass":"","_manualCloseButtonText":"Close","animation":1,"clientStateFieldID":"ctl00_Cph1_Form1_ctl00_ctl14_ctl04_ClientState","formID":"form1","height":"180px","hideDelay":400,"hideEvent":4,"position":11,"showEvent":2,"skin":"Default","targetControlID":"Cph1_Form1_ctl00_ctl14_AssentLnk","text":"Please \u003ca href=\"https://greaterjobs.engageats.co.uk/ViewAttachment.aspx?RA=false\u0026amp;AttachmentId=217447\u0026amp;AttachmentTypeId=4\" target=\"_blank\"\u003eclick here\u003c/a\u003e to view the Data Protection and Cookie policy.","width":"680px"}, null, null, $get("ctl00_Cph1_Form1_ctl00_ctl14_ctl04"));
+});
+
+document.getElementById('Cph1_Form1_ctl00_ctl14_ctl06').dispose = function() {
+    Array.remove(Page_Validators, document.getElementById('Cph1_Form1_ctl00_ctl14_ctl06'));
+}
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadComboBox, {"_dropDownWidth":0,"_enableScreenBoundaryDetection":false,"_height":88,"_postBackReference":"__doPostBack(\u0027ctl00$Access$FontCbo\u0027,\u0027arguments\u0027)","_skin":"Default","_text":"Default","_uniqueId":"ctl00$Access$FontCbo","clientStateFieldID":"ctl00_Access_FontCbo_ClientState","collapseAnimation":"{\"duration\":450}","expandAnimation":"{\"duration\":450}","expandDirection":1,"filter":1,"itemData":[{"selected":true},{"value":"arial"},{"value":"verdana"},{"value":"timesnewroman"}],"localization":"{\"AllItemsCheckedString\":\"All items checked\",\"ItemsCheckedString\":\"items checked\",\"CheckAllString\":\"Check All\"}","selectedIndex":0}, null, null, $get("ctl00_Access_FontCbo"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadWindowManager, {"behaviors":37,"clientStateFieldID":"ctl00_WindowManager_ClientState","destroyOnClose":true,"formID":"form1","iconUrl":"","initialBehaviors":64,"keepInScreenBounds":true,"minimizeIconUrl":"","name":"WindowManager","showContentDuringLoad":false,"skin":"Default","visibleStatusbar":false,"windowControls":"[]"}, null, null, $get("ctl00_WindowManager"));
+});
+Sys.Application.add_init(function() {
+    $create(Telerik.Web.UI.RadToolTip, {"_cssClass":"","_manualCloseButtonText":"Close","animation":1,"clientStateFieldID":"ctl00_SessUc_SessTt_ClientState","formID":"form1","hideEvent":16,"position":22,"relativeTo":2,"skin":"Default"}, {"show":startSessionCountDownTimer}, null, $get("ctl00_SessUc_SessTt"));
+});
+//]]>
+</script>
+</form>
+
+
+
+</body></html>

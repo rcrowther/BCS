@@ -1,0 +1,1797 @@
+﻿var Url = {
+    encode: function(string) {
+        return escape(this._utf8_encode(string));
+    },
+    decode: function(string) {
+        return this._utf8_decode(unescape(string));
+    },
+    _utf8_encode: function(string) {
+        string = string.replace( /\r\n/g , "\n");
+        var utftext = "";
+        for (var n = 0; n < string.length; n++) {
+
+            var c = string.charCodeAt(n);
+
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            }
+            else if ((c > 127) && (c < 2048)) {
+                utftext += String.fromCharCode((c >> 6) | 192);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+            else {
+                utftext += String.fromCharCode((c >> 12) | 224);
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+        }
+        return utftext;
+    },
+    _utf8_decode: function(utftext) {
+        var string = ""; var i = 0; var c, c2, c3;
+        while (i < utftext.length) {
+            c = utftext.charCodeAt(i);
+
+            if (c < 128) {
+                string += String.fromCharCode(c);
+                i++;
+            }
+            else if ((c > 191) && (c < 224)) {
+                c2 = utftext.charCodeAt(i + 1);
+                string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));
+                i += 2;
+            }
+            else {
+                c2 = utftext.charCodeAt(i + 1);
+                c3 = utftext.charCodeAt(i + 2);
+                string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));
+                i += 3;
+            }
+        }
+        return string.replace( /\+/g , " ").replace( /''/g , "'");
+    }
+};
+/* Clear Default Text: functions for clearing and replacing default text in <input> elements.*/
+function clearDefaultText(target) {
+    if (!target || !target.attributes["title"]) return;
+    if (target.value == target.attributes["title"].value) {
+        target.value = '';
+    } else {
+        target.select();
+    }
+    $(target).removeClass("defaultText");
+}
+function replaceDefaultText(target) {
+    if (!target) return;
+    if (target.value == '' && target.attributes["title"]) {
+        target.value = target.attributes["title"].value;
+        $(target).addClass("defaultText");
+    }
+}
+function getParentWithCopyId(obj){
+    if( obj.attributes == null ) return null;
+    if( obj.attributes["CopyId"] != null ) return obj;
+    if( obj.parentNode == null ) return null;
+    return getParentWithCopyId(obj.parentNode);
+}
+function ClientShowing(sender, args){var target = sender.get_completionList();calculateSize(target, sender.get_element().style.width);}
+function calculateSize(target, textBoxWidth){
+    var maxWidth = 500;
+    var maxHeight = 350;
+    if(target==null) return textBoxWidth + 'px';
+    var elements = target.getElementsByTagName('LI');
+    var maxLength = 0;
+    if(textBoxWidth=='') textBoxWidth='150px';
+    textBoxWidth = textBoxWidth.replace('px','');
+    for(var i=0;i<elements.length;i++){
+        var tempLength = elements[i].innerHTML.length * 6;
+        if(tempLength > maxLength)
+            maxLength = tempLength;
+    }
+    if(maxLength < parseInt(textBoxWidth)) maxLength = parseInt(textBoxWidth);
+    if(maxLength>maxWidth) maxLength = maxWidth;
+    target.style.width = maxLength + 'px';
+    var tempHeight = Math.min(elements.length * 14 + 4, 120);
+    if(tempHeight > maxHeight){
+        tempHeight=maxHeight;
+        target.style.height = tempHeight + 'px';
+        target.style.overflow = 'auto';
+    }else{
+        target.style.overflow = 'visible';
+    }
+}
+function ChangeHrefToJSVoid(objectId){
+    var object = document.getElementById(objectId);
+    if(object==null) return;
+    var anchors = object.getElementsByTagName("a");
+    if(anchors==null) return;
+    for (var i = 0; i < anchors.length; i++){
+        var anchor = anchors[i];
+        if(anchor.href.endsWith('#')){
+            var newHref = 'javascript:void(0);';
+            anchor.href = newHref;
+        }
+    }
+}
+function GetActiveToolTip(){
+    var controller = Telerik.Web.UI.RadToolTipController.getInstance();
+    if(controller==null)return null;
+    return controller.get_activeToolTip();
+}
+function SetActiveTooltipTitle(title){
+    var activeTooltip = GetActiveToolTip();
+    if(activeTooltip==null)
+        return;
+    activeTooltip.set_title(title);
+}
+function ShowToolTip(tooltipManager, element, title, manualClose, width, height){
+    if(tooltipManager==null) return;
+    var csTooltip = tooltipManager.getToolTipByElement(element);
+    if(csTooltip==null){
+        //Create a new tooltip;
+        csTooltip = tooltipManager.createToolTip(element);
+        csTooltip.set_targetControl(element);
+        csTooltip.set_serverTargetControlID(element.id);
+        csTooltip.set_title(title);
+        csTooltip.set_height(height);
+        csTooltip.set_width(width);
+        csTooltip.set_manualClose(manualClose);
+    }
+    csTooltip.show();
+}
+function CloseToolTip(){
+    if(Telerik.Web.UI.RadToolTipController == null) return;
+    var instance = Telerik.Web.UI.RadToolTipController.getInstance();
+    if(instance==null) return;
+    var tooltip = instance.get_activeToolTip();
+    if(tooltip==null) return;
+    tooltip.hide();
+}
+function insertAtCursor(myField, myValue){
+    //IE support
+    if (document.selection){
+        myField.focus();
+        sel = document.selection.createRange();
+        sel.text = myValue;
+    }
+    //MOZILLA/NETSCAPE support
+    else if (myField.selectionStart || myField.selectionStart == '0'){
+        var startPos = myField.selectionStart;
+        var endPos = myField.selectionEnd;
+        myField.value = myField.value.substring(0, startPos)
+        + myValue
+        + myField.value.substring(endPos, myField.value.length);
+    }
+    else{myField.value += myValue;}
+}
+function styleCheckboxes() {
+   var cbxs=document.getElementsByTagName('INPUT');
+   for (var i=0; i<cbxs.length; i++) {
+       if(cbxs[i].type=='checkbox' || cbxs[i].type=='radio') {
+         cbxs[i].style.border='none';
+         cbxs[i].style.background='transparent';
+       }
+    }
+}
+function SetRadEditorContentAreaClassName(editor, args)
+{
+    if( editor != null && editor.get_contentArea() != null)
+        editor.get_contentArea().className="brandedEditor";
+}
+
+var prefs = { data: {}, load: function () {
+    var the_cookie = this.getCookieByName("candSearchPrefs"); if (the_cookie) { this.data = JSON.parse(unescape(the_cookie), null); }
+    return this.data;
+}, save: function (expires, path) {
+    var d = expires || new Date(2020, 02, 02); var p = path || '/'; document.cookie = "candSearchPrefs=" + escape(JSON.stringify(this.data))
++ ';path=' + p;
+}, getCookieByName: function (sName) {
+    var aCookie = document.cookie.split("; "); for (var i = 0; i < aCookie.length; i++) {
+        var aCrumb = aCookie[i].split("="); if (sName == aCrumb[0])
+            return aCrumb[1];
+    }
+    return null;
+}
+};
+
+//windowManagerClientId is set in the Master Page.
+function OpenWindow(url, name, width, height){
+    var oManager = $find(windowManagerClientId);
+    var wnd = oManager.open(url, name);
+    wnd.setSize(width, height);
+    wnd.center();
+    CloseToolTip();
+    return false;
+}
+function OpenWindowWithCallBack(url, name, width, height, callBack) {
+  var isIpad = navigator.userAgent.match(/iPad/i) != null;
+    if (isIpad && url != null && url.toLowerCase().indexOf('recommendationexport.aspx') > -1) {
+        window.open(url);
+    } else {
+        var oManager = $find(windowManagerClientId);
+        var wnd = oManager.open(url, name);
+        wnd.setSize(width, height);
+        wnd.center();
+        wnd.add_close(callBack);
+    }
+    return false;
+}
+
+function getInternetExplorerVersion()
+{
+    var rv = -1; // Return value assumes failure.
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null)
+            rv = parseFloat(RegExp.$1);
+    }
+    return rv;
+}
+var CSWnd = {
+    //windowManagerClientId is set in the Master Page.
+    OpenWindow: function (name, applicationId, width, height) {
+        var oM = this.GetWinMgr();
+        var wnds = oM.get_windows().slice();
+        if (typeof leftWindowPreference != "undefined" && typeof rightWindowPreference != "undefined" && leftWindowPreference != "" && rightWindowPreference != "" && (leftWindowPreference == name || rightWindowPreference == name) && wnds.length == 0) {
+            prefs.data.candSearchTileOnOpen = true;
+            prefs.save();
+            CSWnd.OpenTileWindowsInLiteAtsWithOutCallBack(name, applicationId, width, height, leftWindowPreference, rightWindowPreference);
+            return false;
+        }
+        
+        var oManager = $find(windowManagerClientId);
+        if (ConfirmTilingDifferentApplications(oManager, applicationId)) {
+            var wnd = oManager.open(GetCandidateSearchWindowUrl(name, applicationId), null);
+            CSWnd.SetWindowProperties(oManager, wnd, { Name: name, Width: width, Height: height }, applicationId);
+            return false;
+        }
+    },
+
+    OpenWindowWithCallback: function (name, applicationId, width, height) {
+        var oM = this.GetWinMgr();
+        var wnds = oM.get_windows().slice();
+        if (typeof leftWindowPreference != "undefined" && typeof rightWindowPreference != "undefined" && leftWindowPreference != "" && rightWindowPreference != "" && (leftWindowPreference == name || rightWindowPreference == name) && wnds.length == 0) {
+            prefs.data.candSearchTileOnOpen = true;
+            prefs.save();
+            CSWnd.OpenTileWindowsInLiteAts(name, applicationId, width, height, leftWindowPreference, rightWindowPreference);
+            return false;
+        }
+       
+        var url = GetCandidateSearchWindowUrl(name, applicationId);
+        if (getInternetExplorerVersion() == 8 && url.indexOf('ViewCandidateDocuments.aspx') > -1) {
+            window.open("ViewCandidateDocument.aspx?applicationId=" + applicationId);
+        } else {
+            var oManager = $find(windowManagerClientId);
+            if (ConfirmTilingDifferentApplications(oManager, applicationId)) {
+                var wnd = oManager.open(GetCandidateSearchWindowUrl(name, applicationId), null);
+                CSWnd.SetWindowProperties(oManager, wnd, { Name: name, Width: width, Height: height }, applicationId);
+                wnd.add_close(RadWindowCallbackFunction);
+            }
+        }
+        return false;
+    },
+    OpenTileWindowsInLiteAts: function (name, applicationId, width, height, leftWindowPreference, rightWindowPreference) {
+        prefs.data.candSearchOpenWindows = null;
+        prefs.save();
+        var url = GetCandidateSearchWindowUrl(leftWindowPreference, applicationId);
+        var oManager = $find(windowManagerClientId);
+        if (getInternetExplorerVersion() == 8 && url.indexOf('ViewCandidateDocuments.aspx') > -1) {
+            window.open("ViewCandidateDocument.aspx?applicationId=" + applicationId);
+        } else {
+            var wnd = oManager.open(GetCandidateSearchWindowUrl(leftWindowPreference, applicationId), null);
+            CSWnd.SetWindowProperties(oManager, wnd, { Name: leftWindowPreference, Width: width, Height: height }, applicationId);
+            wnd.add_close(RadWindowCallbackFunction);
+        }
+        url = GetCandidateSearchWindowUrl(rightWindowPreference, applicationId);
+        if (getInternetExplorerVersion() == 8 && url.indexOf('ViewCandidateDocuments.aspx') > -1) {
+            window.open("ViewCandidateDocument.aspx?applicationId=" + applicationId);
+        } else {
+            var wnd = oManager.open(GetCandidateSearchWindowUrl(rightWindowPreference, applicationId), null);
+            CSWnd.SetWindowProperties(oManager, wnd, { Name: rightWindowPreference, Width: width, Height: height }, applicationId);
+            wnd.add_close(RadWindowCallbackFunction);
+        }
+    },
+    OpenTileWindowsInLiteAtsWithOutCallBack: function (name, applicationId, width, height, leftWindowPreference, rightWindowPreference) {
+        prefs.data.candSearchOpenWindows = null;
+        prefs.save();
+
+        var oManager = $find(windowManagerClientId);
+        var wnd = oManager.open(GetCandidateSearchWindowUrl(leftWindowPreference, applicationId), null);
+        CSWnd.SetWindowProperties(oManager, wnd, { Name: leftWindowPreference, Width: width, Height: height }, applicationId);
+
+        wnd = oManager.open(GetCandidateSearchWindowUrl(rightWindowPreference, applicationId), null);
+        CSWnd.SetWindowProperties(oManager, wnd, { Name: rightWindowPreference, Width: width, Height: height }, applicationId);
+        return false;
+    },
+    AddTitlebarButtons: function (wnd, name, desc) {
+        if (name != "WatchList") {
+            var tBar = wnd.GetTitlebar();
+            CSWnd.AddTitlebarButton(tBar, "downbutton", "Next " + desc, function () { CSWindowsNext(name); return false; });
+            CSWnd.AddTitlebarButton(tBar, "upbutton", "Previous " + desc, function () { CSWindowsPrev(name); return false; });
+        }
+    },
+    AddTitlebarButton: function (tBar, classname, title, onclick) {
+        var oUL = tBar.parentNode.getElementsByTagName('UL')[0];
+        var oLI = document.createElement("LI");
+        oLI.className = classname;
+        var A = document.createElement("A");
+        oLI.appendChild(A);
+        A.className = "rwTitleButton";
+        A.href = "#";
+        A.title = title;
+        A.onclick = onclick;
+        oUL.insertBefore(oLI, oUL.firstChild);
+    },
+    SetWindowProperties: function (oManager, wnd, wndProps, applicationId) {
+        if (wndProps.Name == 'View') {
+            wnd.set_behaviors(53);
+        }
+        if (wndProps.Name == 'ApplicationInfo') {
+            wnd.set_behaviors(Telerik.Web.UI.WindowBehaviors.Resize + Telerik.Web.UI.WindowBehaviors.Maximize + Telerik.Web.UI.WindowBehaviors.Close + Telerik.Web.UI.WindowBehaviors.Move);
+        }
+        _closedWindows = "";
+        prefs.load();
+        SetDefaultCsPrefs();
+        CSWnd.AddTitlebarButtons(wnd, wndProps.Name, "application");
+
+        if (MoreThanOneWindowOpen(oManager)) {
+            if (prefs.data.candSearchTileOnOpen) {
+                oManager.tile();
+                AddOpeningWindowToCookie(wndProps);
+            }
+        }
+        else {
+            wnd.setSize(wndProps.Width, wndProps.Height);
+            var oW = prefs.data.candSearchOpenWindows;
+            if (oW == undefined || WindowIsInArray(wndProps, oW) == -1) {
+                wnd.center();
+                prefs.data.candSearchOpenWindows = new Array(wndProps);
+                prefs.save();
+            }
+            else {
+                // opening window is in the cookie and there are no other windows open so open them all
+                var b = false;
+                for (var i = 0; i < oW.length; i++) {
+                    if (oW[i].Name != wndProps.Name) {
+                        var othWnd = oManager.open(GetCandidateSearchWindowUrl(oW[i].Name, applicationId), null);
+                        othWnd.setSize(oW[i].Width, oW[i].Height);
+                        CSWnd.AddTitlebarButtons(othWnd, oW[i].Name, "application");
+                        othWnd.add_close(RadWindowCallbackFunction);
+                        b = true;
+                    }
+                }
+                if (b && prefs.data.candSearchTileOnOpen) oManager.tile(); else wnd.center();
+            }
+        }
+        CloseToolTip();
+    },
+    GetWinMgr: function () {
+        //windowManagerClientId is set in the Master Page.
+        var oManager = $find(windowManagerClientId);
+        this.GetWinMgr = function () { return oManager; };
+        return oManager;
+    }
+};
+var RecmdWnd = {
+    GridItemName: "recommendation",
+    GridKey: "RecommendationId",
+    GetWinMgr: function () {
+        //windowManagerClientId is set in the Master Page.
+        var oManager = $find(windowManagerClientId);
+        this.GetWinMgr = function () { return oManager; };
+        return oManager;
+    },
+    OpenWindow: function (url, width, height, gridItemName, gridKey) {
+        var oManager = this.GetWinMgr();
+        var wnd = oManager.open(url, null);
+        this.SetWindowProperties(oManager, wnd, { Name: url, Width: width, Height: height, GridItemName: gridItemName, GridKey: gridKey });
+        return false;
+    },
+    OpenWindowWithCallback: function (url, width, height, gridItemName, gridKey, callback) {
+        var oManager = this.GetWinMgr();
+        var wnd = oManager.open(url, null);
+        this.SetWindowProperties(oManager, wnd, { Name: url, Width: width, Height: height, GridItemName: gridItemName, GridKey: gridKey });
+        wnd.add_close(callback);
+        return false;
+    },
+    SetWindowProperties: function (oManager, wnd, wndProps) {
+        _closedWindows = "";
+        prefs.load();
+        SetDefaultCsPrefs();
+        this.AddTitlebarButtons(wnd, wndProps.Name, wndProps.GridItemName, wndProps.GridKey);
+        if (MoreThanOneWindowOpen(oManager) && prefs.data.candSearchTileOnOpen) oManager.tile();
+        else {
+            wnd.setSize(wndProps.Width, wndProps.Height);
+            wnd.center();
+        }
+        CloseToolTip();
+    },
+    AddTitlebarButtons: function (wnd, name, gridItemName, gridKey) {
+        var tBar = wnd.GetTitlebar();
+        var thisRecmdWnd = this;
+        this.AddTitlebarButton(tBar, "downbutton", "Next " + gridItemName, function () { thisRecmdWnd.PopupWindowsNext(name, gridKey); return false; });
+        this.AddTitlebarButton(tBar, "upbutton", "Previous " + gridItemName, function () { thisRecmdWnd.PopupWindowsPrev(name, gridKey); return false; });
+    },
+    AddTitlebarButton: function (tBar, classname, title, onclick) {
+        var oUL = tBar.parentNode.getElementsByTagName('UL')[0];
+        var oLI = document.createElement("LI");
+        oLI.className = classname;
+        var A = document.createElement("A");
+        oLI.appendChild(A);
+        A.className = "rwTitleButton";
+        A.href = "#";
+        A.title = title;
+        A.onclick = onclick;
+        oUL.insertBefore(oLI, oUL.firstChild);
+    },
+    PopupWindowsPrev: function (name, keyName) {
+        var oManager = this.GetWinMgr();
+        var w = oManager.get_windows().slice();
+
+        //identify the initiating window and get its key value
+        var i = this.GetIndexOfNamedPopupWindow(name);
+        var Url = w[i].get_navigateUrl();
+        var p = Url.substring(0, Url.indexOf('?'));
+        var q = Url.substring(p.length);
+        var keyValue = getValueFromQueryString(q, keyName);
+
+        //look up the previous id in the grid and update the window's query string to load the equivalent page for the new id
+        var newRecId = GetPrevIdFromGrid(keyName, keyValue); //(the GetPrevIdFromGrid/GetNextIdFromGrid functions must be defined by the page)
+        var newQ = replaceQueryStringParm(q, keyName, newRecId);
+        w[i].setUrl(p + newQ);
+
+        //remove initiating window from array and update remaining opened windows to load the new receommendation after small delay to let initiating window load first
+        w.splice(i, 1);
+        var thisRecmdWnd = this;
+        setTimeout(function () { thisRecmdWnd.ReloadPopupWindowWithNewKey(w, keyName, newRecId); }, 200);
+    },
+    PopupWindowsNext: function (name, keyName) {
+        var oManager = this.GetWinMgr();
+        var w = oManager.get_windows().slice();
+
+        //identify the initiating window and get its key value
+        var i = this.GetIndexOfNamedPopupWindow(name);
+        var Url = w[i].get_navigateUrl();
+        var p = Url.substring(0, Url.indexOf('?'));
+        var q = Url.substring(p.length);
+        var keyValue = getValueFromQueryString(q, keyName);
+
+        //look up the next id in the grid and update the window's query string to load the equivalent page for the new id
+        var newRecId = GetNextIdFromGrid(keyName, keyValue); //(the GetPrevIdFromGrid/GetNextIdFromGrid functions must be defined by the page)
+        var newQ = replaceQueryStringParm(q, keyName, newRecId);
+        w[i].setUrl(p + newQ);
+
+        //remove initiating window from array and update remaining opened windows to load the new receommendation after small delay to let initiating window load first
+        w.splice(i, 1);
+        var thisRecmdWnd = this;
+        setTimeout(function () { thisRecmdWnd.ReloadPopupWindowWithNewKey(w, keyName, newRecId); }, 200);
+    },
+    GetIndexOfNamedPopupWindow: function (name) {
+        var pageNameWithQs = name;
+        var pageNameWithoutQs = pageNameWithQs.substring(0, pageNameWithQs.indexOf('?'));
+        var oM = this.GetWinMgr();
+        var wnds = oM.get_windows().slice();
+
+        //identify the open window whose page name is a match for the one we are looking for
+        for (var i = 0; i < wnds.length; i++)
+            if (!wnds[i].isClosed()) {
+                var wndUrl = wnds[i].get_navigateUrl();
+                var wndPge = wndUrl.substring(0, wndUrl.indexOf('?'));
+                if (wndPge == pageNameWithoutQs) return i;
+            }
+    },
+    ReloadPopupWindowWithNewKey: function (wnds, keyName, keyValue) {
+        for (var i = 0; i < wnds.length; i++) {
+            if (!wnds[i].isClosed()) {
+                var Url = wnds[i].get_navigateUrl();
+                var p = Url.substring(0, Url.indexOf('?'));
+                var q = Url.substring(p.length);
+                var newQ = replaceQueryStringParm(q, keyName, keyValue);
+                wnds[i].setUrl(p + newQ);
+            }
+        }
+    }
+};
+
+/**
+* A simple querystring parser.
+* Example usage: var q = $.parseQuery(); q.fooreturns  "bar" if query contains "?foo=bar"; multiple values are added to an array. 
+* Values are unescaped by default and plus signs replaced with spaces, or an alternate processing function can be passed in the params object .
+* http://actingthemaggot.com/jquery
+*
+* Copyright (c) 2008 Michael Manning (http://actingthemaggot.com)
+* Dual licensed under the MIT (MIT-LICENSE.txt)
+* and GPL (GPL-LICENSE.txt) licenses.
+**/
+jQuery.parseQuery = function(qs, options) {
+    var q = (typeof qs === 'string' ? qs : window.location.search), o = { 'f': function(v) { return unescape(v).replace( /\+/g , ' '); } }, options = (typeof qs === 'object' && typeof options === 'undefined') ? qs : options, o = jQuery.extend({ }, o, options), params = { };
+    jQuery.each(q.match( /^\??(.*)$/ )[1].split('&'), function(i, p) {
+        p = p.split('=');
+        p[1] = o.f(p[1]);
+        params[p[0]] = params[p[0]] ? ((params[p[0]] instanceof Array) ? (params[p[0]].push(p[1]), params[p[0]]) : [params[p[0]], p[1]]) : p[1];
+    });
+    return params;
+};
+
+
+function replaceQueryStringParm(QS, name, value) {
+    var oQS=$.parseQuery(QS);
+    var newQSArray=[];
+    for (var arg in oQS) newQSArray.push(arg+'='+((arg.toLowerCase()==name.toLowerCase())?value:oQS[arg]));
+    var newQS = ((QS.indexOf('?')== 0)?'?':'')+newQSArray.join('&');
+    return newQS;
+}
+function getValueFromQueryString(QS, name) {
+    var oQS = $.parseQuery(QS);
+    for (var arg in oQS) if (arg.toLowerCase() == name.toLowerCase()) return oQS[arg];
+}
+
+function WindowIsInArray(wndProps, wnds)
+{
+    for(var i=0;i<wnds.length;i++) {
+        if(wnds[i].Name==wndProps.Name)
+            return i;
+    }return -1;
+}
+function AddOpeningWindowToCookie(wndProps){
+    if(prefs.data.candSearchOpenWindows==undefined){
+        prefs.data.candSearchOpenWindows=new Array(wndProps);prefs.save();
+    }else if($.inArray(wndProps,prefs.data.candSearchOpenWindows)==-1) {
+        prefs.data.candSearchOpenWindows.push(wndProps);prefs.save();
+    }
+}
+function MoreThanOneWindowOpen(oManager) {
+    var w=oManager.get_windows();var j=0;
+    for(var i=0; i<w.length; i++){
+        if(!w[i].isClosed() && w[i].isVisible())j++;
+        if(j>1)return true;
+    }return false;
+}
+
+function ConfirmTilingDifferentApplications(oManager, currentAppId) {
+    //if (!MoreThanOneWindowOpen(oManager)) return true;
+    var w = oManager.get_windows();
+    if (w.length + 1 <= 1) return true;
+    for (var i = 0; i < w.length; i++) {
+        if (!w[i].isClosed() && w[i].isVisible()) {
+            var url = w[i].get_navigateUrl();
+            var p = url.substring(0, url.indexOf('?'));
+            var q = url.substring(p.length);
+            var appId = getAppIdFromQueryString(q);
+            if (currentAppId != appId) {
+                if (confirm('The window you are about to open relates to a different candidate.\n\nPress OK to proceed or Cancel to return.'))
+                    return true;
+                return false;
+            }
+        }
+    }
+    return true;
+  }
+function getAppIdFromQueryString(QS) { var oQS = $.parseQuery(QS); for (var arg in oQS) if (arg.toLowerCase() == "applicationid") return oQS[arg]; }   
+
+function GetCandidateSearchWindowUrl(name, applicationId) {
+    switch (name) 
+    {
+        case "Edit":
+            return "EditLateralHirePosition.aspx?applicationId=" + applicationId;
+        case "Process":
+            return "ProcessCandidate.aspx?applicationId=" + applicationId;
+        case "StartWorkflow":
+            return "StartWorkflow.aspx?applicationId=" + applicationId;
+        case "Recommend":
+            return "CandidateRecommendations.aspx?applicationId=" + applicationId;
+        case "Appoints":
+            return "CandidateAppointmentScheduler.aspx?applicationId=" + applicationId;
+        case "Note":
+            return "NoteManagement.aspx?applicationId=" + applicationId;
+        case "AgentNote":
+            return "NoteManagement.aspx?Agent=1&applicationId=" + applicationId;
+        case "Email":
+            return "EmailHistory.aspx?applicationId=" + applicationId;
+        case "EmailV2":
+            return "EmailHistoryV2.aspx?applicationId=" + applicationId;            
+        case "History":
+            return "ApplicationHistory.aspx?applicationId=" + applicationId;
+        case "AddDocs":
+            return "CandidateDocs.aspx?UploadedDocumentTypeId=2&applicationId=" + applicationId;
+        case "AgencyDocs":
+            return "CandidateDocs.aspx?UploadedDocumentTypeId=5&applicationId=" + applicationId;
+        case "Print":
+            return "RecruiterPrintOptions.aspx?applicationId=" + applicationId + "&printstatusiconmode=CandidateSearch";
+        case "ManScore":
+            return "CandidateManualScoringForm.aspx?applicationId=" + applicationId + "&printstatusiconmode=CandidateSearch";
+        case "Expenses":
+            return "CandidateExpensesForm.aspx?applicationId=" + applicationId;
+        case "IntNotes":
+            return "CandidateDocs.aspx?UploadedDocumentTypeId=3&applicationId=" + applicationId;
+        case "DocCheckList":
+            return "CandidateDocumentationForm.aspx?applicationId=" + applicationId;
+        case "OfferCheckList":
+            return "CandidateOfferChecklistForm.aspx?applicationId=" + applicationId;
+        case "References":
+            return "CandidateReferences.aspx?applicationId=" + applicationId;
+        case "CandDocs":
+            if ($telerik.isMobileSafari || $telerik.isChrome)
+                return "ViewCandidateDocumentsPdfJs.aspx?applicationId=" + applicationId;
+           return "ViewCandidateDocuments.aspx?applicationId=" + applicationId;
+        case "OccHealthNote":
+            return "NoteManagement.aspx?Agent=0&OccHealthNote=1&applicationId=" + applicationId;
+        case "SendVacancyInvitation":
+            return "SendVacancyInvitation.aspx?applicationId=" + applicationId;
+        case "RecsExport":
+            return "RecommendationExport.aspx?applicationId=" + applicationId;
+        case "Sms":
+            return "EmailHistory.aspx?applicationId=" + applicationId + "&viewmode=SMS";
+        case "CandidateEmail":
+            return "EditAgentCandidateEmail.aspx?applicationId=" + applicationId;
+        case "FtpExport":
+            return "ExportToCascadeFtp.aspx?applicationId=" + applicationId;
+        case "OasysResult":
+            return "OasysResults.aspx?applicationId=" + applicationId;
+        case "WorkAssessment":
+            return "WorkAssessment.aspx?applicationId=" + applicationId;
+        case "CappAssessment":
+            return "CappAssessment.aspx?applicationId=" + applicationId;
+        case "ApolloResult":
+            return "ApolloResults.aspx?applicationId=" + applicationId;
+        case "ApplicationInfo":
+            return "ApplicationInfo.aspx?applicationid=" + applicationId;
+        case "AlumniAppDocs":
+            if ($telerik.isMobileSafari || $telerik.isChrome)
+                return "ViewNominationDocumentsPdfJs.aspx?applicationId=" + applicationId;
+            return "ViewNominationDocuments.aspx?applicationId=" + applicationId;            
+        case "WatchList":
+            return "WatchListMatch.aspx?applicationId=" + applicationId;
+        case "Voting":
+            return "RecruiterVote.aspx?applicationId=" + applicationId;
+        case "Rare":
+            return "RareInformation.aspx?applicationId=" + applicationId;            
+        default:
+            return "CandidateProfile.aspx?applicationId=" + applicationId;
+    }
+}
+var _closedWindows;
+function CloseAllWindows(sender, eventArgs){
+    if(_closedWindows==undefined||(sender.get_name!=undefined&&sender.get_name().indexOf("ested")>=0))return;
+    prefs.load();
+    SetDefaultCsPrefs();
+    if(prefs.data.candSearchCloseAllOnClose){
+        var oM=$find(windowManagerClientId);
+        var w=oM.get_windows();
+        for(var i=0; i<w.length; i++){
+            if(_closedWindows.indexOf(w[i].get_id())==-1&&!w[i].isClosed()&&w[i].isVisible()){ _closedWindows+=w[i].get_id();w[i].close();}
+        }
+    }
+}
+function SaveCsPrefs(){
+    prefs.load();
+    prefs.data.candSearchTileOnOpen=document.getElementById("TileCb").checked;
+    prefs.data.candSearchCloseAllOnClose = document.getElementById("CloseAllOnCloseCb").checked;
+
+    if (prefs.data.candSearchTileOnOpen == false) {
+        prefs.data.candSearchOpenWindows = [];
+    }
+
+    prefs.save();
+    CloseToolTip();
+}
+function SetCsPrefs(sender, eventArgs){
+    prefs.load();
+    SetDefaultCsPrefs();
+    document.getElementById("TileCb").checked = prefs.data.candSearchTileOnOpen;
+    document.getElementById("CloseAllOnCloseCb").checked=prefs.data.candSearchCloseAllOnClose;
+}
+function SetDefaultCsPrefs(){
+    if(prefs.data.candSearchTileOnOpen==undefined)
+    {
+        prefs.data.candSearchTileOnOpen=true;
+        prefs.data.candSearchCloseAllOnClose=true;
+    }
+}
+
+function OpenNestedWindowWithCallBack(url, width, height, callBack){
+    var oManager = GetRadWindow().get_windowManager();
+    var wnd = oManager.open(url, 'nested');
+    setTimeout(function(){wnd.setActive(true);}, 0);
+    wnd.setSize(width, height);
+    wnd.center();
+    wnd.firstDialogReference = GetRadWindow();
+    wnd.add_close(callBack);
+    CloseToolTip();
+    return false;
+}
+function OpenSecondNestedWindowWithCallBack(url, width, height, callBack){
+    var oManager = GetRadWindow().get_windowManager();
+    var wnd = oManager.open(url, 'secondNested');
+    setTimeout(function(){wnd.setActive(true);}, 0);
+    wnd.setSize(width, height);
+    wnd.center();
+    wnd.add_close(callBack);
+    CloseToolTip();
+    return false;
+}
+
+function OpenThirdNestedWindowWithCallBack(url, width, height, callBack){
+    var oManager = GetRadWindow().get_windowManager();
+    var wnd = oManager.open(url, 'thirdNested');
+    setTimeout(function(){wnd.setActive(true);}, 0);
+    wnd.setSize(width, height);
+    wnd.center();
+    wnd.add_close(callBack);
+    CloseToolTip();
+    return false;
+}
+
+
+function OpenNestedWindow(url, width, height){
+    var oManager = GetRadWindow().get_windowManager();
+    var wnd = oManager.open(url, 'nested');
+    setTimeout(function(){wnd.setActive(true);}, 0);
+    wnd.setSize(width, height);
+    wnd.center();
+    wnd.firstDialogReference = GetRadWindow();
+    CloseToolTip();
+    return false;
+}
+function Print(){
+    GetRadWindow().get_contentFrame().contentWindow.focus();
+    if (navigator.userAgent.indexOf("Firefox")!=-1)
+    {
+        GetRadWindow().get_contentFrame().contentWindow.print();
+        //alert("This window can be closed after you have printed.");
+        return;
+    }
+    setTimeout("GetRadWindow().get_contentFrame().contentWindow.print();", 100);
+    if (window.document.readyState == "complete")
+        JustClose();
+    else
+        setTimeout("JustClose();",500);
+}
+
+function GetRadWindow() { var oWindow = null; if (window.radWindow) { oWindow = window.radWindow; } else if (window.frameElement.radWindow) { oWindow = window.frameElement.radWindow; } return oWindow; }
+function SetWindowSize(w, h) { var oWnd = GetRadWindow(); var bounds = oWnd.getWindowBounds(); if (h >= bounds.height) { h = bounds.height - 40; w = w + 20; } if (w >= bounds.width) { w = bounds.width - 40; } oWnd.set_height(h); oWnd.set_width(w); oWnd.center(); return; }
+function SetWindowModality(bln) { var oWnd = GetRadWindow(); oWnd.set_modal(bln); return; }
+function CloseAndRebind(HFID) { GetRadWindow().BrowserWindow.postBackHF(HFID); GetRadWindow().Close(); }
+function CloseAndRedirect(parentLocation) { window.top.location.href = parentLocation; GetRadWindow().Close(); }
+function JustRebind(HFID) { GetRadWindow().BrowserWindow.postBackHF(HFID); }
+function JustClose() { GetRadWindow().Close(); }
+function CloseAndRefresh(parameter) { GetRadWindow().Close(parameter); }
+function AddWindowArgument(parameter) { GetRadWindow().argument = parameter; }
+function RefreshParent() { GetRadWindow().BrowserWindow.refreshGrid(); }
+var isEditing = false;
+var controlId;
+
+ function SetRadWindowSize(windowHeight, windowWidth) {
+        var oWnd = GetRadWindow();                  
+         oWnd.setSize(windowWidth, windowHeight);
+         oWnd.center();
+         setTimeout(function(){wnd.setActive(true);}, 0)
+ }
+
+ 
+function ResizeWindowWithOffset(windowMaxHeight, container, offset, windowDefaultWidth) {
+    var oWnd = GetRadWindow();
+    var oManager = oWnd.get_windowManager();
+    window.setTimeout(
+          function () {
+              if (MoreThanOneWindowOpen(oManager)) {
+                  if (prefs.data.candSearchTileOnOpen) oManager.tile();
+              } else {
+                  var panel = $get(container);
+
+                  var panelHeight = panel.offsetHeight + offset;
+                  if (panelHeight > windowMaxHeight)
+                      oWnd.SetHeight(windowMaxHeight);
+                  else {
+                      oWnd.SetHeight(panel.offsetHeight + offset);
+                  }
+                  if (windowDefaultWidth != null)
+                      oWnd.SetWidth(windowDefaultWidth);
+                  oWnd.center();    
+              }
+          }, 100);
+}
+function ResizeWindow(windowMaxHeight, container) {
+    ResizeWindowWithOffset(windowMaxHeight, container, 60);
+}
+function AutoResizeWindow(height, width, container) {
+
+    ResizeWindowWithOffset(height, container, 60, width);
+}
+$(function ($) {
+    $('.editor').click(function () {
+        if (isEditing) {
+            $('.editableLabel').removeClass('editable');
+            $(this).text('Edit this page');
+            $('.editableLabel.hideMeWhenIamEmpty').each(function () {
+                if ($.trim($(this).html()) == '') {
+                    $(this).hide();
+                }
+            });
+        }
+        else {
+            $('.editableLabel').addClass('editable');
+            $('.editableLabel,.hideMeWhenIamEmpty').show();
+            $(this).text('Stop Editing');
+
+            $('.editable').contextMenu('cmsContextMenu', {
+                bindings: {
+                    'edit': function (t) {
+                        if (!isEditing) return;
+
+                        controlId = '#' + $(t).attr('id');
+                        OpenContentEditor(t);
+                        //alert('Trigger was '+t.id+'\nAction was edit');
+                    },
+                    'undo': function (t) {
+                        alert('Trigger was ' + t.id + '\nAction was undo');
+                    },
+                    'home': function (t) {
+                        document.location = "RecruiterHome.aspx";
+                    }
+                }
+            });
+
+        }
+        isEditing = !isEditing;
+
+    });
+
+    $('.editableLabel').dblclick(function () {
+        if (!isEditing) return;
+        controlId = '#' + $(this).attr('id');
+        OpenContentEditor(this);
+    });
+
+    function OpenContentEditor(ctrl) {
+        OpenWindowWithCallBack('ContentEditor.aspx?CopyId=' + $(ctrl).attr('copyId') + '&id=' + $(ctrl).attr('id'), 'ContentEditor', 750, 600, RefreshContent);
+    }
+
+    function RefreshContent(sender, eventArgs) {
+        /*if (eventArgs != null && eventArgs.get_argument() != null)
+        {
+        var argument = eventArgs.get_argument();
+        $(controlId).html(Url.decode(argument));
+        }*/
+        sender.remove_close(RefreshContent);
+        controlId = null;
+    }
+});
+
+// Context menu (http://www.trendskitchens.co.nz/jquery/contextmenu/)
+(function($){var menu,shadow,trigger,content,hash,currentTarget;var defaults={menuStyle:{listStyle:'none',padding:'1px',margin:'0px',backgroundColor:'#fff',border:'1px solid #999',width:'100px'},itemStyle:{margin:'0px',color:'#000',display:'block',cursor:'default',padding:'3px',border:'1px solid #fff',backgroundColor:'transparent'},itemHoverStyle:{border:'1px solid #0a246a',backgroundColor:'#b6bdd2'},eventPosX:'pageX',eventPosY:'pageY',shadow:true,onContextMenu:null,onShowMenu:null};$.fn.contextMenu=function(id,options){if(!menu){menu = $('<div id="jqContextMenu"></div>').hide().css({ position: 'absolute', zIndex: '9000' }).appendTo('body').bind('click', function(e) { e.stopPropagation(); });}if(!shadow){shadow = $('<div></div>').css({ backgroundColor: '#000', position: 'absolute', opacity: 0.2, zIndex: 499 }).appendTo('body').hide();}hash=hash||[];hash.push({id:id,menuStyle:$.extend({},defaults.menuStyle,options.menuStyle||{}),itemStyle:$.extend({},defaults.itemStyle,options.itemStyle||{}),itemHoverStyle:$.extend({},defaults.itemHoverStyle,options.itemHoverStyle||{}),bindings:options.bindings||{},shadow:options.shadow||options.shadow===false?options.shadow:defaults.shadow,onContextMenu:options.onContextMenu||defaults.onContextMenu,onShowMenu:options.onShowMenu||defaults.onShowMenu,eventPosX:options.eventPosX||defaults.eventPosX,eventPosY:options.eventPosY||defaults.eventPosY});var index=hash.length-1;$(this).bind('contextmenu',function(e){var bShowContext=(!!hash[index].onContextMenu)?hash[index].onContextMenu(e):true;if(bShowContext)display(index,this,e,options);return false;});return this;};function display(index,trigger,e,options){var cur=hash[index];content=$('#'+cur.id).find('ul:first').clone(true);content.css(cur.menuStyle).find('li').css(cur.itemStyle).hover(function(){ $(this).css(cur.itemHoverStyle);},function(){ $(this).css(cur.itemStyle);}).find('img').css({verticalAlign:'middle',paddingRight:'2px'});menu.html(content);if(!!cur.onShowMenu)menu=cur.onShowMenu(e,menu);$.each(cur.bindings,function(id,func){ $('#' + id, menu).bind('click', function(e) {hide();func(trigger, currentTarget);});});menu.css({'left':e[cur.eventPosX],'top':e[cur.eventPosY]}).show();if(cur.shadow)shadow.css({width:menu.width(),height:menu.height(),left:e.pageX+2,top:e.pageY+2}).show();$(document).one('click', hide);}function hide(){menu.hide();shadow.hide();}$.contextMenu={defaults:function(userDefaults){$.each(userDefaults,function(i,val){if(typeof val=='object'&&defaults[i]){$.extend(defaults[i], val);}else defaults[i] = val;});}}})(jQuery);$(function(){ $('div.contextMenu').hide();});
+
+function ToggleCheckboxes(select,gridId,useCustomSelect){
+    var grid = $find(gridId);
+    if(grid==null) return;
+    var masterTable = grid.get_masterTableView();
+    var dataItems = masterTable.get_dataItems();
+    for (var i = 0; i < dataItems.length; i++) {
+        if (useCustomSelect != true) {
+            dataItems[i].set_selected(select);
+        }
+        var cell = masterTable.getCellByColumnUniqueName(masterTable.get_dataItems()[i], "CheckBox");
+        if (cell == null) continue;
+        var checkbox = cell.getElementsByTagName("Input")[0];
+        checkbox.checked = select;
+    }
+}
+
+function GridHasAtLeastOneRowChecked(grid) {
+   var masterTable = grid.get_masterTableView && grid.get_masterTableView();
+    var i;
+    if (masterTable) {
+      var gridClientSelectColIsPresent = $(masterTable.HeaderRow.cells).hasClass("rgCheck");
+      if (gridClientSelectColIsPresent) {
+         var dataItems = masterTable.get_dataItems();
+         for (i = 0; i < dataItems.length; i++) {
+            if (dataItems[i].get_selected())
+               return true;
+            }
+            return false;
+         }
+   }
+   var chk = document.getElementsByTagName('input');
+   for (i = 0; i < chk.length; i++){
+      if (chk[i].type == 'checkbox' && (chk[i].id.indexOf('RowSelector') > 0)){
+         if (chk[i].checked){return true;}
+      }
+   }
+   return false;
+}
+
+var GrdFns = {
+    SelectedIds: function (grdClientId, dataKey) {
+        // return the selected ids in a CSV from a grid
+        var masterTable = $find(grdClientId).get_masterTableView();
+        var dataItems = masterTable.get_dataItems();
+        var ids = ""; var first = true;
+        for (var i = 0; i < dataItems.length; i++) {
+            if (dataItems[i].get_selected()) {
+                ids += (first ? "" : ",") + dataItems[i].getDataKeyValue(dataKey);
+                first = false;
+            }
+        }
+        if (first) ids = "0";
+        return ids;
+    }
+}
+
+function OpenBulkPrintOptionsWindow(gridClientId, clientDataKeyValue, queryStringVariable, secondClientDataKeyValue, secondQueryStringVariable, showDocsGrid, showCollation) {
+    var gridObject = $find(gridClientId); if (gridObject == null) { alert("Unable to print selected documents. Please try again later"); return false; }
+    if (!GridHasAtLeastOneRowChecked(gridObject)) { alert("Please select one or more applications"); return false; }
+    var masterTableView = gridObject.get_masterTableView();if (masterTableView == null){alert("Unable to print selected documents. Please try again later");return false;}
+    var allItems = masterTableView.get_dataItems();
+    if (allItems == null){alert("Unable to print selected documents. Please try again later");return false;}
+
+    var totalCount = allItems.length;var applicationIsString;var secIdString;
+    var gridClientSelectColIsPresent = $(masterTableView.HeaderRow.cells).hasClass("rgCheck");
+
+    var gdi;
+    for (var i = 0; i < totalCount; i++) {
+        var gridDataItem = allItems[i];
+        if (!gridClientSelectColIsPresent) {
+            var childNodeCollection = gridDataItem.get_element().getElementsByTagName('input');
+            for (var j = 0; j < childNodeCollection.length; j++) {
+                if (childNodeCollection[j].type == 'checkbox' && (childNodeCollection[j].id.indexOf('RowSelector') > 0) && childNodeCollection[j].checked) {
+                    gdi = gridDataItem.getDataKeyValue(clientDataKeyValue);
+                    if (gdi != null) {
+                        applicationIsString = applicationIsString == null ? gdi : applicationIsString + ',' + gdi;
+                        break;
+                    }
+                }
+            }
+        } else {
+
+            if (gridDataItem.get_selected()) {
+                gdi = gridDataItem.getDataKeyValue(clientDataKeyValue);
+                if (gdi != null) applicationIsString = applicationIsString == null ? gdi : applicationIsString + ',' + gdi;
+            }
+        }
+    }
+    var qs = queryStringVariable + '=' + applicationIsString;
+    if (secondClientDataKeyValue == 'printstatusiconmode')
+        qs += "&printstatusiconmode=" + secondQueryStringVariable;
+
+    OpenBulkPrintWindow('RecruiterBulkPrintOptions.aspx?' + qs, '', showDocsGrid, showCollation);
+    return false;
+}
+
+function OpenBulkEditParticipantWindow(gridClientId, clientDataKeyValue, width, height, scheduleId, callBack)
+{
+    var gridObject = $find(gridClientId); if (gridObject == null) { alert("Unable to edit selected participants. Please try again later"); return false; }
+    if (!GridHasAtLeastOneRowChecked(gridObject)) { alert("Please select one or more participants"); return false; }
+    var masterTableView = gridObject.get_masterTableView();if (masterTableView == null){alert("Unable to edit selected participants. Please try again later");return false;}
+    var allItems = masterTableView.get_dataItems();
+    if (allItems == null){alert("Unable to edit selected participants. Please try again later");return false;}
+
+    var totalCount = allItems.length; var slotIdsString = null;
+    var gridClientSelectColIsPresent = $(masterTableView.HeaderRow.cells).hasClass("rgCheck");
+    for (var i = 0; i < totalCount; i++) {
+        var gridDataItem = allItems[i];
+        var gdi;
+        if (!gridClientSelectColIsPresent) {
+            var childNodeCollection = gridDataItem.get_element().getElementsByTagName('input');
+            for (var j = 0; j < childNodeCollection.length; j++) {
+                if (childNodeCollection[j].type == 'checkbox' && (childNodeCollection[j].id.indexOf('RowSelector') > 0) && childNodeCollection[j].checked) {
+                    gdi = gridDataItem.getDataKeyValue(clientDataKeyValue);
+                    if (gdi != null) {
+                        slotIdsString = slotIdsString == null ? gdi : slotIdsString + ',' + gdi;
+                        break;
+                    }
+                }
+            }
+        } else {
+            if (gridDataItem.get_selected()) {
+                gdi = gridDataItem.getDataKeyValue(clientDataKeyValue);
+                if (gdi != null) slotIdsString = slotIdsString == null ? gdi : slotIdsString + ',' + gdi;
+            }
+        }
+    }
+    OpenWindowWithCallBack('EditSlotParticipants.aspx?slotids=' + slotIdsString + '&scheduleid=' + scheduleId, 'Edit Participants', width, height, callBack);
+    return false;
+}
+
+function OpenBulkPrintWindow(url, name, showDocsGrid, showCollation) {
+    var styleFontSize = $('document').context.body.style['font-size'];
+
+    if (styleFontSize != null) {
+        var sizeFactor = 1;
+        if (styleFontSize.indexOf("%") > 0) {
+            styleFontSize = styleFontSize.replace( /%/g , '');
+            if (styleFontSize > 90)
+                sizeFactor = 1.3;
+            else if (styleFontSize > 80)
+                sizeFactor = 1.2;
+        }
+        var w = 633;
+        var h = showDocsGrid != "True" ? 300 : 600;
+        if (showCollation == "True")
+            h += 100;
+
+        h = h * sizeFactor;
+
+        OpenCentredWindow(url, '_blank', w, h);
+    } else {
+        var w1 = 633;
+        var h1 = showDocsGrid != "True" ? 300 : 600;
+        if (showCollation == "True")
+            h1 += 100;
+
+        OpenCentredWindow(url, '_blank', w1, h1);
+    }
+}
+
+function OpenCentredWindow(url, wname, w, h) { //OpenCentredWindow method derived from http://www.xtf.dk/2011/08/center-new-popup-window-even-on.html, with gratitude
+    var dualScreenLeft = typeof window.screenLeft != 'undefined'
+        ? window.screenLeft
+        : window.screenX || screen.left;
+    var dualScreenTop = typeof window.screenTop != 'undefined'
+        ? window.screenTop
+        : window.screenY || screen.top;
+
+    var width = window.innerWidth || document.documentElement.clientWidth || screen.width;
+    var height = window.innerHeight || document.documentElement.clientHeight || screen.height;
+
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;//  - 14;
+    var top = height / 2 - h / 2 + dualScreenTop;
+
+    var newWindow = window.open(url, wname, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+    if (window.focus) newWindow.focus();
+}
+
+var _countDownSec;var _sessDecrTimer=0;var _sessTimer=0;var _toolTipClientId;var _sessionTimeoutInterval;var _logoutButtonClientId;var _sessionTimedOut=false;
+function initSessionTimer(toolTipClientId, logoutButtonClientId, sessionTimeoutInterval) {
+    _toolTipClientId=toolTipClientId;_logoutButtonClientId=logoutButtonClientId;_sessionTimeoutInterval=sessionTimeoutInterval;
+    startSessionTimeoutTimer();
+}
+function startSessionTimeoutTimer(){
+if(_toolTipClientId!=null){
+    if(_sessTimer!=0)clearTimeout(_sessTimer);
+    if(_sessDecrTimer!=0)clearInterval(_sessDecrTimer);
+    _sessTimer=setTimeout("$find('" + _toolTipClientId + "').show()",_sessionTimeoutInterval);
+}
+}
+function startSessionCountDownTimer(sender, args) {
+_countDownSec = 180;setTimeoutRemaining();_sessDecrTimer=setInterval(decrementSessionCountDownCounter,1000);
+}
+function decrementSessionCountDownCounter(){
+    setTimeoutRemaining();
+    if(_countDownSec<=0){
+        clearInterval(_sessDecrTimer);
+        sessionTimedOutActions();
+    }
+}
+function setTimeoutRemaining(){
+    var secSpan=document.getElementById("sessionTimeoutRemaining");
+    if(secSpan==null)return;
+    secSpan.innerHTML=_countDownSec--;
+}
+function sessionTimedOutActions() {
+    _sessionTimedOut = true;
+    document.getElementById(_logoutButtonClientId).click();
+}
+function sessionTimeoutOkClicked() {
+    if (_countDownSec <= 0) {
+        if (typeof NoPrompt == typeof Function) NoPrompt();
+        sessionTimedOutActions();
+    }
+    else{
+        startSessionTimeoutTimer();
+        var tt=$find(_toolTipClientId);if(tt!=null)tt.hide();
+    }
+    return false;
+}
+function sessionTimeoutContinueClicked() {
+    if (typeof NoPrompt == typeof Function) NoPrompt();
+    if (_countDownSec <= 0) {
+        sessionTimedOutActions();
+    }
+    return true;
+}
+
+function displayMessage() {               
+alert('Your submission was successfully sent. Thank you for contacting us');
+window.close();
+}
+var displayScWzEmMsgCnt = 0;
+function displayScWzEmMsg(){
+    if(displayScWzEmMsgCnt==0){
+        alert('Please ensure you have EDITED the Candidate Publication Notification Email before proceeding and publishing to candidates');
+        displayScWzEmMsgCnt=1;
+        return false;
+    }
+    return true;
+}
+function resetDisplayScWzEmMsgCnt() { displayScWzEmMsgCnt = 0; }
+
+
+var opprDbdTimerId;
+var refreshInterval;
+
+var opportunitiesDashboard =
+    {
+        AutoRefreshPage: function () {
+            //setTimeout(TriggerPostback, refreshInterval);
+            opprDbdTimerId = setTimeout(opportunitiesDashboard.TriggerPostback, refreshInterval);
+        },
+
+        TriggerPostback: function () {
+            window.clearTimeout(opprDbdTimerId);
+            $("[id$=AutoRefreshButton]").click();
+        },
+
+        HighlightOpprDbdRows: function () {
+            $(".highlightValue").parent().parent().css('display', 'none');
+            $(".highlightValue").parent().parent().css('background-color', '#dedede');
+            $(".highlightValue").parent().parent().fadeIn(1000);
+            $(".highlightValue").parent().parent().fadeOut(500);
+            $(".highlightValue").parent().parent().fadeIn(1000);
+        },
+        
+        bindGrid: function (ajaxData, grid2) {
+            var dataTable;
+            var channels;
+            var c1;
+            var c2;
+            var c3;
+
+            dataTable = ajaxData.Stages;
+            channels = ajaxData.Channels;
+
+            var channelExists = function (arr, channelId) {
+                return jQuery.grep(arr, function (elementOfArray, indexInArray) {
+                    return elementOfArray.ChnlId == channelId;
+                });
+            };
+
+            //debugger;
+
+            for (var j = 0; j < channels.length; j++) {
+
+                var currentChannelId = channels[j].ChnlId;
+
+                if (channelExists(dataTable, currentChannelId).length == 0)
+                    continue;
+
+                var channelRow = grid2.tBodies[0].insertRow(-1);
+                $(channelRow).addClass("rgRow");
+
+                var newChannelCell = channelRow.insertCell(-1);
+                newChannelCell.innerHTML = 'Channel: ' + channels[j].ChnlNme;
+                newChannelCell.setAttribute("style", "background-color: #dedede;font-weight:bold");
+                newChannelCell.setAttribute("colspan", "3");
+
+                for (var i = 0; i < dataTable.length; i++) {
+
+                    if (dataTable[i].ChnlId != currentChannelId)
+                        continue;
+
+                    var newRow = grid2.tBodies[0].insertRow(-1);
+                    $(newRow).addClass("rgRow");
+
+                    var multiReplace = function (s) {
+                        return s
+                            .replace('{VacId}', dataTable[i].VacId)
+                            .replace('{StgId}', dataTable[i].StgId)
+                            .replace('{Nme}', dataTable[i].Nme)
+                            .replace('{ChnlId}', dataTable[i].ChnlId)
+                            .replace('{ChnlNme}', dataTable[i].ChnlNme)
+                            .replace('{OvrCnt}', dataTable[i].OvrCnt)
+                            .replace('{NewCnt}', dataTable[i].NewCnt);
+                    };
+
+                    c1 = multiReplace('<a href="CandidateSearch.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacId}&ApplicationStageId={StgId}&ChannelId={ChnlId}">{Nme}</a>');
+                    c3 = multiReplace('<a href="CandidateSearch.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacId}&ApplicationStageId={StgId}&ChannelId={ChnlId}">{OvrCnt}</a>');
+                    if (dataTable[i].NewCnt > 0)
+                        c2 = multiReplace('<a href="CandidateSearch.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacId}&ApplicationStageId={StgId}&ChannelId={ChnlId}&NewOnly=True">{NewCnt}</a>');
+                    else
+                        c2 = '0';
+
+                    var newCell = newRow.insertCell(-1);
+                    newCell.innerHTML = c1;
+                    newCell.setAttribute("style", "font-weight:bold");
+                    newCell = newRow.insertCell(-1);
+                    newCell.setAttribute("align", "right");
+                    newCell.setAttribute("style", "font-weight:bold");
+                    newCell.innerHTML = c2;
+                    newCell = newRow.insertCell(-1);
+                    newCell.setAttribute("align", "right");
+                    newCell.setAttribute("style", "font-weight:bold");
+                    newCell.innerHTML = c3;
+                }
+            }
+        },
+        VacGridExpanding: function (sender, eventArgs) {
+            var vacancyId = eventArgs.getDataKeyValue("VacancyId");
+            var nestedViewItem = eventArgs.get_nestedViewItem();
+            var grid2 = hierGrd.findVacGridTable(nestedViewItem);
+            if (grid2 == null || grid2.tBodies[0].rows.length > 0) return;
+            var webMethUrl = "WebServices/HierarchicalGridDetailBindingService.asmx/GetOpportunitiesDashboardApplicationStages";
+            opportunitiesDashboard.DataBind(vacancyId, webMethUrl, grid2);
+        },
+        DataBind: function (vacancyId, webMethUrl, grid2) {
+            $telerik.$.ajax({
+                type: "POST",
+                url: webMethUrl,
+                data: '{"vacancyId":"' + vacancyId + '"}',
+                contentType: "application/json; charset=utf-8",
+                error: function (msg) { alert(msg.responseText); },
+                success: function (msg) {
+                    // bind the nested grid
+                    opportunitiesDashboard.bindGrid(msg.d, grid2);
+                    translationService.doTranslation();
+                }
+            });
+        }
+    };
+
+    var hierGrd =
+{
+    IsPanelHome: function (sender) {
+        return (sender.get_id().indexOf("PmHPnl") > -1);
+    },
+    bindGrid: function (ajaxData, grid2, isPmh) {
+        var dataTable; var flag; var c1; var c2; var c3; var isConvener; var isReReviewStageEnabled; var isVoter;
+
+        if (isPmh) {
+            dataTable = ajaxData.Stages;
+            flag = ajaxData.RevStgFlg;
+            isConvener = ajaxData.IsConvenor;
+            isReReviewStageEnabled = ajaxData.IsReReviewStageEnabled;
+            isVoter = ajaxData.IsVoter;
+
+        }
+        else {
+            dataTable = ajaxData;
+            flag = null;
+            isConvener = false;
+            isReReviewStageEnabled = false;
+            isVoter = false;
+        }
+
+        for (var i = 0; i < dataTable.length; i++) {
+
+            var newRow = grid2.tBodies[0].insertRow(-1);
+            $(newRow).addClass("rgRow");
+
+            var multiReplace = function (s) {
+                return s
+                    .replace('{VacPrgId}', dataTable[i].VacPrgId)
+                    .replace('{StgId}', dataTable[i].StgId)
+                    .replace('{Nme}', dataTable[i].Nme)
+                    .replace('{OvrCnt}', dataTable[i].OvrCnt)
+                    .replace('{NewCnt}', dataTable[i].NewCnt)
+                    .replace('{FlgNme}', flag != null ? flag.FlgNme : '')
+                    .replace('{FlgUrl}', flag != null ? flag.FlgUrl : '')
+                    ;
+            };
+
+            if (isPmh && !isVoter) {
+                var currentUrl = GetBaseUrl();
+                if (currentUrl.toLowerCase().lastIndexOf("panelmemberhomelite") > 0) {
+                    c1 = multiReplace('<a href="ViewAdvancedRecommendationsLite.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{Nme}</a>');
+                    c3 = multiReplace('<a href="ViewAdvancedRecommendationsLite.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{OvrCnt}</a>');
+                } else {
+                    c1 = multiReplace('<a href="ViewAdvancedRecommendations.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{Nme}</a>');
+                    c3 = multiReplace('<a href="ViewAdvancedRecommendations.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{OvrCnt}</a>');
+                }
+
+                if (dataTable[i].NewCnt > 0) {
+                    if (currentUrl.toLowerCase().lastIndexOf("panelmemberhomelite") > 0) {
+                        c2 = multiReplace('<a href="ViewAdvancedRecommendationsLite.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}&NewOnly=True">{NewCnt}</a>');
+                    } else {
+                        c2 = multiReplace('<a href="ViewAdvancedRecommendations.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}&NewOnly=True">{NewCnt}</a>');
+                    }
+
+                }
+                else {
+                    c2 = '0';
+                }
+
+                if (dataTable[i].RevStg) {
+                    $(newRow).addClass("RevStg");
+                    if (flag != null) {
+                        c1 += multiReplace('<img alt="{FlgNme}" src="{FlgUrl}">');
+                    }
+                }
+                else if (isReReviewStageEnabled && dataTable[i].ReRevStg && isConvener) {
+                    $(newRow).addClass("ReRevStg");
+                }
+            }
+            else if (isPmh && isVoter) {
+                var currentUrl = GetBaseUrl();
+                if (currentUrl.toLowerCase().lastIndexOf("panelmemberhomelite") > 0) {
+                    c1 =
+                        multiReplace('<a href="PartnerVotingLite.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{Nme}</a>');
+                    c3 =
+                        multiReplace('<a href="PartnerVotingLite.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{OvrCnt}</a>');
+
+                    if (dataTable[i].NewCnt > 0) {
+                        c2 =
+                            multiReplace('<a href="PartnerVotingLite.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}&NewOnly=True">{NewCnt}</a>');
+                    } else {
+                        c2 = '0';
+                    }
+                } else {
+                    c1 =
+                        multiReplace('<a href="PartnerVoting.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{Nme}</a>');
+                    c3 =
+                        multiReplace('<a href="PartnerVoting.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}">{OvrCnt}</a>');
+
+                    if (dataTable[i].NewCnt > 0) {
+                        c2 =
+                            multiReplace('<a href="PartnerVoting.aspx?VacancyId={VacPrgId}&ApplicationStageId={StgId}&NewOnly=True">{NewCnt}</a>');
+                    } else {
+                        c2 = '0';
+                    }
+                }
+
+                if (dataTable[i].RevStg) {
+                    $(newRow).addClass("RevStg");
+                    if (flag != null) {
+                        c1 += multiReplace('<img alt="{FlgNme}" src="{FlgUrl}">');
+                    }
+                }
+            }
+            else {
+                var currentUrl = GetBaseUrl();
+                if (currentUrl.toLowerCase().lastIndexOf("recruiterhomelite") > 0) {
+                    c1 =
+                        multiReplace('<a href="CandidateSearchLite.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacPrgId}&ApplicationStageId={StgId}">{Nme}</a>');
+                    c3 =
+                        multiReplace('<a href="CandidateSearchLite.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacPrgId}&ApplicationStageId={StgId}">{OvrCnt}</a>');
+                    if (dataTable[i].NewCnt > 0)
+                        c2 =
+                            multiReplace('<a href="CandidateSearchLite.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacPrgId}&ApplicationStageId={StgId}&NewOnly=True">{NewCnt}</a>');
+                    else
+                        c2 = '0';
+                } else {
+                    c1 =
+                        multiReplace('<a href="CandidateSearch.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacPrgId}&ApplicationStageId={StgId}">{Nme}</a>');
+                    c3 =
+                        multiReplace('<a href="CandidateSearch.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacPrgId}&ApplicationStageId={StgId}">{OvrCnt}</a>');
+                    if (dataTable[i].NewCnt > 0)
+                        c2 =
+                            multiReplace('<a href="CandidateSearch.aspx?FromRecruiterHome=True&Sp=1&VacancyId={VacPrgId}&ApplicationStageId={StgId}&NewOnly=True">{NewCnt}</a>');
+                    else
+                        c2 = '0';
+                }
+            }
+
+            var newCell = newRow.insertCell(-1);
+            newCell.innerHTML = c1;
+            newCell = newRow.insertCell(-1);
+            newCell.setAttribute("align", "center");
+            newCell.innerHTML = c2;
+            newCell = newRow.insertCell(-1);
+            newCell.setAttribute("align", "center");
+            newCell.innerHTML = c3;
+        }
+    },
+    VacGridExpanding: function (sender, eventArgs) {
+        var isPmh = hierGrd.IsPanelHome(sender);
+        var vacancyId = eventArgs.getDataKeyValue("VacancyId");
+        var nestedViewItem = eventArgs.get_nestedViewItem();
+        var grid2 = hierGrd.findVacGridTable(nestedViewItem);
+        if (grid2 == null || grid2.tBodies[0].rows.length > 0) return;
+        var webMethUrl;
+        var currentUrl = GetBaseUrl();
+        if (currentUrl.toLowerCase().lastIndexOf("panelmemberhomelite") > 0 || currentUrl.toLowerCase().lastIndexOf("recruiterhomelite") > 0)
+            webMethUrl = hierGrd.IsPanelHome(sender) ? "PanelMemberHomeLite.aspx/GetApplicationStages" : "RecruiterHomeLite.aspx/GetApplicationStages";
+        else
+            webMethUrl = hierGrd.IsPanelHome(sender) ? "PanelMemberHome.aspx/GetApplicationStages" : "RecruiterHome.aspx/GetApplicationStages";
+        hierGrd.getVacancies(vacancyId, webMethUrl, grid2, isPmh);
+    },
+    findVacGridTable: function (parentElement) {
+        var i;
+        for (i = 0; i < parentElement.childNodes.length; i++) {
+            if (parentElement.childNodes[i].nodeName == "TABLE") return parentElement.childNodes[i];
+        }
+        // not in childnodes so search child nodes recursively
+        for (i = 0; i < parentElement.childNodes.length; i++) {
+            var foundElement = hierGrd.findVacGridTable(parentElement.childNodes[i]);
+            if (foundElement != null) return foundElement;
+        }
+        return null;
+    },
+    getVacancies: function (vacancyId, webMethUrl, grid2, isPmh) {
+        $telerik.$.ajax({
+            type: "POST",
+            url: webMethUrl,
+            data: '{"vacancyId":"' + vacancyId + '"}',
+            contentType: "application/json; charset=utf-8",
+            success: function (msg) {
+                // bind the nested grid
+                hierGrd.bindGrid(msg.d, grid2, isPmh);
+                translationService.doTranslation();
+            }
+        })
+    }
+};
+
+    var translationService = {
+      doTranslation: function() {
+          var cookie = getCookie("mstto");
+          if (cookie) {
+              Microsoft.Translator.Widget.Translate('en', cookie, onProgress, onError, onComplete, onRestoreOriginal, 40000);
+          } 
+      }
+  }; 
+    
+var procCnd = {
+    selRow: function (appId) {
+        var grd = GetCndsGrd();
+        procCnd.deSelAllRws(grd);
+        var cgRows = grd.get_dataItems();
+        for (var i = 0; i < cgRows.length; i++) {
+            if (cgRows[i].getDataKeyValue("ApplicationId") == appId) {
+                //grd.selectItem(cgRows[i]); 
+                var checkbox = procCnd.get_chkBx(grd, cgRows[i]);
+                if (checkbox != null) checkbox.checked = true;
+                break;
+            }
+        }
+    },
+    deSelAllRws: function (grd) {
+        var cgRows = grd.get_dataItems();
+        for (var i = 0; i < cgRows.length; i++) {
+            //grd.deselectItem(cgRows[i]); 
+            var checkbox = procCnd.get_chkBx(grd, cgRows[i]);
+            if (checkbox != null) checkbox.checked = false;
+        }
+    },
+    get_chkBx: function (grd, row) {
+        var cell = grd.getCellByColumnUniqueName(row, "CheckBox");
+        if (cell == null) return null;
+        return cell.getElementsByTagName("Input")[0];
+    },
+    get_selectedDataItems: function () {
+        var grd = GetCndsGrd();
+        var cgRows = grd.get_dataItems();
+        var selectedDataItems = Array();
+        for (var i = 0; i < cgRows.length; i++) {
+            var checkbox = procCnd.get_chkBx(grd, cgRows[i]);
+            if (checkbox != null && checkbox.checked == true)
+                selectedDataItems.push(cgRows[i]);
+        }
+        return selectedDataItems;
+    },
+    get_selectedAppIds: function () {
+        var appIds = Array();
+        var selItems = procCnd.get_selectedDataItems();
+        for (var i = 0; i < selItems.length; i++) {
+            appIds.push(selItems[i].getDataKeyValue("ApplicationId"));
+        }
+        return appIds;
+    },
+    saveAppIdsToSessionAndOpenProcCndWnd: function (idOfControlToDisable) {
+        var arrayOfIds = procCnd.get_selectedAppIds();
+        if (arrayOfIds.length == 0)
+            alert('No applications selected');
+        else {
+            //if(typeof idOfControlToDisable != "undefined") $("#" + idOfControlToDisable).css('visibility', 'hidden');
+            var idsParameter = '{ "ids" : [' + arrayOfIds + ']}';
+            jQuery.ajax
+            (
+                { type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: idsParameter,
+                    dataType: 'json',
+                    url: 'CandidateSearch.aspx/SaveApplicationIds',
+                    error: function (request) { },
+                    success: function (request) {
+                        OpenWindowWithCallBack('ProcessCandidate.aspx?mode=View', 'popup', 465, 550, RadWindowCallbackFunction);
+                    }
+                }
+            );
+        }
+    },
+    updAppStg: function () {
+        var grd = GetCndsGrd();
+        var cgRows = grd.get_dataItems();
+        var appId = null;
+        for (var i = 0; i < cgRows.length; i++) {
+            var checkbox = procCnd.get_chkBx(grd, cgRows[i]);
+            if (checkbox != null && checkbox.checked == true) {
+                if (appId == null) appId = cgRows[i].getDataKeyValue("ApplicationId");
+                procCnd.getAppStgNm(appId);
+                return;
+            } 
+        } 
+    },
+    updAllAppStgs: function (apsNme) {
+        var grd = GetCndsGrd();
+        var cgRows = grd.get_dataItems();
+        var appId = null;
+        for (var i = 0; i < cgRows.length; i++) {
+            var checkbox = procCnd.get_chkBx(grd, cgRows[i]);
+            if (checkbox != null && checkbox.checked == true) {
+                procCnd.updAppStgHtml(apsNme, grd, cgRows[i]);
+            } 
+        } 
+    },
+    updAppStgHtml: function (apsNme, grd, row) {
+        var cell = grd.getCellByColumnUniqueName(row, "CandidateEducation");
+        if (cell == null) return;
+        var lis = cell.getElementsByTagName("li");
+        for (var i = 0; i < lis.length; i++) {
+            if (lis[i].className == "appstg") {
+                lis[i].innerHTML = apsNme;
+            } 
+        } 
+    },
+    getAppStgNm: function (appId) {
+        $telerik.$.ajax({
+                type: "POST",
+                url: "CandidateSearch.aspx/GetApplicationStageName",
+                data: '{"applicationId":"' + appId + '"}',
+                async: false,
+                contentType: "application/json; charset=utf-8",
+                success: function(msg) {
+                    procCnd.updAllAppStgs(msg.d);
+                }
+            });
+    }
+};
+var BulkProc = {
+    get_selectedDataItems: function () {
+        return GetSelectedDataItems();
+    },
+    get_selectedKeyValues: function (keyName) {
+        var keyValues = Array();
+        var selItems = this.get_selectedDataItems();
+        for (var i = 0; i < selItems.length; i++) {
+            keyValues.push(selItems[i].getDataKeyValue(keyName));
+        }
+        return keyValues;
+    },
+    saveKeysToSessionAndOpenWnd: function (url) {
+        var arrayOfIds = this.get_selectedKeyValues();
+        if (arrayOfIds.length == 0)
+            alert('No rows selected');
+        else {
+            var idsParameter = '{ "ids" : [' + arrayOfIds + ']}';
+            jQuery.ajax
+            (
+                { type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    data: idsParameter,
+                    dataType: 'json',
+                    url: 'CandidateSearch.aspx/SaveApplicationIds',
+                    error: function (request) { },
+                    success: function (request) {
+                        OpenWindowWithCallBack('ProcessCandidate.aspx?mode=View', 'popup', 465, 550, RadWindowCallbackFunction);
+                    }
+                }
+            );
+        }
+    },
+    GetWinMgr: function () {
+        //windowManagerClientId is set in the Master Page.
+        var oManager = $find(windowManagerClientId);
+        this.GetWinMgr = function () { return oManager; };
+        return oManager;
+    }
+};
+var candHm = {
+    openKenexaWin: function(winUrl) {
+        window.open(winUrl, '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,height=500,width=760');
+        return false;
+    }
+};
+var sess = {
+    _countDownSec: 0,
+    _sessDecrTimer: 0,
+    _sessTimer: 0,
+    _sessionTimeoutInterval: 0,
+    _sessionTimedOut: false,
+    _expiredUrl: "",
+    showSessDiag: function (expiredUrl) {
+        $("#timeoutDialog").dialog("open");
+        sess.startSessCountDownTimer();
+        _expiredUrl = expiredUrl;
+    },
+    startSessCountDownTimer: function () {
+        _countDownSec = 180;
+        sess.setTimeoutRemaining();
+        _sessDecrTimer = setInterval("sess.decrementSessCountDownCounter()", 1000);
+    },
+    decrementSessCountDownCounter: function () {
+        sess.setTimeoutRemaining();
+        if (_countDownSec <= 0) {
+            clearInterval(_sessDecrTimer);
+            var timeoutBtn = $("#timeoutbtn");
+            if (timeoutBtn.length > 0)
+                timeoutBtn.trigger('click');
+            else
+                setTimeout("sess.redirectToSessTimeout()", 7000); // Give the user a little chance to save what they were doing.
+        }
+    },
+    redirectToSessTimeout: function () {
+        window.location = _expiredUrl;
+    },
+    setTimeoutRemaining: function () {
+        var secSpan = $("#sessionTimeoutRemaining");
+        if (secSpan.length == 0) return;
+        secSpan.html(_countDownSec--);
+    }
+};
+function SaveAndContinueOpts() {
+    var _btn;
+    this.setSaveAndContinueButton = function (btn) {
+        _btn = btn || $([]);
+    };
+    this.triggerSaveAndContinueButton = function () {
+        _btn.trigger('click');
+    };
+}
+var saveAndContinueOpts = new SaveAndContinueOpts();
+/* Begin bespoke branding functionality */
+$(document).ready(function () {
+    branding.setBrandingImg();
+});
+var branding = {
+    storeBrandingImg: function(imgUrl) {
+        localStorage.setItem('brandingImg', imgUrl.replace( /\\/g , '/'));
+    },
+    clearBrandingImg: function() {
+        localStorage.removeItem('brandingImg');
+    },
+    setBrandingImg: function() {
+        if (localStorage.getItem('brandingImg') != null)
+            $('#loginheader,#header,header.header').css('background-image', 'url("' + localStorage.getItem('brandingImg') + '")');
+    }
+};
+
+$(document).ready(function () {
+    brandingReset.hideBrandingResetButton();
+});
+var brandingReset = {
+    hideBrandingResetButton: function() {
+        if (localStorage.getItem('brandingImg') == null) {
+            $('#brandingResetButton').hide();
+        }
+    }
+};
+
+var Engage = {
+    openBrowseAloudWindow: function () {
+        window.open("http://www.browsealoud.com");
+        return false;
+    }
+};
+
+function scrollOnServerValidate(ctl) {
+    if (typeof (Page_Validators) == "undefined") return;
+    var targetControl = $.grep(Page_Validators, function (e) { return e.id == ctl; });
+    var scrollTop = $(targetControl).offset().top;
+    var ctrlname = $(targetControl).closest('.sectionItemControlCell');
+    if (ctrlname.length > 0 ) {
+        scrollTop = $(ctrlname).offset().top;
+        var input = $(ctrlname).find('input');
+        if (input.length > 0 ) {
+            if (input[0].type != 'checkbox' && input[0].type != 'radio')
+                scrollTop = $(ctrlname).offset().top - 17;
+            input[0].focus();
+        }
+    } else
+        scrollTop = $(targetControl).offset().top - 27;
+    $('html, body').animate({ scrollTop: scrollTop }, 600); 
+}
+
+function SetScrollForIPads() {
+    if ((typeof $telerik != 'undefined') && $telerik.isMobileSafari) {
+        $(".brandedEditor").css("overflow", "scroll");
+        $(".reContentArea .reContentAreaToggle").css("overflow", "scroll");
+        $("#EmailHistPnl").css("height", "440px");
+        $("#EmailHistPnl").css("width", "100%");
+        $("#EmailHistPnl").css("overflow", "scroll");
+        //$(".brandedEditor").css("height", "200px");
+        //$(".reContentArea").css("overflow", "scroll");
+    }
+}
+window.onresize = SetScrollForIPads;
+window.onload = SetScrollForIPads;
+
+function VacanCategoryToggleDropDown(ControlClientID, e) {
+    var item = ControlClientID.substring(ControlClientID.lastIndexOf("_"));
+    var divisionMain = window.document.getElementById(ControlClientID + '_' + 'divMain' + item);
+    var displayStatus = divisionMain.style.display;
+   
+    $(".VacCatTextMain").each(function () {
+        if (ControlClientID.id != this.id)
+            this.style.display = 'none';
+    });
+    
+    if (displayStatus == 'block') {
+        divisionMain.style.display = 'none';
+    }
+    else {
+        divisionMain.style.display = 'block';
+
+    }
+
+    var evt = (window.event == null) ? e : window.event;
+    evt.cancelBubble = true;
+}
+
+function DisplayTitle(control) {
+    control.title = control.value;
+}
+
+function VacanCategoryDropDownSelection(ctrl) {
+    
+    var divisionMain = window.document.getElementById('RW_vcDD_' + ctrl);
+    var displayStatus = divisionMain.style.display;
+    if (displayStatus == 'block') {
+        divisionMain.style.display = 'none';
+    }
+    else {
+        divisionMain.style.display = 'block';
+    }
+
+    var evt = (window.event == null) ? e : window.event;
+    evt.cancelBubble = true;
+}
+
+function AlertForDateValidation(sender, e, alertText,pastDateValidation) {
+    var todayDate = new Date();
+    todayDate.setHours(0, 0, 0, 0);
+    var selectedDate = e.get_newDate();
+    if (selectedDate == null) return;
+    if (pastDateValidation.toLowerCase() == 'true') {
+        if (selectedDate < todayDate)
+            alert(alertText);
+    } else {
+        if (selectedDate > todayDate)
+            alert(alertText);
+    }
+}
+
+function AlertForDateComboValidation(dayCombo, monthCombo, yearCombo, alertText, pastDateValidation) {
+    var todayDate = new Date();
+    todayDate.setHours(0, 0, 0, 0);
+    var day = $find(dayCombo).get_selectedItem().get_value();
+    var month = $find(monthCombo).get_selectedItem().get_value();
+    var year = $find(yearCombo).get_selectedItem().get_value();
+
+    if (day == '' || month == '' || year == '') {
+        return;
+    }
+
+    var selectedDate = new Date(year, month - 1, day);
+    if (pastDateValidation.toLowerCase() == 'true') {
+        if (selectedDate < todayDate)
+            alert(alertText);
+    } else {
+        if (selectedDate > todayDate)
+            alert(alertText);
+    }
+}
+
+function GetBaseUrl() {
+
+    baseURI = document.baseURI;
+    if (typeof baseURI == "undefined") {
+        baseTags = document.getElementsByTagName("base");
+        if (baseTags.length > 0)
+            baseURI = baseTags[0].href;
+        else
+            baseURI = document.URL;
+    }
+    return baseURI;
+}
+
+function IsChecked(elm) {
+    var linkButton = document.getElementById(elm.id);
+    var checkBox = linkButton.parentElement.parentElement.childNodes[1].childNodes[1].childNodes[1];
+    return checkBox.checked;
+}
+
+var rwfProgressBarTimer = 500;
+var assessmentAutoSaveFormDataTimeFrequency = 60000;
+
+
+

@@ -1,0 +1,213 @@
+﻿/* Pitch branding */
+/*2 and 9 */
+@import url(//fonts.googleapis.com/css?family=Raleway:500,500i,600,600i,700,700i);
+
+@font-face {
+     font-family:'effraheavy'; src:url('/App_Themes/BuryJobs/font/effraheavy-regular.ttf');font-weight:bold; font-style:normal;    
+}
+
+.loginpagetitle 
+{
+	color: #FFF;
+	font-weight:normal;
+	background-color: #ffde00;
+}
+.button, .buttonV2, #pagetitle,.newstickerheading {color: #000; background-color: #ffde00;font-family: Raleway, Arial, Tahoma, Verdana, sans-serif;
+                                                   -moz-box-shadow: none;-webkit-box-shadow: none;box-shadow: none;}
+.header, #loginheader,.GridHeader_Default, .ResizeHeader_Default { border-bottom: #ffde00 solid 0px; }
+#mainnav, .button, html > .loginsearch {border: 1px solid #ffde00;}
+#footer {border-top-color: #ffde00;}
+.insteadOfH3,.RadDock_Default .rdTitleBar .rdTitle, .RadDock_Default .rdTitleBar em, .oneLoginBar h3 {color: #000000;}
+#loginfooter {	border-top-color: #ffde00;}
+/*4*/
+.headerlinks p,.headerlinks a, .headerlinks a:hover, #loginheader p {color: #000;}
+/*8*/ 
+ body {background-color: #f0f0f0;} 
+ body.popup, body.brandedEditor {background-color: #fff;} 
+ 
+  body, .RadPanelBar .rpLink, .RadPanelBar .rpTemplate,
+.RadMenu_Default, .RadMenu_Default a.rmLink,
+.RadGrid_Default, .RadGrid_Default .rgMasterTable, .RadGrid_Default .rgDetailTable, .RadGrid_Default .rgGroupPanel table, .RadGrid_Default .rgCommandRow table, .RadGrid_Default .rgEditForm table, .GridToolTip_Default,
+.RadDock .rdTitleBar .rdTitle,
+.RadDock .rdTitleBar em,
+.RadDock .rdContent,
+.rdContent,
+.reInsertTable .reTlbVertical ul a.reTool_text span.reButton_text,
+.reToolbar a,
+.reDropdown,
+.reSpinBox input,
+.RadEditor input,
+.reModule,
+.reModule td,
+.reEditorModes a,
+.reDropDownBody,
+.reDropDownBody td,
+.reAjaxspell_wrapper,
+.reAjaxspell_button,
+.reAjaxspell_addicon,
+.reAjaxspell_ignoreicon,
+.reAjaxspell_okicon,
+.reInsertTable .reTlbVertical ul a.reTool_text span.reButton_text,
+.RadScheduler,
+.RadScheduler a,
+.RadScheduler input,
+.RadScheduler select,
+.RadScheduler textarea,
+.RadSlider,
+.RadSlider .rslItem,
+.RadSlider .rslLargeTick span,
+.RadSplitter .rspPaneTabText,
+.RadTabStrip .rtsLink,
+.RadTabStripVertical .rtsLink,
+.RadToolBar .rtbWrap,
+.RadToolBar .rtbTemplate,
+.RadToolBarDropDown .rtbWrap,
+.RadToolBarDropDown .rtbTemplate,
+.RadTreeView,
+.RadTreeView a.rtIn,
+.RadTreeView .rtEdit .rtIn input,
+.RadUploadSubmit_Default,
+.reTableWizardSpinBox,
+.HelpDialog,
+.selectedFileName,
+.RadWindow td.rwStatusbar input,
+.RadWindow em,
+.RadWindow .rwDialogPopup,
+.RadWindow .rwDialogInput,
+.RadPanelBar_Default a.rpLink, .RadPanelBar_Default div.rpHeaderTemplate, .RadPanelBar_Default .rpTemplate,
+.RadToolTip .rtWrapper td.rtWrapperContent
+{
+	font-family: Raleway, Arial, Tahoma, Verdana, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:bold;
+	font-family: Raleway, Arial, Tahoma, Verdana, sans-serif;
+}
+
+/* standard pitch branding */
+a, a:hover {color: #666666;}
+body {color: #333;font-family: Raleway, Arial, Tahoma, Verdana, sans-serif;}
+h1, h2 {color: #333;}
+a { text-decoration: underline;}
+a:hover { text-decoration: none;}
+a:visited {color: #666;}
+a:active {color: #666;}
+
+#ctl00_LoginStatus1{color: #fff;}
+.button[disabled] {color: #fff;background-color: #C0C0C0;border: solid #C0C0C0 1px;}
+
+#ctl00_CPH1_vcyS_LSrch { background-color: #fff;border: 0px;}
+.ctl00_CPH1_elC{ background-color: #fff;}
+
+.header {background-color: #fff;background-image: url(images/top.jpg);}
+.headerlinks a:hover {text-decoration: none;}
+
+.GridHeader_Default, .ResizeHeader_Default {border-top-style: none;}
+.SelectedRow_Default td {border-bottom-color:#83c60b;}
+
+#logincontainer, #loginmaincontent {background-color: #fff;}
+#loginsearch {background-color: #c0d6db;}
+#loginheader  
+{
+	background: url(images/login_top.jpg) #fff;
+}
+#loginheader p {border-bottom: solid #ccc 1px;}
+#ce_banner_wrapper {background: #d5d4e7 none;}
+#ce_banner_wrapper #ce_banner_inner_right {background: #7570b3 none;}
+#ce_banner_wrapper #ce_banner_inner_right .ce_banner_h1, #ce_banner_wrapper #ce_banner_inner_right .ce_banner_t{color: #fff;}
+#ce_banner_wrapper #ce_banner_inner_left .ce_banner_p {color: #000;}
+.RadMenu_Default a.rmLink {text-decoration:none; color: #666;}
+.RadMenu_Default a.rmLink:hover, .RadMenu_Default a.rmFocused, .RadMenu_Default a.rmExpanded {color: #000;}
+
+
+/* Candidate Interface V2 Style Start*/
+.gridAnchor a, .gridAnchor a:hover, .gridAnchor a:visited, .gridAnchor a:active {
+	color: #666666 !important;	
+}
+
+/*12*/
+.topbar 
+{
+    font-weight: normal;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+	box-shadow: none;
+}
+.topbar, .topbar h1, .topbar span, .topbar div, .topbar li, .topbar strong {
+    background-color:#666666;
+	color: #fff;
+}
+.topbar .navIcon a span {
+    color: #fff;
+}
+.topbar a:link, .topbar a:hover, .topbar a:visited, .topbar a:active {
+	color: #fff;
+}
+
+div.topbarLoginHeader h1,.topbar h1, .topbar .vacName{
+    font-family: effraheavy, Arial, Tahoma, Verdana, sans-serif;
+}
+
+/*13,14*/
+.contentPanel, .contentPanelWhiteBg {
+    background-color: #ffffff;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.buttonV2,
+.contentPanel input[type="submit"] {
+	-moz-box-shadow: none;
+    -webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.buttonV2[disabled] {
+    background-color: #D3D6DB;
+}
+
+.noBg #logincontainer
+{
+    background: transparent;
+}
+
+#loginmaincontent {
+    background: transparent;
+}
+
+.loginsearch
+{
+    background: transparent;
+    background-color: transparent;
+}
+    
+
+/* Pre screen form Button styles start */
+.RadButton_Default.RadButton.rbLinkButton {
+        color: #ffde00 !important;
+        background-color: #fff !important;
+        border: solid #D3D6DB 1px !important;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        font-size: 1.3em;
+        font-weight: bold;
+        margin-left: 12px;
+        font-family: Raleway, Arial, Tahoma, Verdana, sans-serif;
+    }
+
+.RadButton_Default.RadButton.rbLinkButtonChecked, .RadButton_Default.RadButton.rbLinkButtonChecked:hover {
+    color: #fff !important;
+    background-color: #ffde00 !important;
+}
+
+.RadButton_Default.RadButton.rbLinkButton.preScreenGreyedOut
+{
+    color: #fff !important;
+    background-color: #D3D6DB !important;
+}
+/* Pre screen form Button styles End */
+
+/* Candidate Interface V2 Style End*/

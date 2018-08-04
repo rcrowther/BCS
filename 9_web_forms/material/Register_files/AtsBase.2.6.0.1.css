@@ -1,0 +1,628 @@
+﻿/*body stuff*/
+*
+{
+	padding: 0;
+}
+body
+{
+	height: 100%;
+	margin: 0;
+	font-size: 68.8%; /*	line-height: 1.2em;*/
+	vertical-align: baseline;
+}
+p
+{
+	margin: 0;
+}
+.brandedEditor ol { /* To fix issue with radeditor not rendering number when adding Ordered List*/
+    display: block;
+    list-style-type: decimal;
+    padding-left: 40px;
+} 
+header,
+footer,
+nav,
+article,
+section,
+aside,
+video {
+    display: block;
+}
+
+/*linkstuff*/
+a
+{
+	margin: 0;
+	text-decoration: underline;
+	cursor: pointer;
+}
+input[type=checkbox], input[type=radio], input[type=image]
+{
+	border: none !important;
+	background: transparent;
+}
+textarea
+{
+	font-family: Microsoft Sans Serif, Sans-Serif;
+}
+.button, input[type="button"], input[type="submit"]
+{
+	height: 2em;
+	margin-top: 0px;
+	padding: 0.15em 0.2em;
+	cursor: pointer;
+}
+.PrnOpt input[type="checkbox"]
+,.PrnAllOpt input[type="checkbox"]
+{
+    padding: 0;
+    margin: 0;
+    margin-left: 8px;
+    width: 16px;
+}
+#PrnOpt div.cbxPadRight {
+    padding-right: 24px;
+}
+.PrnAllOpt
+{
+    font-weight: bold;
+}
+.customButton 
+{
+    min-width: 130px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.vacancyAlertInBrowser {
+    padding-left: 20%;
+    padding-top: 10%;
+    border-collapse: inherit !important;
+    width: 70%;
+}
+.iconMenuBadge {
+position: absolute;
+/*top: 2px;*/
+/*left: 2px;*/
+}
+.buttonBadge {
+position: absolute;
+/*top: -9px;
+left: -15px;*/
+}
+/*Badge credit: http://blog.thinkingstiff.com/2012/01/21/iphone-notification-badge-in-css/ */
+.badge {
+  background: radial-gradient( 5px -9px, circle, white 8%, red 26px );
+    background: -moz-radial-gradient( 5px -9px, circle, white 8%, red 26px );
+    background: -ms-radial-gradient( 5px -9px, circle, white 8%, red 26px );
+    background: -o-radial-gradient( 5px -9px, circle, white 8%, red 26px );
+    background: -webkit-radial-gradient( 5px -9px, circle, white 8%, red 26px );
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 12px; /* one half of ( (border * 2) + height + padding ) */
+  box-shadow: 1px 1px 1px black;
+  color: white;
+  font: bold 15px/13px Helvetica, Verdana, Tahoma;
+  height: 16px; 
+  padding: 4px 3px 0 3px;
+  text-align: center;
+  min-width: 14px;
+}
+.unReadEmailCounter {
+   position:relative;
+}
+.unReadEmailCounter[data-badge]:after {
+   content:attr(data-badge);
+   position:absolute;
+   top:-0px;
+   right:-0px;
+   font-size:1.1em;
+   background:red;
+   color:white;
+   width:20px;height:18px;
+   text-align:center;
+   line-height:20px;
+   border-radius:70%;
+   box-shadow:0 0 0px #333;
+}
+
+.unReadDelAccountEmailCounter {
+   position:relative;
+}
+.unReadDelAccountEmailCounter[data-badge]:after {
+   content:attr(data-badge);
+   position:absolute;
+   top:-0px;
+   right:-0px;
+   font-size:1.1em;
+   background:red;
+   color:white;
+   width:17px;height:18px;
+   text-align:center;
+   line-height:16px;
+   border-radius:70%;
+   box-shadow:0 0 0px #333;
+}
+.readEmailCounter {
+   position:relative;
+}
+.readEmailCounter[data-badge]:after {
+   content:attr(data-badge);
+   position:absolute;
+   top:-0px;
+   right:-0px;
+   font-size:1.1em;
+   background:green;
+   color:white;
+   width:20px;height:18px;
+   text-align:center;
+   line-height:20px;
+   border-radius:70%;
+   box-shadow:0 0 0px #333;
+}
+#container
+{
+	width: 965px; /* aimed at 1024x768 browsers */
+	margin: 0 auto; /* the auto margins (in conjunction with a width )center the page */
+	text-align: left; /* this overrides the text-align: center on the body element. */
+	background: #fff none;
+	position: relative;
+}
+.header, header
+{
+	height: 118px;
+	position: relative;
+    width: 965px;
+    margin: 0 auto;
+}
+.headeranchor
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: inherit;
+	width: 400px;
+}
+.headeranchor h1
+{
+	display: none;
+}
+.headerlinks
+{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	z-index: 1000;
+}
+.headerlinks p
+{
+	padding: 10px;
+}
+#pagetitle
+{
+	padding: 4px 4px 4px 10px;
+	position: relative;
+	left: 50px;
+	color: #FFFFFF;
+	text-transform: lowercase;
+	font-weight: bold;
+	width: 400px;
+}
+#maincontent
+{
+	padding: 0px;
+	background: #fff none;
+}
+#footer
+{
+	padding: 10px;
+	clear: both;
+	border-top-width: 1px;
+	border-top-style: dotted;
+}
+fieldset
+{
+	border: none;
+}
+.left
+{
+	float: left;
+}
+.right
+{
+	float: right;
+}
+footer div a
+{
+	margin-right:20px;
+}
+div#wflowparm,
+div#wflowname
+{
+	width: auto;
+	float: left;
+	clear:both;
+	margin:10px 0 10px 10px;
+	padding: 10px;
+	overflow:hidden;
+}
+div#wflowparm fieldset label,
+div#wflowname fieldset label
+{
+	width:190px;
+}
+div#wflowparm fieldset table label
+{
+	width:170px;
+	float:none;
+}
+div#wflowparm fieldset input[type="text"]
+{
+	width:170px;
+}
+div#wflowparm fieldset input.aceLookup[type="text"]
+{
+	width:185px;
+}
+div#wflowparm fieldset input.aceAddr[type="text"]
+{
+	width:350px;
+}
+div#wflowparm fieldset div.si
+{
+	clear:left;
+	margin-bottom: 6px;
+}
+div#timeoutDialog p
+{
+	margin: 15px;
+}
+div#wflowparm span.aceError
+{
+	color:Red;
+}
+#errorpage
+{
+	margin: 50px;
+}
+.bulkPrintError
+{
+    font-weight:bold;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    padding-top: 10px;
+    color: Red;
+    background-color: Yellow;
+}
+.printWarning
+{
+    font-weight:bold;
+    color: Red;
+}
+div.cookiepage {
+    position: relative;
+    padding: 16px;
+}
+.agree-checkbox {
+    line-height: 3em;
+}
+.agree-checkbox input[type="checkbox"] {
+    margin-right: 3px;
+}
+td.inactiveCell {
+    background-color: #ccc;
+}
+p.hitSizePara {
+    text-align: right;
+    font-weight: bold;
+}
+p.hitSizePara meter {
+    width: 10em;
+    margin-left: 2em;
+}
+
+td.CorrDetl a {
+    word-break: break-all;
+}
+
+td.CorrDetl {
+    -ms-word-break: break-all;
+    -webkit-word-break: break-word;
+     -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    
+}
+
+#CPH1_vcyS_VacancySearchButton.nodisplay {display: none;visibility: hidden;}
+
+.error {
+    color: red;
+}
+
+.majorWarning {
+    font-size: larger;
+    font-weight: bold;
+    color: red;
+    background-color: white;
+}
+
+.majorWarning  p{
+    padding: 1ex;
+}
+
+body.arial {font-family: Arial, Tahoma, Verdana, Helvetica, sans-serif;}
+body.verdana {font-family: Verdana, Helvetica, Arial, Tahoma, sans-serif;}
+body.timesnewroman {font-family: "Times New Roman", serif;}
+
+
+.arial input, 
+.arial textarea, 
+.arial keygen, 
+.arial select, 
+.arial button, 
+.arial isindex, 
+.arial .RadDock .rdContent, 
+.arial .RadGrid_Default table,
+.arial .RadDock .rdTitleBar em,
+.arial span,
+.arial .RadComboBox_Default .rcbInput, .arial .rcbSlide .RadComboBoxDropDown_Default
+{
+    font-family: Arial, Tahoma, Verdana, Helvetica, sans-serif;
+}
+.verdana input, 
+.verdana textarea, 
+.verdana keygen, 
+.verdana select, 
+.verdana button, 
+.verdana isindex, 
+.verdana .RadDock .rdContent,
+.verdana .RadGrid_Default table,
+.verdana .RadDock .rdTitleBar em,
+.verdana span,
+.verdana .RadComboBox_Default .rcbInput, .verdana .rcbSlide .RadComboBoxDropDown_Default
+{
+    font-family: Verdana, Helvetica, Arial, Tahoma, sans-serif;
+}
+.timesnewroman input, 
+.timesnewroman textarea, 
+.timesnewroman keygen, 
+.timesnewroman select, 
+.timesnewroman button, 
+.timesnewroman isindex, 
+.timesnewroman .RadDock .rdContent, 
+.timesnewroman .RadGrid_Default table,
+.timesnewroman .RadDock .rdTitleBar em,
+.timesnewroman span,
+.timesnewroman .RadComboBox_Default .rcbInput, .timesnewroman .rcbSlide .RadComboBoxDropDown_Default
+{
+    font-family: "Times New Roman", serif;
+}
+
+
+.roundedRect {
+	background-color: #eeeeee; 
+	border-color: #bbbbbb; 
+	border-style: solid; 
+	border-width: 1px; 
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px; 
+	border-radius: 3px; 
+	padding: 5px;
+	margin-bottom: 5px;
+	-webkit-box-shadow: 2px 2px 5px #cccccc;
+	-moz-box-shadow: 2px 2px 5px #cccccc;
+	box-shadow: 2px 2px 5px #cccccc;
+}
+
+div.RadPicker.RadPicker_Default {
+    display: inline-block;
+}
+
+.vacancySearchPanelWidth {
+    width: 100px;
+}
+
+.contentPanelAdvSpecApp {
+    border: solid 1px lightgrey;
+    padding: 50px;
+}
+
+.centreButtonAdvSpecApp {
+    margin-top: 20px;
+}
+
+
+.brandedEditor ul {
+    padding-left: 30px;
+}
+.unorderListPadding ul
+{
+    display: block;
+    padding-left: 30px !important;
+}
+
+.unorderListPadding ol
+{
+    display: block;
+    padding-left: 30px !important;
+}
+
+.VacCatTextBox
+{   
+    border: 2px solid rgb(187, 187, 187);
+    font-size: 1.2em; 
+    height: 1.6em;
+	width: 350px;
+	color: silver;
+}
+
+
+.DDA
+{
+    background-color: #eaeaea;
+    padding-top: 5px;
+    padding-left: 332px;
+	vertical-align: middle;
+	cursor: hand;
+	width: 18px;
+	border: none;	
+	background-color:#fff;
+}
+
+
+.VacancyCategoryTypeDate {
+    padding-top: 10px;
+}
+
+#OneLoginDiv {
+    width: 948px;
+}
+
+.oneLoginBar {
+    background-color: #f2f2f2;
+    border: 1px solid #868686;
+    color: #000;
+    margin:10px 5px 5px 4px;
+    padding-left: 7px;
+}
+
+.switchProfile {
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjAiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjYiIGhlaWdodD0iMjYiIHZpZXdCb3g9IjAgMCAyNiAyNiIgc3R5bGU9Im51bGwiIGZpbGw9IiMwMDAwMDAiID4gICAgPHBhdGggZD0iTSA2IDAgQyA0LjM0NCAwIDMgMS4zNDQgMyAzIEwgMyAyMyBDIDMgMjQuNjU2IDQuMzQ0IDI2IDYgMjYgTCAyMCAyNiBDIDIxLjY1NiAyNiAyMyAyNC42NTYgMjMgMjMgTCAyMyAxNy44MTI1IEwgMjEgMTkuNTYyNSBMIDIxIDIzIEMgMjEgMjMuNTUyIDIwLjU1MSAyNCAyMCAyNCBMIDYgMjQgQyA1LjQ0OSAyNCA1IDIzLjU1MiA1IDIzIEwgNSAzIEMgNSAyLjQ0OCA1LjQ0OSAyIDYgMiBMIDIwIDIgQyAyMC41NTEgMiAyMSAyLjQ0OCAyMSAzIEwgMjEgNi40Mzc1IEwgMjMgOC4xODc1IEwgMjMgMyBDIDIzIDEuMzQ0IDIxLjY1NiAwIDIwIDAgTCA2IDAgeiBNIDE2LjUgNi40Njg3NSBDIDE2LjI1IDYuNTQzIDE2IDYuNzk2NzUgMTYgNy40Njg3NSBMIDE2IDEwIEwgMTAgMTAgQyA5LjQ0OCAxMCA5IDEwLjQ0OSA5IDExIEwgOSAxNSBDIDkgMTUuNTUxIDkuNDQ4IDE2IDEwIDE2IEwgMTYgMTYgTCAxNiAxOC41IEMgMTYgMTkuNzgxIDE3IDE5LjUgMTcgMTkuNSBMIDI0LjUgMTMgTCAxNyA2LjUgQyAxNyA2LjUgMTYuNzUgNi4zOTQ1IDE2LjUgNi40Njg3NSB6Ij48L3BhdGg+PC9zdmc+') 0 50% no-repeat;
+    background-size: 24px 24px;
+    padding-left: 25px;
+}
+.vacancyAlertWizard {
+    width: 710px;
+}
+.contentEditor {
+    width: 700px;
+    height: 500px;
+}
+.RadTabStrip.rtsHorizontal .rtsLevel .rtsLink {
+    text-align: center;
+}
+ 
+.RadTabStrip.rtsVertical .rtsLevel1 .rtsSelected .rtsLink {
+    background-color: #cccccc;
+}
+ 
+.RadTabStrip .rtsImg,
+.RadTabStripVertical .rtsImg {
+    border: 0 none;
+    margin-left: -2px;
+    margin-top: 7px;
+    vertical-align: middle;
+}
+ 
+.RadRating {
+    margin-bottom: 22px;
+    position: relative;
+    top: 15px;
+    *top: -3px;
+}
+.SendEmailRoundedRect {
+	background-color: #eeeeee; 
+	border-color: #bbbbbb; 
+	border-style: solid; 
+	border-width: 1px; 
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px; 
+	border-radius: 3px; 
+	padding: 5px;
+	margin-bottom: 5px;
+	-webkit-box-shadow: 2px 2px 5px #cccccc;
+	-moz-box-shadow: 2px 2px 5px #cccccc;
+	box-shadow: 2px 2px 5px #cccccc;
+	width: 585px;
+	margin-top: 10px;
+	padding-left: 10px;
+	
+}
+.SendEmailDiv {
+    width: 530px;
+}
+.SendNotesTextBox {
+    width: 300px;
+}
+.SendNotesPanel {
+    width: 100%;
+    margin-left: auto;
+}
+.SendNotesVacancyNameLabel {
+    width: 250px;
+    float: left;
+}
+.AttachmentTabWidthInRequestRecommendation {
+    width: 700px;
+}
+.CandFilesGrdWidth {
+    width: 400px;
+}
+.FilesGrdWidth {
+    width: 380px;
+}
+
+/* Langauges selection panel */
+
+#WidgetFloaterPanels {
+	top: 10px !important;
+	left: 300px !important;
+	/*display: block !important;*/
+}
+
+#WidgetFloater {
+	/*display: block !important;*/
+}
+
+#MicrosoftTranslatorWidget {
+	top: 30px !important;
+	right: 5px !important;
+	position: absolute !important;
+}
+
+div#LoginV2TranslationWdgt #MicrosoftTranslatorWidget {
+	top: 10px !important;
+	right: 5px !important;
+	position: absolute !important;
+}
+
+div#RadWindowTranslationWdgt {
+	display: none !important;
+}
+
+body.popup div#WidgetFloaterPanels {
+	display: none !important;
+}
+
+.LTRStyle #ExternalLinksPanel {
+	/*display: none;*/
+}
+
+div#smediaparm,
+div#smedianame
+{
+	width: auto;
+	float: left;
+	clear:both;
+	margin:10px 0 10px 10px;
+	padding: 10px;
+	overflow:hidden;
+}
+div#smediaparm fieldset label,
+div#smedianame fieldset label
+{
+	width:190px;
+}
+.DeleteAccountEmailsLink {
+    float: left;
+}
+
+img[id$='SharedServiceLogoImage'] {
+	/*display: none;*/
+    width: 42px !important;
+    height: 49px !important;
+
+}
+
+

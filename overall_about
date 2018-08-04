@@ -1,0 +1,90 @@
+Not hard to better an IT syllabus, is it?
+
+== Computer Science
+A bit about flow diagrams, punch cards, not bad as intro.
+
+== IT
+IT from old theory about four kinds of software, databases, spreadsheets, word processors, presentation software. Also around commercial software, office suites. 
+
+Two problems,
+- Proven that nobody but a small selection of secretaries use computers like this
+- Fast moving area, not self-actuated learning
+
+== Against
+++
+- Examining boards
+: Made inroads
+- Raspberry PI movement
+: Self-satisfied and class-prejudice, but have a point and represent a radically different outlook (Open Source).
++
+
+== Current state
+Not hard to better this, is it?
+
+== Mis-steps
+Not self-actuated
+Learning base mismatched
+
+=== Not self-actuated
+Nobody uses help. they use friends and the internet.
+Must teach general user UI
+Must teach a little about operating systems and programs (not wha the words are)
+Must teach configuration of operating system (and languages)
+Must teach about text, and how it works on a computer
+Must teach about search, it's a cross-application subject.
+
+=== Learning base mismatched
+==== Programs
+
+==== Information
+People go on a computer to:
+- send messages to friends via twitter/Facebook/email
+- buy clothes
+- look for recipies
+- play games
+- (sometimes) because the government tells them to look for jobs
+- Maps
+
+Need:
+Files
+word processing
+browsers
+Web forms
+video
+PNG/JPEG, what is PDF
+email
+Search techniques
+logons
+Updates
+backups
+General interface help
+General info on servers
+
+
+Stuff we don't need,
+Guides to lots of programs
+Databases
+Image software
+Audio
+Mobiles
+Powerpoint
+Spreadsheets
+
+== Order of need
+Most people need, in this order, or close,
+Typing/mouse
+Files
+Programs (general UI)
+Mail
+Word processing
+Internet forms
+Internet search
+
+
+== So this course...
+- Stresses self-actuated learning
+- Includes security and legaity within wide discussion about what computers are for and do  
+- Covers more background, such as servers
+- Ignores lots of conventional information, especially on individual programs
+- Highlights the filesystem, interface design, and searching
+

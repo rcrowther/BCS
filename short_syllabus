@@ -1,0 +1,405 @@
+
+=== What it is for
+=== How it works
+=== When it goes wrong
+=== Defensive
+=== Find out more
+
+=== Equipment
+=== Information
+=== Exercise
+=== Additional
+=== Verification
+
+= Short Course
+Note for teachers: the course should be completed on computers with two separate operating sysems. We do not mention this in the short course, but the information in each module can be completed on any operating systems. We currently use Win10 and KUbuntu. An Apple comuter has a few different strokes, notably it's single click paradigm, but that will not hinder a tutor who is able to use an Apple system. A cross-system, even mobile system, approach is encouraaged. 
+ 
+= Short course
+== 1. Using a computer
+
+=== Equipment
+A computer
+A laptop too, if possible
+USB sticks
+Wall display
+Games for keyboard and mouse
+
+=== Information
+Learn how to control a computer.
+
+Mouse, touchpad, switch on/off, USB, typing
+
+Mouse - note the double-click for Microsoft and Linux, single click on web.
+
+
+==== When it goes wrong
+Eating characters on a keyboard --- toggle buttons
+Mouse breaks are fatal
+USB breaks are fatal
+Broken computers need to go to a friend or the local shop
+
+==== Safety
+Employers are often keen on passwords to stop people using their computers and WiFi. We will use talk more about this later.
+
+Your computer contains things valuable to you. It may also contain passwords. So do not leave it in public places, and try to keep backups of what you are doing.
+
+
+=== Exercise
+Typing
+TuxType, KTouch,
+
+Mouse game
+http://www.pbclibrary.org/mousing/mousercise.htm
+
+=== Additional exercise
+TuxPaint
+
+=== Verification
+Have you worked through the list of requirements? 
+
+For the keyboard, have you reached the chosen target, or can at least use all the letter keys?
+
+For the mouse, if you have worked through the mouse game, you are ok.
+
+
+
+== 2. Using files 
+=== Equipment
+A computer
+USB sticks
+
+=== Information
+Learn what a file is and how to store and move them.
+
+Auto-starting by click. 'Open With'.
+
+Naming files, systems for naming files
+ 
+Create/delete/rename
+
+Folders create/delete
+
+Copy to USB
+
+==== When it goes wrong
+Lost files are the biggest cause of heartache. Lost files can sometimes be found, or partially found.
+
+=== Exercise
+Try all of the above
+
+=== Additional exercise
+??? Size of files on system? Compression? Picture files?
+
+=== Verification
+Can you move files and launch a program from a file?
+
+
+== 3 Internet
+=== Equipment
+Computers with internet connection
+A router
+
+=== Information
+Everyone talks about the ''web', ''webpages', and ''going online'. Connecting to others through agreed ways is modern life.
+ 
+How does it work? Servers
+Can be connected using wire or Wifi
+Different browsers (Firefox remembers what you were doing ''Restore last Session'). Back buttons, tabs. downloading. 
+What is it for?  Get information
+What can it do? Oh, information on anything.
+Mention the words ''The cloud'
+
+=== Exercise
+Visit sone websites,
+
+- Wikipedia
+- Youtube
+- https://www.etymonline.com/
+- Google Maps
+- Ebay
+- Gutenberg
+- gov.uk 
+: https://www.gov.uk/
+
+Notice how the address changes
+
+==== When it goes wrong
+Broken connections are common, especailly with Wifi. Try turning the computer off and on. And the router. Check passwords are right. Uusually it will restart within an hour. If not, a computer person can fix it. Ring the internet provider.
+ 
+==== Safety
+Don't download anything you don't trust
+Don't reply to phonecalls, and never give out your details (don't send anything).
+The web can be seen by anyone, wherever you go. So be polite. Even to friends on Twitter or Facebook.  
+
+=== Additional
+(optional, but learn if you can) Use of tabs
+Use of filters and forms on EBay??? 
+Link connections
+
+=== Verification
+Did you visit them all? Can you cut and paste the address and/or use links to get there?
+
+
+
+== 4. Internet search
+=== Equipment
+=== Information
+What to type in
+Will correct spelling mistakes
+Widen/narrow search
+Stemming and ignoring words, keywords
+How to handle results lists (give up after a while)
+Avoid search on websites... use a general search engine
+
+
+==== When it goes wrong
+Widen or narrow the search
+
+Set preferences for 'England'. Demo of Wikipedia.
+
+Sometimes a search returns inappropriate material. You can switch on ''safesearch', bu the easiest thing to do is recognise what you have typed is is not what you intetended, and try again.
+
+==== Safety
+If webpages appear strange, will not load, or ask for details, go backwards (sometimes is blocked) or close the tab.
+
+If you have not sent anything, or downloaded anything, you are ok.
+
+Sometimes naughty, violent, or things you do not agree with, will appear. You must accept that the world is very big.
+
+=== Exercise   
+Find the websites from the last lesson in a search,
+
+- Wikipedia
+- Youtube
+- https://www.etymonline.com/
+- Google Maps
+- Ebay
+- Gutenberg
+- gov.uk 
+: https://www.gov.uk/
+
+=== Additional Information
+Again! (optional, but learn if you can) Use of tabs
+                  
+=== Additional Exercise
+Find some help if you are stuck with, or have a question about, your computer.
+Find a good recipe for samosas. USe tabs.
+
+=== Verification
+Are you finding what you need?
+
+
+== 5. Program UI
+=== Equipment
+Computers with a GUI Desktop.
+Use a text editor like Kate. This contains most ideas demonstrated.
+
+=== Information
+Most programs to do things have the same tools and ways to run them.
+
+Using menus, how menus work an operating system also,
+
+- File (Save, Save As, Print, Preferences, Exit/Quit)
+- Edit (Cut Paste)
+- View
+- Search (Find/Replace)
+- Help
+
+Many ways to do same things:
+- The buttons do the same thing, but faster. 
+- Right-click menu
+- Keyboard strokes 
+Many ways to do things, same place. Use 'print' as an example.
+
+Using scrollbars, sizing, arrows, the gutter, the wheel and arrow keys.
+
+
+=== When it goes wrong
+Look in the menus, then use the internet (do not use Help)
+
+==== Safety
+Nothing is for 'free'. If people offer a free program, check if they use the program. Often these programs have adverts and can steal from or break your computer. Some programs are given to the community. Sometimes these are good, sometimes they are hard to use and have no information.
+
+Don't put too many programs on your phone or computer. They will slow it down.
+
+=== Exercise
+Look in a text editor for the many ways to 'print' and 'save'.
+
+Use the main menus to find programs, and guess or ask what they do (at this point, we have not used the internet, but you can still try).
+
+- Calculator
+- Text Editor (not a word processor. e.g. Leaf/Gedit)
+- Character Map
+- Audio/Video player (e.g. Windows Media Palyer/VLC)
+- Desktop preferences
+- File browser
+- System Monitor
+
+=== Additional
+Explore 'Do/Undo'
+
+Show VLC or similar Audio program. More complex, but still get the help.
+Explore Desktop Preferences
+
+=== Verification
+Are you comfortable with menus?
+
+
+
+== 6. Logons and passwords (employers needs)
+=== Equipment
+Computer (with fake logon?)
+
+=== Information
+Personal security
+logon/logoff
+passwords and good passwords
+Passwords must be typed in twice, to avoid spelling mistakes.
+Dont use public wifi for things like banks
+
+Misleading places
+Pilfering
+Email spamming
+Phishing
+padlock
+
+External breaches
+Whats a firewall
+Antivirus software
+Computers ''going slow'
+what some viruses look like
+Stealing your identity
+
+Ethics
+Offensive content
+Email, post, and messaging language 
+netiquette http://www.bbc.co.uk/webwise/guides/about-netiquette
+copyright
+
+=== When it goes wrong
+Logons go wrong. Websites remember your details. You must put a new password in. A verification code will be sent to your email account. You type that back in to make it work. Read the steps. Wait for the email. Impatience will be your enemy. 
+
+
+
+=== Exercise
+Try some of these things
+
+=== Additional
+Live IRC client
+
+=== Verification
+???
+
+
+== 7. Webmail
+=== Equipment
+Computer 
+???Dummy mail account???
+
+=== Information
+Accounts
+Delete and sending emails.
+Setting labels and filtering
+Organisation
+
+
+==== When it goes wrong
+Photo overload
+Rarely goes wrong
+
+==== Safety
+Look out if they do not know your name ''dear friend'
+Go to the site, not click on a link
+If you're worried, use the phone, not the internet.
+Beware english that is not official-sounding
+Do not click or download anything
+Look and spellcheck before you send
+
+=== Exercise
+Try sending emails to each other
+
+=== Additional
+Sending emails to yourself
+Blind copy
+
+=== Verification
+Are you ok with this?
+
+
+== 8. Word processing
+=== Equipment
+Examples: e.g. poster, booklet (for cover and contents), mindmap vs. CV, reports, letter
+Computers with word processors
+
+=== Information
+Things that are not word processing
+Quick mention of templates---mostly unused
+Setting up a page---margins/borders(for quick posters)
+Use of simple formatting
+  - Titles
+  - Format clear (from menu)
+  - Text-font and text-size
+  - Special characters and the character map
+  - Paragraphs
+  - Indent for quotes 
+  - Lists
+  - Images, wrapping
+  - Spellcheck
+
+==== Safety
+Ignore appeal letters
+A letter is not in the same language as you would speak. Beware of not being formal.
+
+=== Exercise
+(example) Which one of these can be done in a word-processor?
+Work through the formatting as a guided exercise. To make it more fun, students can choose an end target document style of their choice.
+
+=== Additional Information
+Printing
+- Print previews
+- Portrait/landscape
+- Use page and page range, not 'all'
+- Note on 'letter' vs. 'A4' jambing printers (also on PDFs)
+- If a page will not print, will another print? Pages are frequently set up wrong.
+- When a printer goes wrong, it is bust. Find another, or call a technician, but don't waste time on it.
+
+=== Additional Exercise
+Try some mindmap software e.g. VYM---View Your Mind (Linux), or Blumind (Windows). Both basic, but effective for purpose. Or, for £40, Inspiration (Windows).
+
+=== Verification
+Mostly, did you reach the end of this tedious exercise? And know when not to use a word processor?
+
+
+== 9. Internet forms
+=== Equipment
+A fake web form, or buttons, to play with???
+
+=== Information
+http://www.bbc.co.uk/webwise/0/22717885
+Keep your information somewhere else, and cut and paste. Much easier!
+Don't use the back button! It often will not work!
+Sometimes multi-step forms have ''save' buttons. Try them first!
+Form items:
+- Fields
+- Select
+- Radio
+???
+- 'Submit'
+You can change things until you press submit
+The submit button can have many names
+Country is difficult---do you know what names you use? (e.g. Great Britain, United Kingdom)
+
+==== Safety
+If you press submit on EBay or RyanAir it will cost you money. This is a legal agreement, you can not go back! However, UK Law now says, in many cases, you do have time to change or cancel your order.
+
+=== Exercise
+How to use the various buttons and selectors
+About how it does nothing until submit (even if things change)
+
+=== Additional
+??? Submit a form for something fun???
+
+=== Verification
+
+
+“Better Computer Syllabus-Short Syllabus” by Andre Street is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.

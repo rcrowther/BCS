@@ -1,0 +1,2345 @@
+﻿#container
+{
+	background: none;
+}
+.header {
+    height: 118px;
+	width: 965px;
+	margin: 0px auto 0px; /* the auto margins (in conjunction with a width) center the page */
+    /*background-position: 50% 50%;
+    background-repeat: no-repeat;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+    border-radius:7px;
+    box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.6);*/
+	border-bottom:none;
+}
+#maincontent
+{
+	background: transparent !important;
+	overflow-y:hidden;
+	padding: 5px;
+    margin: 0 -5px;
+    box-sizing: content-box;	
+}
+
+#loginmaincontent {
+    width: 100%;
+    padding: 0;
+}
+#logincontent {
+    padding: 0; 
+    width: 100%;
+}
+.contentPanel {
+	background: #fff none;
+    border: solid 1px lightgrey;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    
+    -moz-box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    -webkit-box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+
+	-moz-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+	box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    
+    
+    margin-bottom: 10px;
+}
+.contentPanelWhiteBg {
+	background: #fff none;
+    border: solid 1px lightgrey;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+    -moz-box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    -webkit-box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+
+    -moz-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+	box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+
+    margin-bottom: 10px;
+}
+
+.RadGrid_Default .rgRow td {
+    border-color: lightgray;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+/* div.RadGrid .rgAltRow {
+    background-color: #fff;
+}
+2821*/
+.RadGrid_Default .rgAltRow td 
+{
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-color: lightgray; 
+}
+
+.RadGrid_Default, .RadGrid 
+{
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+	border: 0px;
+}
+
+.RadGrid_Default .rgPageFirst,.RadGrid_Default .rgPagePrev,.RadGrid_Default .rgPageNext,.RadGrid_Default .rgPageLast
+{
+    -moz-border-radius: 5px !important;
+    -webkit-border-radius: 5px !important;
+    border-radius: 18px !important;
+    border: solid 1px lightgray;
+
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.RadGrid_Default .rgPager {
+    background-color: #ffffff;
+}
+
+.RadGrid_Default td.rgPagerCell {
+    border: 0;
+}
+
+
+#VacancycategoryDropDownPnl div:last-child {
+    padding-bottom: 0px;
+}
+
+.VacTitle {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.contentPanelLeftPadding {
+    padding-left: 16px !important;
+}
+#passwordRecovery
+{
+   padding-top: 0px;
+   padding-bottom: 0px;
+   padding-left: 0px;
+}
+#passwordRecovery td
+{
+   padding-left: 0px;
+}
+.contentPanelTopBottomPadding {
+    padding-top: 25px;
+    padding-bottom: 25px !important;
+}
+.recPasInfoDiv {
+    float: none;
+    background-image: url('../../images/cex/tick.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+.recPasButtonDiv {
+    padding-left: 0px !important;
+    padding-bottom: 15px;
+}
+.divWidth100pc {
+    width: 100%;
+}
+.noBg .loginPnl {
+    padding-top: 15px;
+    font-size: 1em;
+}
+.noBg .loginPnl label{
+    font-weight: bold;
+}
+.noBg .loginpagetitle {
+    font-size:1.6em;
+    font-size:1.1em;
+    background-color: transparent;
+    color: inherit;
+    width: auto;
+    margin-bottom: auto;
+    padding-left: 0px;
+}
+.topbarcontainer 
+{
+    clear: both;
+    margin-bottom: 10px;
+}
+.appFormtopbarcontainer 
+{
+	clear: both;
+    margin-bottom: 0px;
+}
+.topbar {
+    background-color: #fff;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    
+    -moz-box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    -webkit-box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    box-shadow: 3px 3px 9px 1px rgba(128, 128, 128, 0.7);
+    
+    -moz-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+	box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    
+    
+    padding-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 5px;
+    padding-bottom: 10px;
+}
+.topbar#LogoutMenu {
+    z-index: 10;
+    width:120px;
+    padding:7px 7px 7px 10px;
+}
+.topbar h1 
+{
+	margin-top: 0.1em;
+	margin-bottom: 0em;
+    font-size:1.7em;
+    font-weight: bold;
+}
+.topbar .vacName {
+    font-size:1.4em;
+    
+}
+.vacName {
+    font-weight: bold;
+}
+.topbar .vacCat {
+    font-size:1.2em;
+}
+.topbar #navDiv .navIcon {
+    float:left;
+}
+.topbar #navDiv div.navIcon {
+    float:left;
+    width:70px;
+    text-align:center;
+    overflow-x:hidden;
+    font-size:1em;
+    font-weight:bold;
+    background-repeat: no-repeat;
+}
+.topbar #navDiv .navIcon svg {
+    fill:currentColor;
+}
+.topbar #navDiv div.navIcon a 
+{
+    display: block;
+    text-align: center;
+    overflow: hidden;
+	text-decoration: none;
+}
+.topbar #navDiv div.navIcon a span {
+    display: block;
+	padding-top: 5px;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.infobarlinks
+{
+    float: right;
+    padding: 5px;
+	z-index: 1000;
+}
+.appFormVacTitle {
+    float: left;
+    width:400px;
+}
+.vacexpander {
+    float: left;
+}
+.infobarinfo 
+{
+    float:left;
+    width:300px;
+    margin:5px 1em;
+}
+.infobarinfo .vacancyName {
+    margin-top: 0;
+    font-size:1.4em;
+}
+.infobarinfo .vacancyCat{
+    margin-top: 0;
+    font-size:1em;
+    font-weight: normal;
+}
+.topbar .vacdescCopy,
+.topbar .vacdesc
+{
+    clear: both;
+    max-height: 15em;
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;    
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    /*background-color: rgba(0,0,0,0.04);*/
+    /*border: 4px inset rgba(128,128,128,0.5);*/
+    padding: 1em;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;    
+}
+
+.sectionTable {
+    width: 965px !important;
+    margin: 0px;
+    padding: 0;
+    
+}
+
+.sectionTableRedeploy {
+    width: 100%;
+}
+
+.mandatoryField {
+	font-size: 0.8em;
+}
+
+#gcDiv {
+	display: none;
+}
+
+
+/*== New button layouts - START  ===============================================*/
+.RadButton_Default.RadButton.rbLinkButton {
+    border-color: #D3D6DB !important;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-left: 12px;
+    }
+
+.RadButton_Default.RadButton.rbLinkButton.preScreenGreyedOut,
+.RadButton_Default.RadButton.rbLinkButton.preScreenGreyedOut:hover
+
+{
+    color: #fff !important;
+    background-color: #D3D6DB !important;
+}
+
+#appform .button {
+    font-size: 13px;
+}
+
+#appnav .button {
+    font-size: 13px;
+}
+
+#PrevNextBtns input {
+    width: 6em;
+}
+
+
+.contentPanel input[type="submit"],
+.button,
+.buttonV2 ,.togglebuttonV2ReportSuite
+{
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: bold;
+    -moz-box-shadow: 0 0 10px Grey;
+    -webkit-box-shadow: 0 0 10px Grey;
+    box-shadow: 0 0 10px Grey;
+    margin-left: 0px;
+	border: 0px;
+}
+
+.buttonV2 {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.contentPanel input[type="submit"],
+.button {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+#AccessibilityBtn input[type="submit"] 
+{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.contentPanel input[type="submit"][disabled],
+.button[disabled],
+.buttonV2[disabled] {
+    background-color: #D3D6DB;
+}
+/*== New button layouts - FINISH  ==============================================*/
+
+/*== Pre Screen form - START  ================================================*/
+
+#Cph1_contentPanel {
+    font-weight: bold;
+    padding: 10px 10px 10px 16px;
+}
+
+#Cph1_CphTop_contentPanel {
+    font-weight: bold;
+    padding: 10px 10px 10px 16px;
+}
+
+.preScreenFieldSet {
+    border: 0;
+    padding-left: 16px;
+    padding-bottom: 5px;
+    margin-top: 0px;
+    padding-top: 18px;
+    background-image: url('../../images/cex/HorizontalRule.png');
+    background-repeat: no-repeat;
+    background-position: 3px 100%;
+    
+}
+
+.preScreenQuestionField {
+    float:left;
+    padding-right:10px;
+    font-weight: bold;
+    width:790px;
+    font-size: 1.3em;
+}
+.preScreenAnswerField {
+    font-weight: bold;
+    font-size: 1em;
+    float: right;
+    padding-top: 5px;
+}
+
+.preScreenButtonContainer {
+    float:left;
+    width:130px;
+}
+
+.preScreenButtonCell {
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.answerDiv 
+{
+    clear: both;
+    height: 25px;
+    width: 916px;
+}
+
+.commentsControlNotFillMode {
+    font-weight: bold;
+    width: auto;
+    padding-left: 16px;
+}
+
+div.preScreenButtonPanel div {
+    display: inline !important;
+}
+
+
+/*#Cph1_PreScreenFrmPnl div.formSectionWrapper {
+    padding-top: 0px;padding-bottom: 0px;
+}*/
+
+/*== Pre Screen form - FINISH  ================================================*/
+
+/*== View Vacancy V2 - START  ================================================*/
+
+.viewVacancyDiv 
+{
+    margin-bottom: 5px;
+    padding: 5px 10px 5px 16px;
+}
+
+.vacancyIcon {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+}
+
+.RadGrid .vacancyLink a,.RadGrid .vacancyLink a:hover,.RadGrid .vacancyLink a:visited {
+    color: #000 !important;
+    text-decoration: none;
+    padding-right: 0px;
+}
+.RadGrid span.linkSeparator {
+    padding-left: 12px;
+    color: #D0D0D0;
+}
+
+
+.horizontalRule 
+{
+    background-image: url('/images/cex/HorizontalRule.png');
+    background-repeat: no-repeat;
+    background-position: top;
+    padding-bottom: 5px;
+    display: block;
+}
+
+.vacancyDetailLabel {
+    clear: both;
+    float: left;
+    width: 170px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.vacancyDetailValue {
+    float: left; 
+    padding-bottom: 10px;
+    width: 500px;
+    
+}
+.vacancyCategoryLabel {
+    clear: both;
+    float: left;
+    width: 170px;
+    font-weight: bold;
+          
+}
+.vacancyCategoryValue {
+    float: left; 
+    padding: 3px; 
+    width: 500px 
+}
+.vacancyCategoryRepeaterFooter {
+    height:10px;
+    width: 100%; /*670px;*/
+    float:left;
+}
+.vacancyDescription {
+    float: left; 
+    padding-bottom: 10px;
+}
+.viewvacancyWrapper {
+    /*padding-left: 10px; 
+    padding-top: 0px;
+    margin-top:5px;*/
+    margin-bottom: 5px;
+    padding: 0px 10px 5px 16px;
+}
+.viewVacancyDetail {
+    padding: 0px;
+    width: 100%;
+}
+
+.hideApplyLink 
+{
+	visibility: hidden;
+}
+
+
+/*== View Vacancy V2 - FINISH  ================================================*/
+
+.contentPanelFont {
+    font-size: 1.4em;
+    font-weight: bold;
+    clear: none !important;   
+}
+
+.horizontalRuleBottom {
+    background-image: url('/images/cex/HorizontalRule.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    padding-top: 7px;
+}
+
+.securityQuestionTxtWidth {
+    width: 330px !important;
+    height:19px;
+}
+
+
+/*== Registration form - START  ================================================*/
+
+.regv2 {
+    font-size: 1.25em;
+}
+.regv2 .mandatoryField {
+	display: block;
+}
+.regv2 input[type="submit"],
+.regv2 input.buttonV2 {
+    font-size: 0.9em;
+	height: 2em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+}
+
+.regv2 .forgotPwd 
+{
+	padding-top: 5px;
+    display: inline-block;
+    /*position: absolute;
+    right: -180px;
+    top: -3px;*/
+}
+
+.forgotPwdDiv
+{
+    margin-top: 4px;
+}
+
+#regcontent 
+{
+    overflow: visible;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}
+#regformex
+,#regform
+{
+    float: left;
+	padding: 10px 0px 10px 15px;
+    margin-top: 0px;
+    box-sizing:border-box;
+    width:100%;
+}
+
+.regFormPnlHeader {
+	font-size: 1.25em;
+	font-weight: bold;
+}
+.regFormPnlComment {
+    font-size: 1.10em;
+	font-weight: bold;
+}
+.sectionTableReg {
+    width: 100%;
+    padding: 5px 5px 5px 0px;
+}
+.regv2 td.sectionItemDescriptionCell {
+    width: 200px;
+    vertical-align: top;
+}
+.regv2 td.sectionItemControlCell {
+    width: auto;
+}
+.regv2 .sectionTableReg 
+{
+     border-collapse: collapse;
+}
+.regv2 .sectionTableReg td.sectionItemControlCell
+,.regv2 .sectionTableReg td.sectionItemDescriptionCell 
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: solid 1px rgba(192, 192, 192, 0.5);
+}
+#volForm {
+    float: left;
+	padding: 0px 0px 10px 15px;
+    margin-top: 0px;
+    box-sizing:border-box;
+    width:100%;
+}
+.volV2 {
+    font-size: 1.25em;
+}
+.volV2 .sectionTable {
+    width: 945px !important;
+}
+.volV2 .sectionTable td.sectionItemControlCell
+,.volV2 .sectionTable td.sectionItemDescriptionCell {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    
+}
+.volV2 .sectionTable td.sectionItemDescriptionCell {
+    vertical-align: top;
+}
+ #volNoofDaysTable td.sectionItemDescriptionCell2
+ ,#volNoofDaysTable td.sectionItemControlCell
+ ,#volHalfDays td.sectionItemDescriptionCell2
+ {
+     padding-top: 0px !important;
+    padding-bottom: 0px !important;
+     border-bottom: none !important;
+ }
+ #volForm table tbody tr td input.button {
+     margin-bottom: 10px !important;
+ }
+input
+,textarea
+,select
+{
+	padding-left: 0.4em;
+}
+.appTextBox
+{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+    margin-bottom: 0.5em;
+}
+.fieldHlp 
+,.assentDocUrl
+{
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0.9em;
+}
+.fieldHlpIcon 
+,.fieldHlpText
+,.assentDocUrlIcon,.assentDocUrlText
+{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.assentDocUrlIcon
+{
+    background-image: url('../../images/cex/terms.png');
+    width: 32px;
+    height: 32px;
+    margin: 0 1em 0 0;
+}
+
+.fieldHlpIcon {
+    background-image: url('../../images/cex/info.png');
+    width: 22px;
+    height: 22px;
+    margin: 0 1em 0 0;
+    border-radius:12px;
+}
+
+.riStrengthBarL0,
+.riStrengthBar {
+	display: none;	
+}
+.riStrengthBarL1,
+.riStrengthBarL2,
+.riStrengthBarL3,
+.riStrengthBarL4,
+.riStrengthBarL5 {
+	display: inline-block;
+}
+.regv2 .fieldHlp .NormalAppWidth
+,.regv2 .fieldHlp .appListNormal
+ {
+    width: 320px;
+}
+.regv2.fieldHlp .LargeAppWidth 
+,.regv2 .fieldHlp .appListXLarge
+{
+    width: 240px;
+}
+.regv2.fieldHlp .LargestAppWidth 
+,.regv2 .fieldHlp .appListXLarge
+{
+    width: 175px;
+}
+.fieldHlpText {
+    width: 300px;
+	margin: auto;
+}
+.regv2 .sectionTableReg ul 
+{
+    display: inline-block;
+    width: 330px;
+    margin: 0;
+    padding-left:0;
+    padding-right: 0.4em;
+    margin-right: 12px;
+    margin-bottom: 0.5em;
+}
+.regv2 .sectionTableReg ul li {
+    list-style: none;
+}
+.regv2 .sectionTableReg ul li label 
+{
+    width: 300px;
+    display:inline-block;
+    vertical-align: top;
+    padding-left: 0.5em;
+}
+.mandatoryField {/* .regv2 removed from path because .mandatoryField class is used in several pages */
+    display: inline-block;
+    padding-top: 3px;
+}
+.regv2 .NormalAppWidth {
+    /*width: 148px;*/
+    width: 330px;
+}
+.regv2 .LargeAppWidth {
+	/*width: 228px;*/
+    width: 410px;
+}
+.regv2 .LargestAppWidth {
+	/*width: 277px;*/
+    width: 455px;
+}
+.regv2 .RadComboBox {
+    margin-right: 10px !important;
+}
+.regv2 .appListNormal {
+	/*width: 155px !important;*/
+	width: 337px !important;
+}
+input[type=text].appListNormal {
+	width: 330px !important;
+}
+.regv2 .fieldHlp .appListNormal {
+    width: 320px !important;
+}
+.regv2 .appListLarge {
+	/*width: 255px !important;*/
+	width: 417px !important;
+}
+.regv2 input[type=text].appListLarge {
+	width: 410px !important;
+}
+.regv2 .fieldHlp .appListLarge {
+    width: 240px !important;
+}
+.regv2 .appListXLarge {
+	/*width: 355px !important;*/
+	width: 462px !important;
+}
+.regv2 input[type=text].appListXLarge {
+	width: 455px !important;
+}
+.regv2 .fieldHlp .appListXLarge {
+    width: 175px !important;
+}
+.regv2 .appListXXLarge {
+	/*width: 400px !important;*/
+	width: 512px !important;
+}
+.regv2 input[type=text].appListXXLarge {
+	width: 505px !important;
+}
+
+.noBg .regv2 .loginPnl div.left {
+	padding-right: 20px;
+}
+
+/*== Registration form - FINISH  ===============================================*/
+
+/*== MVC application form - START  =============================================*/
+div#appform
+{
+	width: 666px;
+	margin-left:0;
+}
+nav#appnav
+{
+    padding-right: 0;
+}
+#maincontent .accessibility {
+	background-color: rgb(238, 227, 161);
+}
+/*== MVC application form - FINISH  ============================================*/
+
+/*== Contact Us V2 - START  ================================================*/
+
+.contactv2 input[type="submit"],
+.contactv2 input.buttonV2 {
+    font-size: 0.9em;
+	height: 2em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+}
+
+
+.contactv2 {
+    font-size: 1.25em;
+}
+
+.contactUsLabel
+{
+    font-weight : bold;
+}
+
+.contactusTitle
+{
+  padding: 15px; 
+  font-weight : bold;
+}
+
+fieldset label, .fieldlabel {
+	padding-left: 0px;
+}
+fieldset.contactLongLabel 
+{
+    padding-top: 15px;
+    padding-bottom: 20px;
+    border-bottom:1px solid rgba(192,192,192,0.5);
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+    -moz-border-bottom-left-radius: 0px;
+    -webkit-border-bottom-left-radius: 0px;
+    -moz-border-bottom-right-radius: 0px;
+    -webkit-border-bottom-right-radius: 0px;
+	margin-left: 15px;
+	margin-right: 15px;
+    margin-top: 2px;
+}
+
+fieldset.contactLongLabel label
+{
+    margin-left: 0px;
+	width: 170px;
+}
+fieldset.contactLongLabel input
+{
+	width: 330px;
+	margin-bottom: 10px;
+}
+fieldset.contactLongLabel textarea
+{
+	margin-bottom: 10px;
+}
+fieldset.contactLongLabel span {
+    display: block;
+}
+div.contactUsComboBox
+{
+    Width: 335px !important;
+    height : 19px;
+    padding-bottom: 5px
+}
+
+fieldset.contactv2 div {
+    float: left;
+}
+fieldset.contactv2 div div {
+    margin-bottom: 8px;
+}
+.contactv2 .mandatoryField {
+	display: block;
+}
+
+
+/*== View  Contact Us  - FINISH  ================================================*/
+
+/*== Candidate Interface Master - Start  ================================================*/
+.cndConatiner {
+}
+.leftNav
+{
+	height: 100%;
+	/*min-height: 400px;*/
+	width: 75px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+	border-width: 1px;
+	border-color: #afb3b7;
+	border-style: solid;
+    
+    -moz-box-shadow: 0px 0px 9px #999999;
+    -webkit-box-shadow: 0px 0px 9px #999999;
+	box-shadow: 0px 0px 9px #999999;
+	
+	-moz-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+	box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+
+    margin-bottom: 15px;
+    background: #afb3b7 url('Common/Gradients/radGradientDarkV50.png') 0 0 repeat-x
+}
+
+.contentV2
+{
+	margin-left: 10px;
+	width: 877px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+/*    -moz-box-shadow: 0px 0px 9px #999999;
+    -webkit-box-shadow: 0px 0px 9px #999999;
+	box-shadow: 0px 0px 9px #999999;
+	
+    -moz-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    -webkit-box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+	box-shadow: 0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+*/	
+    margin-bottom: 15px;
+}
+
+/*== Candidate Interface Master - FINISH  ================================================*/
+
+/*== Vacancy Alert - Start  ================================================*/
+
+div.createVacAl 
+{
+	float: left;
+	height: 35px;
+	padding-top: 5px;
+	padding-bottom: 2px;
+}
+.createVacAl a, .createVacAl a:visited 
+{
+	display: block;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000000;
+	padding-left: 30px;
+	padding-top: 8px;
+	background: url('../../images/cex/plus32.png') 0 0 no-repeat;
+}
+
+div.backToMyApp 
+{
+	float: right;
+	height: 35px;
+	padding-top: 8px;
+	padding-bottom: 2px;
+	padding-right: 20px;
+}
+.backToMyApp a, .backToMyApp a:visited 
+{
+	display: block;
+	height: 32px;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000000;
+	padding-left: 32px;
+	padding-top: 5px;
+	background: url('../../images/cex/back26.png') 0 0px no-repeat;
+}
+
+/*== Vacancy Alert - FINISH  ================================================*/
+.RadNotification .rnContentIconClipIn .rnCustomIcon {
+	clip: rect(16px 32px 48px 0);	
+}
+
+.RadGrid .rgHeader {
+	padding-top: 10px;
+	padding-bottom: 8px;
+}
+
+.RadTabStrip .rtsOut, .RadTabStripVertical .rtsOut {
+	padding-right: 1px;
+}
+
+/*.RadTabStrip .rtsUL, .RadTabStripVertical .rtsUL {
+    width: 75px;
+}2818 Fix */  
+.RadTabStrip .rtsLevel1 .rtsTxt, .RadTabStripVertical .rtsLevel1 .rtsTxt {
+	padding: 0px;
+}
+
+/*== Candidate Home V2 - START   ================================================*/
+
+div#ctl00_ctl00_Cph1_Cph_AppGrd_Grid .rgRow td, div#ctl00_ctl00_Cph1_Cph_AppGrd_Grid .rgAltRow td
+div#ctl00_ctl00_Cph1_Cph_AppGrd_Grid .rgRow td, div#ctl00_ctl00_Cph1_Cph_AppGrd_Grid .rgAltRow td {
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+.pcComp {
+    position: relative;
+}
+.pcCompGauge {
+    width: 100px;
+    height: 100px;
+    font-size: 10px;
+}
+.pcCompVal {
+    position:absolute;
+    top:75px;
+    left:25px;
+    width:50px;
+    text-align:center;
+    font-weight:bold;
+}
+.appDetail {
+    display: block;
+}
+.vacancyName {
+    font-weight: bold;
+}
+.overlayableIcon {
+    position: relative;
+	padding-left: 10px;
+}
+.iconOverlay {
+    position: absolute;
+    top: -32px;
+    left: 30px;
+    color: white;
+    background-color: #E04040;
+    width: 18px;
+    height: 18px;
+	-moz-border-radius:11px;
+	-webkit-border-radius:11px;
+    border-radius: 11px;
+    font-size: 14px;
+    padding: 4px 2px 0 2px;
+    text-align: center;
+}
+.iconOverlay.iconComplete {
+    background-color: #40E055; /*rgba(64,224,4,0.85);*/
+}
+.appFunctions {
+    text-align: right;
+    width: 500px;
+}
+
+/*== Candidate Home V2 - FINISH  ================================================*/
+
+
+/* Login V2 - Start*/
+.searchDiv .buttonV2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.dateSearch {
+    width: 216px !important;
+}
+.dateSearch .riTextBox {
+    padding-left: 5px !important;
+}
+.dateSearch td a {
+    margin-left: 0;
+}
+.distanceDrop {
+    width: 187px !important;
+}
+.distanceDrop:hover {
+    background-color: rgb(225, 225, 225);
+}
+.sortOrderCombo {
+    width: 208px !important;
+}
+.loginButton {
+	padding-left: 15px !important; 
+	padding-right: 15px !important;
+}
+
+.loginCtrls {
+	float: right;
+	/*padding-top: 5px;
+    padding-bottom: 10px;*/
+	}
+
+.topbarLogin {
+	overflow:auto;
+
+	margin-top: 10px;
+}
+
+.topbarLogin #loginWrapper {
+    position: absolute !important;
+    right: 10px;
+    top: 22px;
+}
+
+.topbarLogin #loginFailWrapper {
+    width: 940px;
+}
+
+.topbarLogin .loginfail {
+    float: right;
+    position: relative;
+    top: 10px;
+}
+
+.loginfailDiv {
+    display: block;
+    float: right;
+    padding-top: 15px;
+}
+
+.topbarLoginHeader {
+	float:left;
+	margin:0 1em;
+    width: 60%;
+}
+ 
+.topbarAssessmentHeader {
+	float:left;
+	margin:0 1em;
+    width: 400px;
+}
+
+
+
+/* Login V2 - changes for NEW new layout */
+.searchDiv {
+    width: 963px;
+    padding: 10px 0;
+}
+.searchDiv.topLayout {
+    width: 963px;
+    background: url(/images/OlapSeparator.gif) repeat-y content-box 472px;
+}
+.searchDiv.sideLayout {
+    width: 230px;
+}
+.vacancyGrid {
+    width: 100%;
+    overflow: auto;
+}
+.vacancyGrid.sideLayout {
+    width: 720px;
+}
+.vacancyGridFullWidth {
+    width: 965px;
+}
+
+.searchDiv .RadComboBox .rcbInputCell {
+    background-color: rgb(242,242,242);
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+.searchDiv .RadComboBox .rcbHovered {
+    background-color: rgb(225,225,225);
+}
+.searchDiv .RadComboBox .rcbFocused {
+    background-color: rgb(217,217,217);
+}
+.searchDiv .RadComboBox .rcbDisabled {
+    background-color: rgb(248,248,248);
+}
+.searchDiv .RadComboBox .rcbInputCell
+{
+    background-image: none;
+    border: 1px solid rgb(187, 187, 187);
+/*    font-size: 1.2em;*/
+    height: 1.6em;
+    margin-bottom: 0.6em;
+}
+.searchDiv .RadComboBox .rcbArrowCell{
+    background-image: url(images/scalableRcbArrow.png);
+    border: 1px solid rgb(187, 187, 187);
+}
+.searchDiv .RadComboBox .rcbArrowCell,
+.searchDiv .RadComboBox .rcbFocused .rcbArrowCell,
+.searchDiv .RadComboBox .rcbHovered .rcbArrowCell
+{
+    background-position: 50% 50%;
+}
+
+html body .searchDiv .dateSearch .riTextBox{
+    font-size: 1.2em;
+    height: 1.6em;
+    margin-bottom: 0.6em;
+    box-sizing: content-box;
+}
+.searchDiv .RadPicker.dateSearch .rcCalPopup {
+    background-position: 0 -4px;
+}
+
+.searchDiv.sideLayout .buttonV2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.sideLayout .searchBox,
+.sideLayout .searchBox.locationBox
+ {
+    width: 180px;
+}
+.sideLayout .dateSearch {
+    width: 216px !important;
+}
+html body .sideLayout .dateSearch .riTextBox  {
+    width: 185px;
+}
+.sideLayout .distanceDrop {
+    width: 212px !important;
+}
+
+/* Try to target Safari 
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    ::i-block-chrome, body:first-of-type .sideLayout .distanceDrop {
+        width:185px;
+    }
+}*/
+
+.sideLayout .sortOrderCombo {
+    width: 212px !important;
+}
+
+.searchDiv.horzLayout .buttonV2 {
+    box-sizing: content-box;
+    margin-top: 0;
+    margin-bottom: 0.6em;
+}
+fieldset.searchPanel,
+div.searchPanel,
+.searchDiv #VacancycategoryDropDownPnl {
+    float: left;
+    clear: none;
+    margin-right: 20px;
+}
+.topLayout fieldset.searchPanel,
+.topLayout div.searchPanel,
+.topLayout.searchDiv #VacancycategoryDropDownPnl {
+    width: 430px;
+}
+.searchDiv.topLayout #VacancycategoryDropDownPnl {
+    float: right;
+}
+div.searchPanel.right {
+    float: right;
+}
+fieldset.searchPanel.left {
+    clear: left;
+}
+.searchDiv .searchButtons {
+    float: left;
+    width: 860px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    padding-top: 0.15em;
+}
+fieldset.searchPanel,
+div.searchPanel,
+.searchDiv #VacancycategoryDropDownPnl,
+.searchDiv .searchButtons {
+    padding-left: 20px;
+    margin-top: 0px;
+}
+.searchDiv.sideLayout fieldset.searchPanel,
+.searchDiv.sideLayout #VacancycategoryDropDownPnl,
+.searchDiv.sideLayout .searchButtons {
+    padding-left: 0;
+    width: 100%;
+}
+
+.searchDiv.horzLayout .searchButtons {
+    width: 250px;
+    text-align: right;
+    padding-top: 0;
+    padding-left: 0;
+}
+.horzLayout fieldset.searchPanel {
+    width: 690px;
+    margin-right: 0;
+    padding-left: 0;
+}
+.horzLayout fieldset.searchPanel div {
+    display: inline;
+}
+.horzLayout fieldset.searchPanel div.distanceDrop {
+    display: inline-block;
+}
+.searchBox
+{
+    height: 1.6em;
+    box-sizing: content-box;
+	font-size: 1.2em;
+    margin-bottom: 0.6em;
+    padding-left: 5px;
+}
+.distanceDrop {
+    margin-bottom: 0.6em;
+}
+.topLayout .distanceDrop {
+    margin-bottom: 0.5em;
+}
+.searchBox {
+    background: url(/images/cex/searchBox-16.png) 0.4em 0.4em no-repeat ;
+    padding-left: 30px;
+    width: 380px; /*400-20 padding-left*/
+}
+.horzLayout .searchBox {
+    width: 160px;
+}
+.horzLayout.sb50 .searchBox {
+    width: 300px;
+}
+.horzLayout.sb100 .searchBox {
+    width: 640px;
+}
+.horzLayout.sb50rem .searchBox {
+    width: 130px;
+}
+.horzLayout.sb100rem .searchBox {
+    width: 300px;
+}
+.searchBox.locationBox {
+    background: url(/images/cex/locationPin-16.png) 0.2em 0.1em no-repeat;
+    width: 188px;
+    margin-right: 5px;
+}
+.horzLayout .searchBox.locationBox {
+    width: 100px;
+    margin-left: 10px;
+}
+fieldset.searchPanel .hideLabel,
+.searchDiv #VacancycategoryDropDownPnl .hideLabel 
+{
+    visibility: hidden;
+    display: none;
+}
+.searchBox,
+.distanceDrop,
+.searchDiv .RadComboBox .rcbInputCell
+{
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+}
+html .searchDiv .RadInput_Default .riEmpty{
+    color: #666;
+}
+.searchDiv .defaultText {
+    /*color: #666;*/
+}
+.searchDiv .defaultText:hover {
+    color: inherit;
+}
+.topLayout .dateSearch {
+    width: 416px !important;
+}
+html body .topLayout .dateSearch .riTextBox  {
+    width: 385px;
+}
+.searchDiv #VacancycategoryDropDownPnl .RadComboBox {
+    width: 380px !important;
+    padding: 0;
+}
+.searchDiv.sideLayout #VacancycategoryDropDownPnl .RadComboBox {
+    width: 180px !important;
+}
+.searchDiv #VacancycategoryDropDownPnl .vacancySearchDropDown input[type=image] {
+    padding-top: 0.5em;
+}
+.searchDiv #VacancycategoryDropDownPnl .vacancySearchDropDown .divClearBoth .divClearBoth 
+{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.searchDiv #VacancycategoryDropDownPnl .vacancySearchDropDown > div > .divClearBoth
+{
+    margin-bottom: 0.6em;
+    overflow-y: auto;
+    padding-bottom: 0;
+    -ms-overflow-y: hidden;
+}
+.topLayout .sortOrderCombo {
+    width: 412px !important;
+}
+
+/* Login V2 - End*/
+
+/*== FAQs - Start  ================================================*/
+
+.faqs {
+	padding-left: 10px;
+}
+
+/*== FAQs - End  ================================================*/
+/*== Recover - Start  ================================================*/
+
+.recoveryHeader
+ {	
+	Font-Size:1.4em!important;
+    font-weight: bold;
+    width: 928px !important;
+    padding-bottom: 10px;
+}
+.recoveryLabel  {
+     width: 350px !important;
+}
+
+.passwordRecoveryBody
+{
+    padding-left: 0px !important;
+}
+
+
+/*== Recover - End  ================================================*/
+
+
+/* NEWS Ticker - Start */
+
+div.newsticker
+{
+	background: none;
+	border-style: none;
+}
+
+div.newstickerheading
+{
+	margin-top: 0px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 3px 3px 0px 3px;
+	float: left;
+	font-weight: bold;
+	min-height: 17px;
+}
+
+/* NEWS Ticker - End */
+
+.shortLabel label {
+    padding-left: 5px;
+}
+
+.chngPwdB {
+    width: auto;
+    padding-bottom: 10px;
+    padding-top: 0px !important;
+}
+.chngPwdL 
+{
+    width: 200px;
+    padding-bottom: 10px;
+}
+.chngPwdR
+{
+    /*float: left;*/
+    padding-left: 60px !important;
+    width: auto;
+    /*padding-top: 10px;*/
+}
+.chngPwdTxtWidth {
+    width: 250px !important;
+}
+.chngPwdStrTxtWidth {
+    width: 258px !important;   
+}
+.indicator {
+    padding-left: 60px;
+}
+
+ .rdTitleBar {
+    padding-top: 4px;
+}
+
+.VacancySearchPopup {
+    padding: 10px 10px 3px 10px;
+    border-bottom: solid 1px lightgrey;
+}
+
+.VacancyGridPanel {
+    clear: left;
+}
+.searchPopupBox
+{
+    height: 1.6em;
+    box-sizing: content-box;
+	font-size: 1.2em;
+    margin-bottom: 0.6em;
+    padding-left: 5px;
+}
+.searchPopupBox.keywordBox 
+{
+    background: url(/images/cex/searchBox-16.png) 0.4em 0.4em no-repeat ;
+    padding-left: 30px;
+    width: 385px;
+}
+.searchPopupBox.locationBox 
+{
+    padding-left: 30px;
+    background: url(/images/cex/locationPin-16.png) 0.2em 0.1em no-repeat;
+    width: 256px;
+}
+.distancePopupDrop {
+    width: 120px !important;
+    font-size: inherit !important;
+    
+}
+.searchPopupBox, .distancePopupDrop, .searchPopupDiv .RadComboBox .rcbInputCell {
+    padding-top: 0px;
+    padding-bottom: 3px;
+    padding-left: 6px;
+}
+.searchPopupDiv 
+{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.searchPopupDiv .RadComboBox .rcbInputCell {
+    background-color: rgb(242,242,242);
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+.searchPopupDiv .RadComboBox .rcbHovered {
+    background-color: rgb(225,225,225);
+}
+.searchPopupDiv .RadComboBox .rcbFocused {
+    background-color: rgb(217,217,217);
+}
+.searchPopupDiv .RadComboBox .rcbDisabled {
+    background-color: rgb(248,248,248);
+}
+.searchPopupDiv .RadComboBox .rcbInputCell
+{
+    background-image: none;
+    border: 1px solid rgb(187, 187, 187);
+/*    font-size: 1.2em;*/
+    height: 1.6em;
+    margin-bottom: 0.6em;
+}
+.searchPopupDiv .RadComboBox .rcbArrowCell{
+    background-image: url(images/scalableRcbArrow.png);
+    border: 1px solid rgb(187, 187, 187);
+}
+.searchPopupDiv .RadComboBox .rcbArrowCell,
+.searchPopupDiv .RadComboBox .rcbFocused .rcbArrowCell,
+.searchPopupDiv .RadComboBox .rcbHovered .rcbArrowCell
+{
+    background-position: 50% 50%;
+}
+.searchPopupDiv #VacancycategoryDropDownPnl .hideLabel 
+{
+    visibility: hidden;
+    display: none;
+}
+.searchPopupDiv #VacancycategoryDropDownPnl {
+    width: 417px;
+    padding-left: 0px;
+}
+fieldset.searchPopupPanel
+{
+    padding-left: 0;
+    width: 100%;
+}
+.searchPopupPanel  div.RadAjaxPanel > .buttonV2 {
+    float: left;
+}
+
+.searchPopupDiv #VacancycategoryDropDownPnl .vacancySearchDropDown > div > .divClearBoth
+{
+    margin-bottom: 0.6em;
+    overflow-y: auto;
+    padding-bottom: 0;
+    -ms-overflow-y: hidden;
+    /*padding-left: 11px;*/
+    
+}
+.searchPopupDiv #VacancycategoryDropDownPnl .vacancySearchDropDown > div > .divClearBoth div.RadComboBox.RadComboBox_Default {
+    padding-bottom: 0px !important; 
+}
+
+#specAppVacCategoryDiv div.divClearBoth {
+    padding-bottom: 5px;
+}
+
+.hideLabel {
+    display: none;
+}
+
+.leftRepCatNav {
+    padding-bottom: 5px;
+}
+.editFilters {
+    border-bottom-left-radius:5px; 
+    border-bottom-right-radius:5px;
+    box-shadow:0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    height:18px;
+    width:90px;
+    padding-top: 5px;
+}
+.rdPageViewWrapper {
+    width: 238px;
+    border: solid 1px lightgrey;
+    /*margin-left: 1px;*/
+    border-bottom-left-radius:5px; 
+    border-bottom-right-radius:5px;
+    box-shadow:0px 0px 5px 2px rgba(172, 172, 172, 0.7);
+    
+}
+.rdPageViewPivot {
+    margin:2px;
+    height:466px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.rdPageView {
+    margin:2px;
+    height:300px;
+    overflow-y: auto;
+}
+
+.totalRepVac {
+    height:105px;
+    width: 30%;
+    margin-top:10px;    
+    padding-bottom:5px;
+}
+.totalRepVac > div
+{
+    height:100%;
+    margin-left:4px;
+    margin-right:10px;
+}
+.repStyle {
+    height:105px;
+    width:40%;
+    margin-top:6px;
+    padding-bottom:9px;
+	overflow: hidden;
+}
+.repStyle > div
+{
+    height:100%;
+      margin-left: 10px;
+      margin-top: 4px;
+      margin-right: 10px;
+      margin-bottom: 1px;
+}
+.repCommands {
+    height:105px;
+    width:30%;
+    margin-top:10px;
+    padding-bottom:5px;
+}
+.repCommands > div
+{
+    height:100%;
+    margin-left:10px;
+    margin-right:0px;
+}
+.reportFooter
+{
+    clear: both; 
+    height: 120px; 
+    width: 100%;
+}
+.reportFooter > div
+{
+    display:inline !important;
+}
+.repCommand 
+{
+	text-align: center;
+    width:33%;
+    margin-top:5px;
+	float: left;
+}
+
+.repCommand span {
+	display: block;
+	text-align: center;
+}
+
+.repPreview 
+{
+    float:left;
+    width:100%;
+    min-height:339px;
+    margin-top: 5px;
+    border: solid 1px lightgrey !important;
+}
+.repPreview > div
+{
+    margin-left:250px;
+    display:block !important;
+}
+.repPreviewPivot {
+   height:100%;
+    margin-left: -1px;
+    margin-top: 4px;
+      margin-bottom: 0px;
+}
+
+.repExpandPreview {
+    height:100%;
+    margin-left: 0px;
+    margin-top: 5px;
+    border: solid 1px lightgrey !important;
+}
+
+.pivotSettingsPanel {
+    border: solid 1px lightgrey !important;
+}
+
+.contentPanelHeader {
+	background: #555555 none;
+    border: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #ffffff; 
+    width: 100%; 
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+
+.contentPanelHeader span {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.contentPanelSubHeader {
+	background: #777777 none;
+    border: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #ffffff; 
+    width: 100%; 
+    padding-top: 5px; 
+    padding-bottom: 5px;
+}
+
+.contentPanelSubHeader span {
+	font-weight: bold;
+}
+
+.dragDropTarget {
+	margin-left: 10px; 
+	padding-left: 10px; 
+	width: 133px; 
+	padding-top: 5px; 
+	padding-bottom: 5px; 
+	border-style: solid; 
+	border-width: 1px; 
+	border-color: gray; 
+	background-color: #f1f1f1; 
+	cursor: move; 
+	color: gray;
+}
+
+
+/* RWF Themes - Start */
+
+/* RWF Default Theme - Start */
+div.RadGrid .rgAltRow .defaultAltRowRwfTheme, div.RadGrid .defaultAltRowRwfTheme {
+    background-color: #f2f2f2 !important;
+}
+
+.RadGrid_Default .rgAltRow .defaultAltRowRwfTheme, .RadGrid_Default .defaultAltRowRwfTheme {
+	background: #f2f2f2 !important;
+}
+
+.RadGrid_Default .rgAltRow .defaultAltRowRwfTheme td, .RadGrid_Default .defaultAltRowRwfTheme td {
+	border-color: lightgray !important;
+}
+
+div.PivotGrid {
+	line-height: 16px;
+}
+
+div.PivotGrid td, div.PivotGrid th {
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: left;
+}
+
+div.PivotGrid th 
+{
+	min-width: 100px;
+}
+
+/* For Pivot Grid - Start */       
+div.RadGrid .defaultRowRwfTheme {
+    background-color: #ffffff !important;
+}
+
+.RadGrid_Default .defaultRowRwfTheme {
+	background: #ffffff !important;
+}
+
+.RadGrid_Default .defaultRowRwfTheme td {
+	border-color: lightgray !important;
+}
+
+/* For Pivot Grid - End */
+
+/* Rwf Default Theme - Start */
+
+div.RadGrid .rgRow .defaultRowRwfTheme, div.RadGrid .defaultRowRwfTheme {
+    background-color: #f2f2f2 !important;
+}
+
+.RadGrid_Default .rgRow .defaultRowRwfTheme, .RadGrid_Default .defaultRowRwfTheme {
+	background: #f2f2f2 !important;
+}
+
+.RadGrid_Default .rgRow .defaultRowRwfTheme td, .RadGrid_Default .defaultRowRwfTheme td {
+	border-color: #d9d9d9 !important;
+}
+
+div.RadGrid .rgAltRow .defaultAltRowRwfTheme, div.RadGrid .defaultAltRowRwfTheme {
+    background-color: #fff !important;
+}
+
+.RadGrid_Default .rgAltRow .defaultAltRowRwfTheme, .RadGrid_Default .defaultAltRowRwfTheme {
+	background: #fff !important;
+}
+
+.RadGrid_Default .rgAltRow .defaultAltRowRwfTheme td, .RadGrid_Default .defaultAltRowRwfTheme td {
+	border-color: #d9d9d9 !important;
+}
+
+.RadGrid_Default .defaultHeaderRwfTheme {
+    background: #ffffff !important;
+    border-color: #d9d9d9 !important;
+}       
+       
+.RadGrid_Default .defaultHeaderRwfTheme {
+	color: #000000 !important;
+}
+
+.RadGrid_Default .defaultHeaderRwfTheme a {
+	color: #000000 !important;
+}
+
+/* Sort Column  - start */
+.RadGrid_Default .defaultRowRwfTheme td.rgSorted,
+.RadGrid_Default .defaultAltRowRwfTheme td.rgSorted,
+.RadGrid_Default .defaultHeaderRwfTheme th.rgSorted {
+    background-color: #e6e6e6;
+}
+/* Sort Column  - end */
+
+
+/* RWF Default Theme - End */
+
+/* RWF Black Theme - Start */
+div.RadGrid .rgAltRow .blackAltRowRwfTheme, div.RadGrid .blackAltRowRwfTheme {
+    background-color: #d9d9d9 !important;
+}
+
+.RadGrid_Default .rgAltRow .blackAltRowRwfTheme, .RadGrid_Default .blackAltRowRwfTheme {
+	background: #d9d9d9 !important;
+}
+
+.RadGrid_Default .rgAltRow .blackAltRowRwfTheme td, .RadGrid_Default .blackAltRowRwfTheme td {
+	border-color: #000000 !important;
+}
+       
+.RadGrid_Default .blackRowRwfTheme td{
+	border-color: #000000 !important;
+}
+
+.RadGrid_Default .blackHeaderRwfTheme {
+    background: #000000 !important;
+    border-color: #d9d9d9 !important;
+}       
+       
+.RadGrid_Default .blackHeaderRwfTheme {
+	color: #ffffff !important;
+}
+
+.RadGrid_Default .blackHeaderRwfTheme a {
+	color: #ffffff !important;
+}
+
+/* Sort Column  - start */
+.RadGrid_Default .blackRowRwfTheme td.rgSorted,
+.RadGrid_Default .blackAltRowRwfTheme td.rgSorted,
+.RadGrid_Default .blackHeaderRwfTheme th.rgSorted {
+    background-color: #c1bdbd;
+}
+/* Sort Column  - end */
+
+/* RWF Black Theme - End */
+
+
+/* RWF Red Theme - Start */
+div.RadGrid .rgAltRow .redAltRowRwfTheme, div.RadGrid .redAltRowRwfTheme {
+    background-color: #f2dcdb !important;
+}
+
+.RadGrid_Default .rgAltRow .redAltRowRwfTheme, .RadGrid_Default .redAltRowRwfTheme {
+	background: #f2dcdb !important;
+}
+
+.RadGrid_Default .rgAltRow .redAltRowRwfTheme td, .RadGrid_Default .redAltRowRwfTheme td {
+	border-color: #c0504d !important;
+}
+       
+.RadGrid_Default .redRowRwfTheme td{
+	border-color: #c0504d !important;
+}
+
+.RadGrid_Default .redHeaderRwfTheme {
+    background: #c0504d !important;
+    border-color: #f2dcdb !important;
+}       
+       
+.RadGrid_Default .redHeaderRwfTheme {
+	color: #ffffff !important;
+}
+
+.RadGrid_Default .redHeaderRwfTheme a {
+	color: #ffffff !important;
+}
+
+/* Sort Column  - start */
+.RadGrid_Default .redRowRwfTheme td.rgSorted,
+.RadGrid_Default .redAltRowRwfTheme td.rgSorted,
+.RadGrid_Default .redHeaderRwfTheme th.rgSorted {
+    background-color: #ef7a77;
+}
+/* Sort Column  - end */
+
+/* RWF Red Theme - End */
+
+
+/* RWF Orange Theme - Start */
+div.RadGrid .rgAltRow .orangeAltRowRwfTheme, div.RadGrid .orangeAltRowRwfTheme {
+    background-color: #fde9d9 !important;
+}
+
+.RadGrid_Default .rgAltRow .orangeAltRowRwfTheme, .RadGrid_Default .orangeAltRowRwfTheme {
+	background: #fde9d9 !important;
+}
+
+.RadGrid_Default .rgAltRow .orangeAltRowRwfTheme td, .RadGrid_Default .orangeAltRowRwfTheme td {
+	border-color: #f79646 !important;
+}
+       
+.RadGrid_Default .orangeRowRwfTheme td{
+	border-color: #f79646 !important;
+}
+
+.RadGrid_Default .orangeHeaderRwfTheme {
+    background: #f79646 !important;
+    border-color: #fde9d9 !important;
+}       
+       
+.RadGrid_Default .orangeHeaderRwfTheme {
+	color: #ffffff !important;
+}
+
+.RadGrid_Default .orangeHeaderRwfTheme a {
+	color: #ffffff !important;
+}
+
+/* Sort Column  - start */
+.RadGrid_Default .orangeRowRwfTheme td.rgSorted,
+.RadGrid_Default .orangeAltRowRwfTheme td.rgSorted,
+.RadGrid_Default .orangeHeaderRwfTheme th.rgSorted {
+    background-color: #fab67d;
+}
+/* Sort Column  - end */
+
+
+/* RWF Orange Theme - End */
+
+/* RWF Green Theme - Start */
+div.RadGrid .rgAltRow .greenAltRowRwfTheme, div.RadGrid .greenAltRowRwfTheme {
+    background-color: #ebf1de !important;
+}
+
+.RadGrid_Default .rgAltRow .greenAltRowRwfTheme, .RadGrid_Default .greenAltRowRwfTheme {
+	background: #ebf1de !important;
+}
+
+.RadGrid_Default .rgAltRow .greenAltRowRwfTheme td, .RadGrid_Default .greenAltRowRwfTheme td {
+	border-color: #9bbb59 !important;
+}
+       
+.RadGrid_Default .greenRowRwfTheme td {
+	border-color: #9bbb59 !important;
+}
+
+.RadGrid_Default .greenHeaderRwfTheme {
+    background: #9bbb59 !important;
+    border-color: #ebf1de !important;
+}       
+       
+.RadGrid_Default .greenHeaderRwfTheme {
+	color: #ffffff !important;
+}
+
+.RadGrid_Default .greenHeaderRwfTheme a {
+	color: #ffffff !important;
+}
+
+/* Sort Column  - start */
+.RadGrid_Default .greenRowRwfTheme td.rgSorted,
+.RadGrid_Default .greenAltRowRwfTheme td.rgSorted,
+.RadGrid_Default .greenHeaderRwfTheme th.rgSorted {
+    background-color: #cbf96c;
+}
+/* Sort Column  - end */
+
+/* RWF Green Theme - End */
+
+/* RWF Blue Theme - Start */
+div.RadGrid .rgAltRow .blueAltRowRwfTheme, div.RadGrid .blueAltRowRwfTheme {
+    background-color: #dce6f1 !important;
+}
+
+.RadGrid_Default .rgAltRow .blueAltRowRwfTheme, .RadGrid_Default .blueAltRowRwfTheme {
+	background: #dce6f1 !important;
+}
+
+.RadGrid_Default .rgAltRow .blueAltRowRwfTheme td, .RadGrid_Default .blueAltRowRwfTheme td {
+	border-color: #4f81bd !important;
+}
+       
+.RadGrid_Default .blueRowRwfTheme td {
+	border-color: #4f81bd !important;
+}
+
+.RadGrid_Default .blueHeaderRwfTheme {
+    background: #4f81bd !important;
+    border-color: #dce6f1 !important;
+}       
+       
+.RadGrid_Default .blueHeaderRwfTheme {
+	color: #ffffff !important;
+}
+
+.RadGrid_Default .blueHeaderRwfTheme a {
+	color: #ffffff !important;
+}
+
+/* Sort Column  - start */
+.RadGrid_Default .blueRowRwfTheme td.rgSorted,
+.RadGrid_Default .blueAltRowRwfTheme td.rgSorted,
+.RadGrid_Default .blueHeaderRwfTheme .rgSorted {
+    background-color: #76a9e7 !important;
+}
+/* Sort Column  - end */
+
+/* RWF Blue Theme - End */
+
+/* RWF Themes - End */
+
+
+.rwfTotalDiv {
+    text-align: center;
+    width:50%;
+    padding-top: 13px;
+    float: left;
+}
+.rwfTotalRecords {
+    font-size: 18px;
+    padding-top: 5px;
+}
+
+.ExportImgChk input {
+    position: relative;
+    top: -32px;
+}
+
+.exportBtnContainer {
+    border: solid 1px lightgray !important;
+    background-color: lightgray !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    
+}
+
+div.oneLoginBar {
+    display: none; 
+}
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: red;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: silver;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: lightgreen;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px red;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 20px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.loginconrolleft {
+    padding-bottom: 5px;
+    float: left;
+    display: inline;
+}
+.vacancyalertcontent {
+        float: left;
+    width: 330px;
+    }
+    
+.fieldStaticHlp 
+{
+    display: block;
+    vertical-align: top;
+	margin-left: 194px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.width400px
+{
+    width: 400px;    
+}
+
+
+.fieldStaticHlp 
+{
+    display: block;
+    vertical-align: top;
+	margin-left: 194px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.RadScheduler .rsAptContent {
+    padding: 0px 0px 0px 0px !important;
+}
+.RadScheduler .rsApt {
+    width: 100% !important;
+}
+.SendToFriendTextBoxSize {
+        width: 180px;
+    }
+    .vacancyAlertToolTipWidth {
+        width: 400px;
+    }
+    .FileUploadWidth {
+        width: 200px;
+    }
+    .FileUploadLabel {
+        padding-right: 15px;
+        padding-left: 5px;
+        width: 100px;
+    }
+     .SendEmailErrorClass {
+        padding-left: 135px;
+        display: block !important;
+        padding-bottom: 1px;
+    }
+    .SendEmailToEmailErrorClass {
+       display: block !important;
+    }
+    .VacanyDescLabelPadding {
+        padding-top: 3px;
+    }
+    
+.redepv2 {
+    font-size: 1.25em;
+}
+#redform
+{
+    float: left;
+	padding: 10px 0px 10px 15px;
+    margin-top: 0px;
+    box-sizing:border-box;
+    width:100%;
+}
+.redepv2 td.sectionItemDescriptionCell {
+    width: 200px;
+    vertical-align: top;
+}
+.redepv2 td.sectionItemControlCell {
+    width: auto;
+}
+.redepv2 input[type="submit"],
+.redepv2 input.buttonV2 {
+    font-size: 0.9em;
+	height: 2em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+}
+.redepv2 .NormalAppWidth {
+    /*width: 148px;*/
+    width: 330px;
+}
+.redepv2 .LargeAppWidth {
+	/*width: 228px;*/
+    width: 410px;
+}
+.redepv2 .LargestAppWidth {
+	/*width: 277px;*/
+    width: 455px;
+}
+.redepv2 .RadComboBox {
+    margin-right: 10px !important;
+}
+.redepv2 .appListNormal {
+	/*width: 155px !important;*/
+	width: 337px !important;
+}
+.redepv2 .fieldHlp .appListNormal {
+    width: 320px !important;
+}
+.redepv2 .appListLarge {
+	/*width: 255px !important;*/
+	width: 417px !important;
+}
+.redepv2 input[type=text].appListLarge {
+	width: 410px !important;
+}
+.redepv2 .fieldHlp .appListLarge {
+    width: 240px !important;
+}
+.redepv2 .appListXLarge {
+	/*width: 355px !important;*/
+	width: 462px !important;
+}
+.redepv2 input[type=text].appListXLarge {
+	width: 455px !important;
+}
+.redepv2 .fieldHlp .appListXLarge {
+    width: 175px !important;
+}
+.redepv2 .appListXXLarge {
+	/*width: 400px !important;*/
+	width: 512px !important;
+}
+.redepv2 input[type=text].appListXXLarge {
+	width: 505px !important;
+}
+.redepv2 .commentsControlNotFillMode {
+    padding-left: 0px;
+}
+
+    

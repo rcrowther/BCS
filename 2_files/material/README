@@ -1,0 +1,7 @@
+A set of files for practicing file-launch, renaming, moving, etc.
+
+Most of the files should auto-launch.
+
+The MIDI file will not work on Linux machines. On a suitably equipped machine (e.g. Timidity and Freepats), a right-click and 'Open With' commandline of 'timidity' will run it (which is a chance to discuss 'Open With').
+
+TODO: Compressed file. Video file

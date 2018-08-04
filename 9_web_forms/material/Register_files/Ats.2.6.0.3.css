@@ -1,0 +1,2925 @@
+.reSplitButton, .reSplitButton:link, .reSplitButton:visited
+{
+	width: 34px; /* was: 36px */
+	height: 24px;
+	text-decoration: none !important;
+}
+ .RadScheduler .rsContentTable,
+ .RadScheduler .rsHorizontalHeaderTable,
+ .RadScheduler .rsAllDayTable
+ {
+   width: 100% !important;
+ }
+    
+.RadMenu
+{
+	z-index: 1999;
+}
+
+.rmSlide
+{
+	z-index: 8000 !important;
+}
+/*Removing grey image from side of menu*/
+.RadMenu_Default .rmGroup, .RadMenu_Default .rmGroup .rmVertical
+{
+	background-color: #FFFFFF !important;
+	background-image: none !important;
+}
+/*Moving text closer to the side now that grey image has gone*/
+.RadMenu .rmGroup .rmText
+{
+	padding: 0 54px 0 22px !important;
+}
+
+div.RadToolTip_Default table.rtWrapper td.rtWrapperTopCenter, 
+div.RadToolTip_Default table.rtWrapper td.rtWrapperBottomCenter, 
+.RadDock_Default .rdTitleBar .rdTitle,
+.RadDock_Default .rdTitleBar em
+{
+	font-size: 1.2em !important;
+	font-weight: bold !important;
+	font-style: italic !important;	
+	
+}
+.RadGrid_Default .rgHeader
+{
+	font-weight: bold !important;
+}
+
+body.brandedEditor {
+    height: 570px;
+}
+
+.riTextBox
+{
+	border: solid #bbb 1px !important;
+	background-color: #fafafa !important;
+	padding: 0.15em 0 0.15em 0.4em !important;
+}
+
+#line
+{
+	height: 1px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #ffffff;
+	overflow: hidden;
+	font-size: 1px;
+	color: #ffffff;
+}
+
+/*forms stuff*/
+input, textarea, select, submit
+{
+	border: solid #bbb 1px;
+	background-color: #fafafa;
+	padding: 0.15em 0 0.15em 0.4em;
+	font-size: 1em;
+	vertical-align: baseline;
+}
+TD.reControlCell TABLE TD
+{
+	font-size: 1em !important; /*overrides IE6-specific markup */
+}
+.ctl00_Login1_LoginButton
+{
+	padding-top: 0px;
+}
+#logincontainer
+{
+	position: relative;
+	width: 965px;
+	background: #fff;
+	margin: 0 auto;
+	height: auto;
+	background: #fff none;
+}
+#loginheader
+{
+	height: 190px;
+	position: relative;
+}
+#loginheader p
+{
+	float: right;
+}
+.loginpagetitle
+{
+	padding: 4px 4px 4px 10px;
+	position: relative;
+	text-transform: lowercase;
+	font-weight: bold;
+	width: 142px;
+	margin-bottom: 20px;
+}
+#logincontent
+{
+	padding: 0px 10px 20px 0px;
+	position: relative;
+	overflow: visible;
+	width: 235px;
+	float: left;
+	height: 100%;
+}
+.candidateHomeBadge 
+{
+    position : absolute;
+    left: 8px;
+    color: #fff!important;
+    background-color: #f44336!important;
+    border-radius:50%;
+    display:inline-block;
+    padding-left:8px;
+    padding-right:8px;
+    text-align:center;
+    line-height:26px;
+    box-sizing:inherit;
+}
+#logincontent table tr td
+{
+	padding: 0 0 7px 0;
+}
+#loginmaincontent
+{
+	padding: 0px 20px 20px 0px;
+	margin-top: 0px;
+	float: left;
+	width: 620px;
+	height: 100%;
+}
+html > loginsearch
+{
+	/*for above ie6*/
+	position: relative;
+	width: 620px;
+	background: #FFFFFF;
+	margin-top: 10px;
+	padding: 10px;
+}
+.loginsearch
+{
+	/*for ie6*/ /*position: relative;*/
+	width: 620px;
+	background: #FFFFFF;
+	margin-top: 0px;
+	padding: 0px;
+	background-color: #fff;
+}
+.loginsearch p
+{
+	/*for ie6*/
+	margin-top: 10px;
+}
+.loginsearch .searchitem
+{
+	display: inline-block;
+	float: left;
+	width: auto;
+	margin-right: 10px;
+}
+.loginsearch .searchitem h3
+{
+	font-weight: bold;
+}
+.loginsearch .searchitem .button
+{
+	margin-top: 27px;
+}
+#loginfooter
+{
+	padding: 10px 20px 10px 20px;
+	clear: both;
+	border-top-width: 1px;
+	border-top-style: dotted;
+}
+.wordwrap {
+    word-wrap: break-word;
+}
+
+#ce_banner_wrapper
+{
+	width: 100%;
+	height: 160px;
+}
+#ce_banner_wrapper #ce_banner_inner_left
+{
+	float: right;
+	text-align: left;
+	width: 452px;
+	overflow: hidden;
+	padding: 8px;
+}
+#ce_banner_wrapper #ce_banner_inner_right
+{
+	width: 476px;
+	height: 160px;
+	float: left;
+}
+#ce_banner_wrapper #ce_banner_inner_right img
+{
+	float: left;
+	padding: 2px 10px 0 2px;
+}
+#ce_banner_wrapper #ce_banner_inner_right .ce_banner_h1
+{
+	font-weight: bold;
+	margin: 5px 0;
+	padding-right: 5px;
+}
+#ce_banner_wrapper #ce_banner_inner_right .ce_banner_t
+{
+	padding-right: 5px;
+}
+#ce_banner_wrapper #ce_banner_inner_left .ce_banner_p
+{
+	margin-bottom: 5px;
+}
+.MyHighlight
+{
+	background-color: #fff;
+}
+.fltrt
+{
+	float: right;
+	margin-left: 8px;
+}
+.fltlft
+{
+	float: left;
+	margin-right: 8px;
+}
+
+.regFormPersonalDetsTable
+{
+	width: 800px;
+}
+.formFieldGroupTableReg
+{
+	padding: 5px 5px 5px 0px;
+	width: 800px;
+}
+.formFieldGroupTable
+{
+	padding: 5px 5px 5px 5px;
+	width: 800px;
+}
+
+.formTable
+{
+	width: 100%;
+}
+.ratingWidgetTable
+{
+	border-collapse: collapse;
+}
+.registrationFormTable
+{
+	border-collapse: collapse;
+	width: 850px;
+}
+.searchPanelSectionTable
+{
+	padding: 5px;
+	width: 100%;
+}
+.sectionTableReg 
+{
+    padding: 5px 5px 5px 0px;
+    width:640px;
+}
+.sectionTable
+{
+	padding: 5px 5px 5px 5px;
+	width: 840px;
+}
+.AutoTabWidth .sectionTable
+{
+	width: 100%;
+}
+
+.AutoTabWidth .formFieldGroupTable
+{
+	width: 100%;
+}
+
+.AutoTabWidth .sectionTable .pra {
+    width: 557px;
+}
+
+
+td.sectionItemDescriptionCell
+{
+	width: 170px;/* !important;*/
+}
+td.sectionItemControlCell
+{
+	width: 680px;/* !important;*/
+}
+
+td.fieldGroupSectionItemControlCell
+{
+	width: 645px;/* !important;*/
+}
+.candidateSearchLbl
+{
+	float: left;
+	vertical-align: middle;
+	padding-left: 16px;
+	width: 170px;
+}
+.candidateSearchField
+{
+	float: left;
+	padding-left: 6px;
+	padding-bottom: 5px;
+}
+.candidateSearchFreeTextButton
+{
+	float: left;
+	padding-left: 20px;
+}
+.searchCandImg
+{
+    width :27px;
+	height: 156px;
+	float: left;
+	clear: right;
+	border: solid 1px gray;
+}
+#SearchDiv
+{
+	float: left;
+	width: 380px;
+	display: none;
+}
+.searchDivHead
+{
+	background-image: url(../../images/SlidingPanelBgr.gif);
+	background-repeat: repeat-x;
+	height: 25px;
+	border-color: Gray;
+	border-width: 1px;
+	border-style: solid;
+}
+.searchDivHead img
+{
+	display: block;
+	width: 10px;
+	height: 10px;
+	float: right;
+	margin-top: 8px;
+	margin-right: 8px;
+}
+.searchDivBody
+{
+	clear: both;
+	padding: 10px;
+	border-right-style: solid;
+	border-right-color: Gray;
+	border-right-width: 1px;
+}
+#CandRes
+{
+	width: 935px;
+	float: right;
+}
+input.prAttrs
+{
+	width: 200px;
+}
+.hidden
+{
+	display: none;
+	visibility: hidden;
+}
+.appEduFld
+{
+	width: 160px;
+}
+.appEduFldOther
+{
+	width: 130px;
+	margin-left: 25px;
+}
+.appEduFldLong
+{
+	width: 500px;
+	height: 4em;
+}
+
+.gridImageButton
+{
+	cursor: pointer;
+	background: transparent;
+	padding-left: 0px;
+	height: 16px;
+	vertical-align: middle;
+}
+.gridImageButtonDisabled
+{
+	cursor: default;
+}
+.clientSettingsTdDiv
+{
+	white-space: nowrap;
+}
+#candidateSearchIcons div
+{
+	float: right;
+	padding: 5px;
+}
+ul.candsDets
+{
+	margin:0;
+	padding:0;
+	list-style-type: none;
+	position:static;
+}
+ul.candsDets li
+{
+	margin-bottom:8px;
+}
+ul.candsDets li a.extId
+{
+	text-decoration:none;
+}
+ul.candsDets a img
+{
+	border: none;
+	margin-left: .7em;
+}
+#Cph1_ExternalIdTxt
+{
+	margin-right:15px;
+	width:120px;
+}
+#ExtIdBtns input
+{
+	margin-top:2px;
+	width:62px;
+}
+.candSrchIcns
+{
+}
+.actionIcns div 
+{
+    text-align: center;
+    overflow:visible;
+    min-width: 7ex;
+    padding-left: 2px;
+}
+.candSrchIcns div, .advRecIcns div
+{
+	text-align: center;
+	overflow: hidden;
+	width: 49px;
+	float:left;
+}
+.fixIconHeight .candSrchIcns div {
+	height: 50px;
+}
+.candSrchIcns div a, .advRecIcns div a, .actionIcns div a
+{
+	float: left;
+	padding: 5px;
+	width: 39px;
+	text-decoration: none;
+}
+.candSrchIcns div a img, .advRecIcns div a img, .actionIcns div a img
+{
+	border-style: none;
+	background: transparent;
+	border-width: 0px;
+}
+.candSrchIcns div a span, .advRecIcns div a span, .actionIcns div a span
+{
+	display: block;
+	text-decoration: none;
+}
+.candSrchIcns div a[disabled]
+{
+	color:Gray;
+	cursor:default;
+}
+.candidateSearchRowSelector
+{
+	padding: 5px;
+}
+#ctl00_Cph1_Cph1_AtsReportViewer_ctl01_ctl05_ctl00
+{
+	padding: 0;
+}
+.CandProfTab
+{
+	border-color: Gray;
+	border-width: 1px;
+	border-style: solid;
+	padding: 15px;
+}
+.disabledGridRow
+{
+	color: Gray;
+}
+.mandatoryField
+{
+	color: Red;
+}
+.mandatoryFieldPadding {
+    padding-left: 222px;
+}
+.charCellPadding
+{
+	padding-left: 15px;
+}
+.numericCellPadding
+{
+	padding-right: 10px;
+}
+.totalCell
+{
+	padding-left: 15px;
+	font-weight: bold;
+}
+.totalNumericCell
+{
+	padding-right: 10px;
+	font-weight: bold;
+}
+.candidateProfileWrapper div
+{
+	padding: 10px;
+}
+.autocomplete_completionListElement
+{
+	visibility: hidden;
+	margin: 0px !important;
+	background-color: White;
+	color: windowtext;
+	border: buttonshadow;
+	border-width: 1px;
+	border-style: solid;
+	overflow: auto;
+	text-align: left;
+	list-style-type: none;
+}
+.divHeader
+{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+.divLabelWidth50
+{
+	width: 50px;
+}
+.divLabelWidth100
+{
+	width: 100px;
+}
+.divClearBoth
+{
+	clear: both;
+}
+.fullCol
+{
+	padding: 7px 0px 7px 0px;
+}
+.leftCol
+{
+	padding: 7px 0px 7px 0px;
+	width: 100px;
+}
+.activeItem
+{
+	color: Green !important;
+}
+.disabledItem
+{
+	color: Red !important;
+}
+.ScrollBox
+{
+	width: 200px;
+	height: 100px;
+	overflow: auto;
+	border: solid 1px gray;
+}
+.scheduleUnconfirmedBorder
+{
+	border-color: #CC3366 !important;
+}
+.scheduleUnconfirmedBackground
+{
+	background-color: #DD8E91 !important;
+}
+.autocomplete_highlightedListItem
+{
+	background-color: Silver;
+	color: black;
+}
+.rsToday
+{
+	color: #fff !important;
+}
+.autocomplete_listItem
+{
+	background-color: window;
+	color: windowtext;
+	padding: 1px;
+}
+/* Candidate Profile*/
+.candidateProfile
+{
+	width: 100%;
+	border-color: Navy;
+	border-style: solid;
+	border-width: 1px;
+	border-collapse: collapse;
+}
+.overrideToolTipTableCell
+{
+	border-color: Navy;
+	border-style: solid;
+	border-width: 1px;
+	border-collapse: collapse;
+	padding: 5px;
+}
+.formGroupTitle
+{
+	font-weight: bold;
+	vertical-align: top;
+	font-size: 1.1em;
+	color: #2f6495;
+}
+.formGroupTitle span
+{
+	font-weight: bold;
+	vertical-align: top;
+}
+.formGroupPanel
+{
+}
+table#formFieldGroupTable tr td
+{
+	padding: 0 0 7px 0;
+}
+.applicationFormMultiPage
+{
+	border-color: #8DB2E3;
+	border-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-style: solid;
+}
+.formSectionWrapper
+{
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.passwordRecoveryBody
+{
+	padding-top: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+    padding-left: 6px;
+}
+
+.recoveryLabel {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.securityQuestionTxtWidth {
+    width: 250px;
+}
+
+.horizontalRule {
+    display: none;
+}
+
+.contentPanelFont {
+    clear: left;
+}
+
+.ToolBar
+{
+	padding: 7px 5px 2px;
+}
+.ToolBar .ToolBarIcons
+{
+	float: right;
+	margin-bottom: 7px;
+	text-align: right;
+}
+.ToolBar #ToolBarSelAll
+{
+	float: right;
+	clear: right;
+}
+.ToolBar #ToolBarFmSel
+{
+	float: left;
+}
+.ToolBar .ToolBarIcons a
+{
+	white-space: nowrap;
+    display: inline-block;
+}
+#PrtBar.ToolBar {
+    text-align:right;
+    padding-top: 0;
+}
+.AdvRecTb .ToolBar .ToolBarIcons {
+    clear: right;
+    margin-bottom: 0;
+}
+.AdvRecTb .ToolBar .ToolBarIcons > div
+{
+    display: inline-block;
+    float: left;
+    padding-right: 18px;
+}
+#BulkBar .ToolBarIcons > a
+,#BulkBar .ToolBarIcons > .AnchorSpan
+{
+    float: right;
+}
+.ToolbarSel
+{
+	padding: 5px 10px 5px 0;
+	width: 150px;
+	clear: right;
+	float: right;
+}
+.ToolBar .ToolBarIcons a, #VacWzFo a, #EdMsfIcs a, #PrCandIcs a, #PrCandIcs2 a, #ctl00_RW_rdRefDet_C_LetGen
+{
+	text-decoration: none;
+	color: inherit;
+	margin-left: 10px;
+}
+.ToolBar .ToolBarIcons a[disabled]
+{
+	color:Gray;
+	cursor:default;
+}
+#PrCandIcs2 a
+{
+	margin-left:3px;
+}
+#PrCandIcs a
+{
+	margin:4px 4px 0;
+}
+.processCandidateRow
+{
+	margin: 10px 0 0 40px;
+}
+.TooltipIcons input
+{
+	margin-right: 10px;
+}
+.ToolBar .ToolBarIcons img, #PrCandIcs img, #PrCandIcs2 img, #ctl00_RW_rdRefDet_C_LetGen img
+{
+	border-style:none;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_T_DockLabel,
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_T_AddAnchor
+{
+	float:left;
+	margin-top:4px;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_T_AddAnchor
+{
+	margin-top:6px;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_T_PrntBtn
+{
+	float:right;
+	margin:4px;
+}
+
+/* AA Compliant Changes*/
+.whiteLine
+{
+	height: 1px;
+	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #ffffff;
+	overflow: hidden;
+	font-size: 1px;
+	color: #ffffff;
+}
+#searchPanel
+{
+	padding: 18px;
+}
+#searchPanel div
+{
+	padding-bottom: 5px;
+}
+#passwordRecovery
+{
+	padding-top: 10px;
+	padding-bottom: 20px;
+	padding-left: 5px;
+}
+#passwordRecovery td
+{
+	padding-left: 5px;
+}
+.recPasInfoLabel 
+{
+    float: left;
+    width: 100%; 
+    padding-bottom: 5px;
+}
+.processCandidateLabel
+{
+	float: left;
+	width: 165px;
+}
+/*.processCandidateText {
+    float: left;
+	width: 235px;
+}*/
+.schedAndCorr
+{
+	width: 100%;
+	height: 40px;
+	clear: both;
+}
+.schedAndCorrLabel
+{
+	padding-left: 15px;
+	padding-top: 10px;
+	float: left;
+	vertical-align: middle; /*width: 50px*/
+}
+.mySchedAndCorrCombo
+{
+	padding-left: 15px;
+	padding-top: 10px;
+	float: left;
+}
+#createShed
+{
+	clear: both;
+}
+#createShed div
+{
+	margin: 5px 10px;
+	float: left;
+}
+#numberApplicationsHeaderButtons
+{
+	text-align: right;
+	float: right;
+	padding-right: 124px;
+	padding-top: 5px;
+}
+.ajax__calendar_container
+{
+	z-index: 999999;
+}
+.ajax__calendar_container TD
+{
+	padding: 0px;
+}
+.addEditLocationHeader
+{
+	padding-top: 10px;
+}
+#recAgendaSearch
+{
+	width: 90px;
+	float: left;
+}
+.canSpec
+{
+	clear: both;
+	padding-top: 5px;
+	width: 100%;
+}
+.canLabel
+{
+	float: left;
+	width: 100px;
+}
+.reportLabel
+{
+	float: left;
+	width: 130px;
+}
+.reportButton
+{
+	float: left;
+	padding-left: 20px;
+}
+.CandAppVacPnlDiv
+{
+	float: left;
+	width: 49%;
+}
+/* TODO: Check if these are ids are used are correct */
+#ctl00_Cph1_AppFromDateTextBox, #ctl00_Cph1_AppToDateTextBox, #ctl00_Cph1_ctl00_Cph1_OlapClient1ManagerDSDialog_OkButton, #ctl00_Cph1_ctl00_Cph1_OlapClient1ManagerDSDialog_CancelButton, .ds_pr_pages
+{
+	height: auto;
+}
+.faqs ul
+{
+	padding-left: 20px;
+}
+.recommendation
+{
+	width: 100%;
+	clear: both;
+}
+.recommendationLabel
+{
+	padding-left: 15px;
+	padding-top: 10px;
+	float: left;
+	vertical-align: middle;
+	width: 100px;
+}
+.recommendationInput
+{
+	padding-left: 15px;
+	padding-top: 10px;
+	float: left;
+}
+.recmEmailFromDiv {
+    padding-left: 15px;
+	/*padding-top: 10px;*/
+}
+.recmEmailFromDiv  div
+{
+    margin-top: 10px;
+}
+.recommendationLink
+{
+	clear: both;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.recommendationTitle
+{
+	clear: both;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-bottom: 15px;
+	float: left;
+	vertical-align: middle;
+	width: 100%;
+}
+.NoJavaMsg
+{
+	color: Red;
+}
+div.newsticker
+{
+	background: #fff url( '../../images/TitlebarH.gif' ) repeat-x scroll 0;
+	border-style: solid;
+	border-color: Gray;
+	border-width: 1px;
+}
+div.newstickerheading
+{
+	margin-top: 0px;
+	padding: 3px 3px 0px 3px;
+	float: left;
+	font-weight: bold;
+	min-height: 17px;
+}
+div.newstickerheading img
+{
+	height: 14px;
+	width: 1px;
+	vertical-align: top;
+	padding-top: 3px;
+}
+div.newscontrols
+{
+	float: left;
+	border-style: none;
+	padding-left: 3px;
+	padding-top: 3px;
+}
+div.newscontrols img
+{
+	cursor: pointer;
+	padding-top: 0;
+	height: 14px;
+	width: 14px;
+}
+div.newsticker marquee
+{
+	padding-top: 3px;
+}
+div.scrollingnews a
+{
+	text-decoration: none;
+	padding-left: 5px;
+}
+div.scrollingnews
+{
+	padding-top: 3px;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_NewsTickerGrd_GridData {height: auto !important;}
+div.accessibility
+{
+	padding: 30px 50px 30px 50px;
+}
+div.olaptoolbar
+{
+	background: #fff url(../../images/OlapHeader.png) repeat-x scroll 0;
+	border-style: solid;
+	border-color: Gray;
+	border-width: 1px;
+	width: 938px;
+}
+div.olaptoolbaritem
+{
+	float: left;
+	padding: 2px 4px 0;
+}
+.privatepublicradio input
+{
+	height: auto;
+}
+
+.RecHomeSchFilt
+{
+	width: 45%;
+}
+.CandidateAppointmentToolTip p, .AppointmentToolTip p
+{
+	margin-bottom: 3px;
+}
+.AppointmentToolTip input
+{
+	margin: 5px 5px 0 0;
+}
+.ContactToolTip
+{
+	margin: 20px 0 0 20px;
+}
+.ContactToolTip p
+{
+	clear: left;
+	margin-bottom: 13px;
+}
+
+.ContactToolTip label
+{
+	float: left;
+	width: 135px;
+	display: block;
+}
+
+.CandidateAppointmentToolTipBtn
+{
+	margin: 8px 5px;
+	position: absolute;
+	bottom: 0;
+}
+.CandidateAppointmentToolTip
+{
+	margin: 5px;
+}
+
+#ctl00_ctl00_Cph1_Cph1_CvUploadListContainer .ruFakeInput
+{
+	margin-left: 0;
+}
+.invitetovacrbl input
+{
+	height: auto;
+}
+div.rdTitle 
+{
+    padding-top: 4px;
+}
+div.rdTitle input
+{
+	background: transparent;
+	padding: 0;
+	cursor: auto;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+div.rdTitle img
+{
+	height: 27px;
+	vertical-align: middle;
+}
+
+fieldset
+{
+	padding: 10px;
+	margin-top: 5px;
+	padding: 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	vertical-align: middle;
+}
+fieldset label, .fieldlabel
+{
+	float: left;
+	padding-right: 15px;
+	padding-left: 5px;
+}
+fieldset .privatepublicradio label
+{
+	float: none;
+}
+fieldset ul, fieldset img
+{
+	display: inline;
+}
+fieldset.searchPanel
+{
+	display: block;
+	padding-bottom: 5px;
+}
+fieldset.searchPanel label
+{
+	display: block;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	padding-left: 0px;
+	width: 140px;
+}
+fieldset.longLabel label
+{
+	width: 120px;
+}
+fieldset.shortLabel label
+{
+	width: 90px;
+}
+fieldset label.fullwidth
+{
+	width: 100%;
+}
+fieldset.vertPadding > div
+{
+	margin-bottom: 5px;
+	clear:left;
+}
+div.noLabel 
+{
+    position:relative;
+    left:140px;
+}
+div.noLabel div
+{
+    text-align: center;
+}
+.noLabel .rcRefreshImage { display: block;}
+.noLabel .captcha .captcha 
+{
+    text-align: left;
+}
+.noLabel > .captcha
+{
+    text-align: center;
+}
+.noLabel .rcCaptchaAudioLink 
+{
+    display: block;
+    font-size: 0px;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -40px;
+    left: 190px;
+    background: url("/images/Play.png") no-repeat;
+    margin-left: 0;
+    margin-right: auto;
+}
+.vlongInput
+{
+	width: 300px;
+}
+label.shortLabel
+{
+	float: left;
+	padding-right: 15px;
+	padding-left: 5px;
+	width: 90px;
+	margin-top: 5px;
+}
+.vacMngLbl
+{
+	float: left;
+	width: 130px;
+	font-weight: bold;
+}
+.vacMngPV
+{
+	padding: 10px;
+	text-align: left;
+	background-color: #f1f1f1;
+}
+.vacMngPV div
+{
+	padding-left: 20px;
+}
+/* Candidate speculative invite to vacancy styles */
+#ctl00_Cph1_ctl02_HasItemsPnl div
+{
+	clear: left;
+	margin-bottom: 5px;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_CandidateNameLabel
+{
+	display: block;
+	float: left;
+	width: 6em;
+	padding-left: 0.4em;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_SearchRbl, #ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_LiveNonLiveRbl
+{
+	margin: 5px 0;
+	width: 100%;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_SearchRbl td, #ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_LiveNonLiveRbl td
+{
+	width: 50%;
+}
+#ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_SearchRbl label, #ctl00_ctl00_ctl00_Cph1_Cph1_rd2_C_Gph_ctl03_LiveNonLiveRbl label
+{
+	width: 10em;
+}
+#VacInvBtn
+{
+	text-align: center;
+}
+
+.flagImage
+{
+	border-style: none;
+	background: transparent;
+    padding: 0;
+}
+
+div.ajax_loader
+{
+	background: url( '../../Images/loading.gif' ) no-repeat center center;
+}
+
+/*Vacancy Setup*/
+.jobDescriptionToolTip
+{
+	padding-left: 5px;
+	padding-top: 10px;
+	padding-right: 10px;
+}
+
+*html .RadComboBoxDropDown .rcbItem, *html .RadComboBoxDropDown .rcbHovered /* IE6 & quirks */
+{
+	word-break: keep-all !important;
+}
+
+* + html .RadComboBoxDropDown .rcbItem, * + html .RadComboBoxDropDown .rcbHovered /* IE7 */
+{
+	word-break: keep-all !important;
+}
+
+.RadUpload_Default
+{
+	width: 160px !important;
+}
+/* width of the control and it's inline buttons */
+div.uploadButton
+{
+	padding-left: 262px;
+}
+#VacancyAdvSearchPnl
+{
+	clear: left;
+	margin-top: 8px;
+}
+#VacancyAdvSearchPnl div div
+{
+	margin-bottom: 5px;
+}
+#VacancyAdvSearchPnl div span, #VacancyAdvSearchPnl div label
+{
+	width: 100px;
+	display: block;
+	float: left;
+}
+#VacancyGridNoRec p
+{
+	margin-top: 10px;
+}
+#VacancyGridNoRec ol
+{
+	margin-left: 40px;
+}
+#VacancyGridNoRec li
+{
+	margin-top: 10px;
+}
+
+#PrDefDiv .button
+{
+	margin-left: 10px;
+}
+
+.homeDockZone
+{
+	border-style: none; /* Container is 965 */
+	width: 476px;
+	padding: 0px !important;
+}
+.votingDockZoneLeft
+{
+	border-style: none; /* Container is 965 */
+	width: 625px;
+	padding: 0px !important;
+}
+.votingDockZoneRight
+{
+	border-style: none; /* Container is 965 */
+	width: 320px;
+	padding: 0px !important;
+}
+.homeDock
+{
+	margin-bottom: 5px !important;
+}
+.leftColumn
+{
+	float: left;
+	padding-left: 5px !important;
+}
+.rightColumn
+{
+	float: right;
+	padding-right: 5px !important;
+}
+.accessibleArea
+{
+	background-color: #EEE3A1;
+	float: left;
+	padding-bottom: 4px;
+	color: #0E0E6E;
+}
+.accessibleArea input[type=image]
+{
+	border-width: 0;
+}
+
+.topPadding
+{
+	padding-top: 5px;
+}
+.topMargin
+{
+	margin-top: 5px;
+}
+.bottomMargin
+{
+	margin-bottom: 5px;
+}
+.largeBottomMargin
+{
+	margin-bottom: 10px;
+}
+.bottomPadding
+{
+	padding-bottom: 5px;
+}
+.largeBottomPadding {
+    padding-bottom: 20px;
+}
+.topBottomPadding
+{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.topLeftPadding
+{
+	padding-top: 5px;
+	padding-left: 5px;
+}
+.leftRightPadding
+{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.largeTopPadding
+{
+	padding-top: 10px;
+}
+.rightPadding
+{
+	padding-right: 10px;
+}
+.noRightPadding
+{
+	padding-right: 0px;
+}
+.noLeftPadding {
+    padding-left: 0px !important;
+}
+.leftPadding
+{
+	padding-left: 10px;
+}
+.leftPaddingBtns
+{
+	padding-left: 170px;
+}
+.leftMargin
+{
+	margin-left: 10px;
+}
+.allMargin
+{
+	margin: 10px;
+}
+.largePadding
+{
+	padding: 1em 40px;
+}
+.greaterDepth
+{
+	z-index: 1000;
+}
+.mandatory
+{
+	font-weight: bold;
+}
+.leftPadding ul
+{
+	padding-left: 10px;
+}
+.appTextBox
+{
+	margin-right: 5px;
+}
+
+.NormalAppWidth
+{
+	width: 148px;
+}
+.cusiTitNormalWdth
+{
+	width: 154px !important;
+}
+.cusiOthTitNormalWdth
+{
+	width: 148px;
+	padding-left: 5px;
+}
+.LargeAppWidth
+{
+	width: 228px;
+}
+.cusiTitLargeWdth
+{
+	width: 110px !important;
+}
+.cusiOthTitLargeWdth
+{
+	width: 113px;
+	padding-left: 5px;
+}
+.LargestAppWidth
+{
+	width: 277px;
+}
+.cusiTitLargestWdth
+{
+	width: 135px !important;
+}
+.cusiOthTitLargestWdth
+{
+	width: 137px;
+	padding-left: 5px;
+}
+
+.appListNormal
+{
+	width: 155px !important;
+	margin-right: 5px !important;
+}
+input[type=text].appListNormal {width: 148px !important;}
+.appListLarge
+{
+	width: 255px !important;
+	margin-right: 5px !important;
+}
+input[type=text].appListLarge {width: 248px !important;}
+.appListXLarge
+{
+	width: 355px !important;
+	margin-right: 5px !important;
+}
+input[type=text].appListXLarge {width: 348px !important;}
+.appListXXLarge
+{
+	width: 400px !important;
+	margin-right: 5px !important;
+}
+input[type=text].appListXXLarge {width: 393px !important;}
+ul.reCustomLinks .reCustomLinksIcon
+{
+	margin: 0px !important;
+	width: 0px;
+}
+.RadTabStrip ul
+{
+	left: 1px;
+}
+.editable
+{
+	border: solid 1px maroon !important;
+	display: inline-block;
+}
+.RadGrid_Default td.rgExpandCol
+{
+	border-bottom-style: none !important;
+}
+
+.rcmdSel
+{
+	clear: right;
+	float: right;
+	padding: 5px 10px 5px 0;
+}
+
+div.MainEdit
+{
+	border: none;
+	background: #e7e3e7;
+	color: #4a697b;
+}
+div.AddAgency
+{
+	padding: 2em 3em 3em 2em;
+}
+div.Title
+{
+	background: #cecfce;
+	color: #7b797b;
+	height: 3.2em;
+	font-weight: bold;
+}
+div.TitleH
+{
+	color: #fff;
+	padding-top: 7px;
+	padding-right:  20px;
+	padding-left: 20px;
+	padding-bottom: 2px;
+	font-size: 2em;
+	float: left;
+}
+div.TitleB
+{
+	padding-top: 9px;
+	overflow: hidden;
+}
+.Picker
+{
+	border: 1px solid #cbcbcb;
+	height: auto;
+}
+.Picker .SelectContainer
+{
+	padding: 0px 0px 1px;
+	background: #FFFFFF;
+	cursor: text;
+	display: block;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: none;
+	position: relative;
+}
+.Picker .SelectContainer
+{
+	padding: 0px;
+}
+.Picker .Block, .Picker .BlockStabilizer, .Picker .BlockInvalid
+{
+	border: 1px solid #bbd8fb;
+	margin: 1px 1px 0px;
+	padding: 0.04em 0.3em 0.15em;
+	vertical-align: middle;
+	background-color: #F3F7FD;
+	text-decoration: none;
+	width: auto;
+	float: left;
+	white-space: nowrap;
+}
+.Picker .Block, .Picker .BlockInvalid, .IE6 .Picker .Block, .IE6 .Picker .BlockInvalid
+{
+	margin: 1px;
+	padding: 1px 5px 1px 7px;
+}
+.Picker .InputBoxContainer
+{
+	margin: 1px;
+	float: left;
+}
+.Picker .CloseLi
+{
+	padding-left: 0.3em;
+	cursor: pointer;
+	position: relative;
+	top: 0.25em;
+	height: auto;
+}
+.Picker .InputBox
+{
+	border-width: 0px;
+	border-style: none solid solid;
+	border-color: #fff;
+	margin-top: 1px;
+	padding-bottom: 0px;
+	color: #000000;
+	overflow: hidden;
+	height: 19px;
+	width: 5em;
+	resize: none;
+	position: relative;
+	outline: none;
+}
+.Picker .InputBox
+{
+	margin: 0px;
+	padding-left: 7px;
+	height: 1.6em;
+}
+.Picker .InputUL, .Picker .InputULRtl
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+#AddAgencyAddCatHl
+{
+	float: left;
+	width: 135px;
+	padding-left: 5px;
+}
+div.Picker
+{
+	float: left;
+	width: 304px;
+}
+#AddViewAgInfoLblDiv
+{
+    margin: 5px;
+	float: left;
+}
+#AgUsrsLblDiv
+{
+	width: 143px;
+	float: left;
+}
+#AgUsrsLblDiv a
+{
+	margin: 0 15px 0 7px;
+}
+#AgUsrs
+{
+	float: left;
+}
+#AgUsrsLblDiv, #AgUsrs
+{
+	margin: 10px 0;
+}
+div#sessionTimeOut
+{
+	padding: 1em;
+    min-width: 250px;
+    width: 250px;
+    max-width: 400px;
+}
+div#sessionTimeOut div
+{
+	float: right;
+	text-align: center;
+}
+div#sessionTimeOut div.divClearBoth
+{
+	float: none;
+}
+div#sessionTimeOut img
+{
+	display: block;
+    margin: auto;
+}
+div#sessionTimeOut div p
+{
+	margin-bottom: .6em;
+}
+div#sessionTimeOut input
+{
+	text-align: center;
+}
+div#VacSetAgBtnsDiv div
+{
+	float: left;
+	margin: 5px 5px 5px 0;
+}
+
+.OptionalField 
+{
+    line-height: 21px;
+}
+
+.AgntInfoProp
+{
+	padding-bottom: 5px
+}
+.AgntInfoLbl
+{
+	width: 30%; 
+	float:left;
+}
+.AgntInfoLblData
+{
+	width: 70%; 
+	float:right;
+    overflow-y: auto;
+}
+
+div#AgntFlg
+{
+	margin: 20px 0 0 20px;
+}
+div#AgntFlg p
+{
+	clear: left;
+	margin-bottom: 13px;
+}
+div#AgntFlg label
+{
+	float: left;
+	width: 95px;
+	display: block;
+}
+div#VsAddAgLnks p
+{
+	float: left;
+	margin-top: 10px;
+	width: 100%;
+}
+div#VsAddAgLnks p img
+{
+	float: left;
+}
+div#VsAddAgLnks p a, div#VsAddAgLnks p input
+{
+	display: block;
+	margin-left: 20px;
+}
+div#VsAddAgLnks input
+{
+	float: right;
+	margin: 10px;
+}
+
+.newActivityIcon
+{
+	background-image: url(../../images/NewActivity.png);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+.vacancyClosingIcon
+{
+	background-image: url(../../images/VacancyClosing.png);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+.targetRecDateIcon
+{
+	background-image: url(../../images/TabTasks.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 15px;
+}
+
+.newActivityAnimatedIcon
+{
+	background-image: url(../../images/NewActivity_Animated.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+.vacancyClosingAnimatedIcon
+{
+	background-image: url(../../images/VacancyClosing_Animated.gif);
+	background-repeat: no-repeat;
+	height: 16px;
+	width: 16px;
+}
+
+.radDockToolbar a
+{
+	font-size: 0.7em !important;
+	font-weight: normal !important;
+	text-decoration: none;
+}
+img
+{
+	border-width: 0;
+}
+.buttonWrapper
+{
+	float: left;
+	text-align: center;
+	margin-left: 15px;
+}
+.rdToolbar
+{
+	height: 40px !important;
+}
+
+table.radioWrap input
+{
+	float: left;
+}
+table.radioWrap label
+{
+	display: block;
+}
+a.UnRead
+{
+	font-weight: bold;
+}
+a.UnRead:visited
+{
+	border-color:red;
+	font-weight: bold;
+}
+input.boldIcon, div.boldIcon
+{
+	background: url("../../images/smallwarning.png") no-repeat right top;
+}
+.loginfail
+{
+	color:Red;
+}
+#regformex{padding: 20px 20px 20px 0;}
+.resetpnl {padding-left: 10px}
+#regformsavebtnpara{ padding-top:10px;padding-bottom:10px;}
+#logincontrolloginbutton{text-align:right;}
+.commentsLblFillMode{width:100%;}
+.commentsControlFillMode{width:100%;padding-top:10px;padding-bottom:10px;padding-right:15px;}
+.commentsLblNotFillMode{width:500px;}
+.commentsControlNotFillMode{width:500px;padding-top:10px;padding-bottom:10px;padding-right:10px;}
+#createspecappheadingp{padding-top: 5px;}
+#ctl00_ctl00_Cph1_Cph1_CreateSpecAppFirstCopy{padding: 20px 0 10px;display:inline-block;}
+#IndSerRep {height:317px;overflow:scroll;font-size:smaller;}
+#Cph1_sch1_Wz_WzNewSlts_AdParUc_IndSch,#ctl00_RW_AdParUc_IndSch {width:194px;}
+div#RefReqDiv, #ctl00_Cph1_RefForm .registrationFormTable {margin-left:10px;}
+div#RefReqDiv p {margin-top:5px;}
+
+#ThanksMsg{font-size:larger;margin-bottom:3em;margin-left:10px;}
+.AccessDeniedMsg{font-size:larger;font-weight:bold;margin-top:2em;margin-bottom:2em;display:inline;}
+
+.EdManScorInp{width:280px;margin-left:10px;}
+#EdMsfDiv div.RadDock
+{
+	margin:10px 0 0 20px;
+	width:360px;
+	float:left;
+}
+#EdMsfDiv div.rdContent {padding:10px 0;}
+#EdMsfDiv div.rdTitleBar {padding-left:10px;}
+p#EdMsfVac, #EdMsfIcs {margin: 10px 20px;}
+div#EdMsfBtns {padding: 10px 0 10px 150px;}
+
+/* Registration form existing users and new users in columns */
+#regformex{width:180px; float:left;}
+#regform{width:650px;float:right;padding-top:20px;}
+#agentregform{padding-top:20px;}
+.registrationFormTable {width:650px;}
+
+.formFieldGroupTableReg, .regFormPersonalDetsTable{width:600px;}
+td.sectionItemControlCell {
+	width: 480px;/* !important;*/
+}
+/* END Registration form existing users and new users in columns */
+
+#ctl00_Cph1_rd1_C_AddBtn{margin-left:102px;}
+#ctl00_Cph1_AssVtSrRdz{float:left;}
+#ctl00_Cph1_AssVtSrRes{float:left;}
+#Vt2Btns{float:right;clear:left;margin:10px;}
+#ctl00_Cph1_VacTempPage1{padding:10px;}
+
+div.SrchPnlFloat
+{
+	float:left;
+	margin-bottom: 1em;
+}
+
+#ctl00_Cph1_Wz_WzFo_HelpImg
+{
+	margin-left:75px;
+}
+
+* html #ctl00_Cph1_Wz_WzFo_HelpImg
+{
+	margin-left:0px;
+}
+
+#ctl00_Cph1_ctl00_Cph1_Wz_WzFo_VacDocUploadPanel
+{
+	float:left;
+}
+* html #ctl00_Cph1_Wz_WzFo_VacDocUploadListContainer
+{
+	margin-left: -14px;
+}
+#ctl00_Cph1_Wz_WzFo_VacDocGrd, #ctl00_Cph1_ctl00_Cph1_Wz_WzFo_VacDocGrdPanel
+{
+float: left;
+}
+#RadToolTipWrapper_ctl00_Cph1_CSTbr_Wtp_TileRtt label,
+#RadToolTipWrapper_ctl00_Cph1_Wtp_TileRtt label
+{
+	margin-bottom:10px;
+}
+#RadToolTipWrapper_ctl00_Cph1_CSTbr_Wtp_TileRtt fieldset,
+#RadToolTipWrapper_ctl00_Cph1_Wtp_TileRtt fieldset
+{
+	width:350px;
+}
+
+#SelVacCont
+{
+	width:600px;
+}
+#SelVacSer
+{
+	float:left;
+	width:205px;
+}
+#SelVacRes
+{
+	float:right;
+	border-left: solid 1px gray;
+	padding-left:6px;
+}
+#VacResBtns
+{
+	float:right;
+	padding-top:6px;
+}
+#ctl00_Cph1_sch1_Wz_WzD_VTUC_SchBtn
+{
+	margin-top:2px;
+}
+#ctl00_Cph1_ctl00_Cph1_sch1_Wz_WzD_VTUC_SchBtnPanel
+{
+	display:inline-block !important;
+}
+#SelVacSer h3
+{
+	margin:0;
+	margin-left:2px;
+}
+#ctl00_Cph1_ctl00_Cph1_sch1_Wz_WzD_VTUC_ShowMoreLbPanel
+{
+	margin-top:20px;
+	margin-left:2px;
+}
+.ArchiveConfigDisabled
+{
+	color:Gray;
+}
+li.upbutton a
+{
+	background: url(../../images/up.png) no-repeat !important;
+}
+li.downbutton a
+{
+	background: url(../../images/down.png) no-repeat !important;
+}
+#appfrmsechlp
+{
+	width:300px;
+	margin:5px 0 0;
+	padding:0;
+	list-style-type: none;
+	float:right;
+}
+#appfrmsechlp li
+{
+	padding: 0 0 3px 20px;
+}
+#appfrmseccomp
+{
+	background: url(../../images/applegend.png) no-repeat 0 -20px;
+}
+#appfrmsecincomp
+{
+	background: url(../../images/applegend.png) no-repeat 0 -133px;
+}
+#appfrmsecincompman
+{
+	background: url(../../images/applegend.png) no-repeat 0 -76px;
+}
+.frmBtns input
+{
+	width:130px;
+	margin:2px 10px 0 0;
+}
+.frmBtns
+{
+	margin-bottom: 1em;
+}
+.frmBtns label
+{
+	display: block;
+	width: 775px;
+	margin: 3px 10px 3px 40px;
+	float: left;
+	color: #777;
+}
+#UnsubCont
+{
+	margin: 50px;
+}
+#UnsubCont img
+{
+	float:left;
+	margin-right:10px;
+}
+#UnsubCont h3
+{
+	padding-top:5px;
+}
+#UnsubCont p
+{
+	margin-top:20px;
+}
+#UnsubCont input
+{
+	margin:10px 0 10px 0;
+	width:13em;
+}
+.badChrCnt
+{
+	color:Red;
+}
+/*expand/collapse doesn't fire server side event, so hide */
+#SearchDiv .rpExpandHandle
+{
+	display:none;
+	visibility:hidden;
+}
+
+
+.ExpColGrid .rgExpand
+{
+    background-image: url('../../images/Plus.JPG' );
+    background-position: 0px 0px;
+}
+.ExpColGrid .rgCollapse
+{
+    background-image: url('../../images/Minus.JPG' );
+    background-position: 0px 0px;
+}
+.ExpColGrid .rgMasterTable td.rgExpandCol
+{
+    border-color: #ffffff;
+    background: #ffffff none;
+}
+.ExpColGrid .rgRow td.rgExpandCol
+{
+    background-color: #ffffff;
+}
+.ExpColGrid .rgAltRow td.rgExpandCol
+{
+    background-color: #f2f2f2;
+}
+.ExpColGrid .rgFooter td.rgExpandCol
+{
+    background-color: #f2f2f2;
+    border-top: 1px solid #828282;
+    border-bottom: 1px solid #fff;
+}
+.ExpColGrid .rgRow td.rgExpandCol .rgExpand
+{
+    background-image: url('../../images/Plus_Row.JPG' );
+    background-color: #ffffff;
+}
+.ExpColGrid .rgAltRow td.rgExpandCol .rgExpand
+{
+    background-image: url('../../images/Plus_AltRow.JPG' );
+    background-color: #f2f2f2;
+}
+.ExpColGrid .rgRow td.rgExpandCol .rgCollapse
+{
+    background-image: url('../../images/Minus_Row.JPG' );
+    background-color: #ffffff;
+}
+.ExpColGrid .rgAltRow td.rgExpandCol .rgCollapse
+{
+    background-image: url('../../images/Minus_AltRow.JPG' );
+    background-color: #f2f2f2;
+}
+.rgMasterTable tr.RevStg
+{
+	background-color: Yellow;
+}
+.rgMasterTable tr.ReRevStg
+{
+	background-color: Orange;
+}
+.rgMasterTable tr.inactive, .rgMasterTable tr.inactive a
+{
+    color: rgba(128, 128, 128, 0.6);
+}
+#ctl00_Cph1_rdVCCD
+{
+	width: 49% !important;
+	float: left;
+	margin-bottom: 7px;
+}
+#ctl00_Cph1_rdRcmd
+{
+	width: 49% !important;
+	float: right;
+	margin-bottom: 7px;
+}
+
+.ui-autocomplete-loading
+{
+    background: white url('../../images/jqui/ui-anim_basic_16x16.gif') right center no-repeat;
+}
+
+
+/* Advanced Recommendations */
+.varGrid li 
+{
+	list-style-position: inside;
+}
+.varGrid ul 
+{
+	margin: 0;
+}
+
+#panewrapper, #step1
+{
+	border: none;
+}
+#step3
+{
+    border-top: 2px solid grey;
+}
+#appInfo 
+{
+	border: none;
+}
+#panewrapper 
+{
+	overflow:hidden;
+	position: relative;
+}
+
+#step1, #step2, #step3 
+{
+    margin: 10px;
+	border: 1px solid #777;
+}
+.appInfoForm
+{
+    margin-top: 10px;
+}
+#step2, #step3 {
+	margin-left: 0;
+}
+#step1 
+{
+	height: 600px;
+	float: left;
+    width: 67%;
+	margin-right: 0;
+}
+.appInfoForm 
+{
+    height: 805px;
+	float: left;
+    width: 66%;
+	margin-right: 0;
+}
+#rightPane
+{
+	float:right; 
+	width: 321px; 
+	height: 100%; 
+}
+
+.additionalInfoRightPane
+{
+    float:right; 
+    width: 35%; 
+    height: 100%; 
+}
+#appForm
+{
+	/*z-index: -10000;*/
+}
+
+#step2
+{
+    position:relative; 
+    height: 358px; 
+}
+
+#step2 .step2Form
+{
+	height:310px;
+	overflow-y: scroll;
+    overflow-x: hidden;
+	padding: 0;
+}
+#step3
+{
+    position:relative; 
+    height: 230px;
+	margin-top: 0;
+}
+#step3 .step3Form
+{
+	height: 200px;
+	width:298px;
+	margin: 10px;
+	overflow-y: auto;
+    overflow-x: hidden;
+}
+.step3Form textarea, .step3Form select
+{
+	width:277px;
+}
+
+#step2 .step2Form table.searchPanelSectionTable td.sectionItemControlCell div
+{
+	/*display: inline;*/
+}
+#step2 .step2Form table.searchPanelSectionTable td.sectionItemDescriptionCell
+{
+	width: 140px !important;
+}
+#step2 .step2Form table.searchPanelSectionTable td.sectionItemControlCell
+{
+	width: 115px !important;
+}
+
+.stpTitle 
+{
+	line-height: 32px;
+}
+
+#step1 iframe 
+{
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	margin:0px;
+	border: 0px;
+	height: 568px;
+}
+.appInfoForm iframe
+{
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	margin:0px;
+	border: 0px;
+}
+
+#maxMinBtn 
+{
+	padding: 0;
+	float: right; 
+	width: 32px; 
+	height: 32px;
+	background-repeat:no-repeat;
+}
+#appInfo div.RadGrid
+{
+	min-height: 80px;
+}
+
+#additionalinfo
+{
+    position:relative; 
+    height: 835px;
+    margin-top: 10px;
+	border: 1px solid #777;
+	-webkit-overflow-scrolling: touch;
+	overflow: auto;
+	
+}
+
+#additionalinfo iframe 
+{
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: hidden;
+	margin:0px;
+	border: 0px;
+	height: 568px;
+}
+#additionalinfo .step2Form table.searchPanelSectionTable td.sectionItemDescriptionCell
+{
+	width: 140px !important;
+}
+#additionalinfo .step2Form table.searchPanelSectionTable td.sectionItemControlCell
+{
+	width: 115px !important;
+}
+
+.imagebutton 
+{
+	border: none;
+	color: #fff;
+}
+
+#appInfo .prevLnk, 
+#appInfo .nextLnk, 
+#appInfo .backLnk
+{
+	margin: 0.5em;
+	width: 16px;
+	height: 16px;
+	background-repeat:no-repeat;
+	background-position: 50% 50%;
+}
+#appInfo .prevLnk
+{
+	background-image: url(../../images/up.png);
+}
+#appInfo .nextLnk
+{
+	background-image: url(../../images/down.png);
+}
+#appInfo .backLnk
+{
+	background-image: url(../../images/previous16x16.png);
+}
+
+#maxMinBtn.maximised
+{
+	background-image: url(../../images/windowMin.PNG);
+}
+
+#maxMinBtn.minimised
+{
+	background-image: url(../../images/windowMax.PNG);
+}
+
+.AdvRecPnl
+{
+    padding-top: 5px;
+	position: relative; 
+	border: 1px solid #777; 
+	margin: 2px;
+}
+.AdvRecRvwPnl, .AdvRecTotPnl {
+	width: 483px;
+}
+.AdvRecUsrPnl {
+    width: 443px;
+    right: 0;
+}
+.AdvRecPnl table
+{
+	margin: 5px;
+}
+
+.AdvRecRvwPnl table
+, .AdvRecTotPnl table {
+	width: 473px;
+}
+.AdvRecUsrPnl table {
+	width: 433px;
+}
+
+.tdNum
+{
+	text-align: right;
+}
+
+#RecTitle, .AdvRecPnl, .varGrid, #ctl00_Cph1_ctl00_Cph1_RapTbPanel, #Cph1_ViewOnly
+{
+	margin: auto 10px;
+}
+#Cph1_ViewOnly, .selectAllNoneBtns a {display:block;}
+
+#RecTitle
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	color: #777;
+}
+#RecTitle a{ color: #777;}
+
+.AdvRecTitleCss 
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    text-align: left;
+    margin: 0px;
+}
+
+.stpTitle 
+{
+	float: left;
+    font-size: 1.2em;
+    font-weight: bold;
+    height: 25px;
+	margin-left: 10px;
+}
+
+.stpName
+{
+	margin-right: 1ex;
+}
+
+/*.changed
+{
+	color: blue !important;
+	background-color: yellow !important;
+}*/
+
+div#dialogHeader 
+{
+	width: 80%;
+	margin-left: auto;   
+	margin-right: auto;
+}
+div#dialogHeader img.dialogIcon
+{
+	display: block;   
+	margin-left: auto;   
+	margin-right: auto;
+}
+
+div#dialogMessage
+{
+	width: 80%;
+	margin-left: auto;   
+	margin-right: auto;
+	padding: 2em;
+}
+div#dialogMessage p
+{
+	text-align: center;
+	margin-bottom: 0.5em;
+}
+
+div#dialogButtons
+{
+	width: 60%;
+	margin-left: auto;   
+	margin-right: auto;
+}
+div#dialogButtons fieldset
+{
+	text-align: center;
+}
+
+div#dialogButtons input.button { width: 0; overflow:visible; } /* IE button width hack*/
+div#dialogButtons input.button[class] {	width: auto; } /* restore width for browsers that understand attribute selector */
+
+.wfHistDateHdr
+{
+	width: 7em;
+}
+.appointmentPanel {
+    padding-left:5px;
+    padding-right:5px;
+    height: 100%;
+   
+}
+
+
+div.mainDiv div
+{
+    float: left;
+    padding:2px 0px 2px 0px;
+}
+
+div.mainDiv div label
+{
+    float: left;
+    display: block;
+    width: 12em;
+    vertical-align:middle;
+    
+}
+.recurringExportCheckBox
+{
+    width:107px;
+    border-style:none;
+    border-width:1px;
+}
+.recurringExportCheckboxLabel
+{
+    width:152px;
+}
+
+
+#mainDiv
+{
+    padding:2px;
+    
+}
+
+#mainDiv div label, #mainDiv div select
+{
+    width: 100px;
+    float:left;
+    /*vertical-align:middle;*/
+   /* border: solid 1px #000;*/
+}
+
+#mainDiv div label
+{
+    width:140px;
+}
+
+#mainDiv div {
+    height: 24px;   
+    /*border: solid 1px #000;*/
+}
+
+#mainDiv div img
+{
+    margin-left:10px;
+}
+
+#RW_FileUploadHelp_HelpImg
+{
+    cursor: pointer;
+	background: transparent;
+	padding-left: 44px;
+	height: 16px;
+	vertical-align: middle;
+    
+}
+
+#mainDiv div
+{
+    margin-bottom:6px;
+}
+
+.tableAltRow {
+    background-color: #f2f2f2;
+}
+
+.divTalentPool {
+    width:464px;
+    padding:4px;
+    float: left;
+}
+
+.divTalentPool a {
+    color: #000;
+}
+
+.divTalentFooter {
+    border-top: 1px solid #828282;
+}
+
+.volAppPanel span {
+    padding-right: 30px;
+}
+
+.divRow {
+    width:890px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-left: 15px;
+}
+
+textarea.InputBox
+{
+    background-color: #ffffff;
+}
+
+.descriptionCell {
+    width: 200px;
+}
+
+.controlCell {
+    width: 680px;
+}
+
+.checkAppStageChkBx input {
+    padding: 0px;
+    margin: 0px;
+    margin-right: 5px;
+    vertical-align: bottom;
+}
+.vacTemplateDiv {
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+	 
+.vacTemplateDiv input  {    
+		width: 350px;
+}
+.vacTemplateDiv textarea {    
+		width: 350px;
+}
+.agencyValidator
+{
+	padding:5px;display: inline;
+}
+
+
+
+ input[type="file"]
+{
+	-webkit-border-before: solid 1px #999999;
+	-webkit-border-after: solid 1px #999999;
+	-webkit-border-start: solid 1px #999999;
+	-webkit-border-end: solid 1px #999999;
+}
+
+.viewvacancyWrapper {
+    padding-left: 10px; 
+    padding-top: 20px;
+    margin-top:10px;
+}
+.viewVacancyDetail {
+    float: left; 
+    padding: 3px;
+    width: 500px;
+    padding-bottom: 10px;
+}
+
+div#ACTRDDiv
+{
+	padding: 1em;
+    min-width: 250px;
+    width: 250px;
+    max-width: 400px;
+}
+div#ACTRDDiv div
+{
+	float: right;
+	text-align: center;
+	width:100%;
+}
+div#ACTRDDiv div.divClearBoth
+{
+	float: none;
+}
+div#ACTRDDiv img
+{
+	display: block;
+    margin: auto;
+}
+div#ACTRDDiv div p
+{
+	margin-bottom: .6em;
+}
+div#ACTRDDiv input
+{
+	text-align: center;
+}  
+div#ACTRDDiv div table
+{
+	text-align: center;
+	width:100%;
+	margin-bottom: .6em;
+	border-spacing: 2px;
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    padding:0px;
+    border-collapse:collapse;
+}  
+div#ACTRDDiv div table th
+{
+    background-color: lightgray;
+    text-align:left;
+     padding:3px;
+}
+
+div#ACTRDDiv div table td
+{
+    padding:3px;
+    text-align:left;
+}
+div#JobDescTempDiv 
+{
+    border: 1px solid #aaa;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.svg-ok-blue { /* Customizes Ok icon */
+	display: inline-block;
+	fill:#1631ea;
+	width: 50px;
+	height: 50px;
+}
+
+
+.svg-ok-green { /* Customizes Ok icon */
+	display: inline-block;
+	fill:#067d18;
+	width: 50px;
+	height: 50px;
+}
+
+.svg-cancel-red { /* Customizes Ok icon */
+	display: inline-block;
+	fill:#cc0e23;
+	width: 50px;
+	height: 50px;
+}
+
+.mergeField {
+    
+}
+.mergeFieldIcn {
+    margin-left: 1em;
+}
+.mergeFieldWrapper .InsertAnchor{
+    font-size: smaller;
+    vertical-align: sub;
+}
+div.mergeTemplateExample {
+    clear:both;
+    border:1px solid #eee;
+    background-color: rgba(240, 240, 240, 0.05);
+}
+.mergeFieldWrapper div.mergeTemplateExample 
+,.mergeFieldWrapper .InsertAnchor
+{
+    display: none;
+    padding-left: 2em;
+    margin-left: 1em;
+}
+.mergeFieldWrapper:hover div.mergeTemplateExample  {
+    display: block;
+}
+.mergeFieldWrapper:hover .InsertAnchor{
+    display: inline;
+}
+.cndIndexTopMarginWith {
+    width: 963px;
+}
+#TlbrPnl div {
+  text-align:center;
+/*  overflow:hidden;
+}
+#TlbrPnl div div {*/
+  float:left;
+  width: 50px;
+  margin-right: 5px;
+  overflow:hidden;
+}
+#TlbrPnl div a {
+  float:left;
+  text-decoration:none;
+}
+#TlbrPnl div a img {
+  border-style:none;
+  background:transparent;
+  border-width:0px;
+}
+#TlbrPnl div a span {
+  text-decoration:none;
+  display:block;
+}
+.ui-widget-overlay {
+background: none
+}
+footer #footer div a {
+    margin: 0;
+}
+.vacancyDetailLabel {
+    clear: both;
+    float: left; 
+    width: 170px; 
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+.vacancyDetailValue {
+    float: left; 
+    padding: 3px;
+    width: 500px;
+    padding-bottom: 10px;
+}
+.vacancyCategoryLabel {
+    clear: both;
+    float: left;
+    width: 170px;
+    font-weight: bold;
+           
+}
+.vacancyCategoryValue {
+    float: left; 
+    padding: 3px; 
+    width: 500px 
+}
+#maincontent {
+    overflow-y: hidden;
+}
+.RecommendationWithNoScore
+{
+    cursor: default;
+    text-decoration: none;	
+    
+}
+
+.RecommendationWithScore 
+{
+    cursor: pointer;
+    text-decoration: underline;	
+}
+
+.regSocialLogin {
+	padding-top: 10px;
+}
+.appInfo {
+    display: block;
+    float:left;
+    height: 805px;
+    width: 100%;
+}
+
+.appInfoIFrame {
+    height: 805px; 
+    width: 100%;
+    overflow: hidden;    
+}
+
+/* Candidate Interface V2 Style End*/
+
+td.rwWindowContent iframe {
+min-height: 600px !important;
+} 
+.requestRecommendationCreateNewReviewerLbl {
+    padding-left: 35px;
+}
+.reviewerDropDownListWidth {
+    width: 156px !important;
+}
+.UserGroupDropDownListWidth {
+    width: 156px !important;
+}
+
+/* Start : EmailhistoryV2.aspx Search Panel */
+
+ .emailSearchPanel {
+     padding-top: 5px;
+        }
+        
+.emailSearchDiv1 
+{
+    float: left;
+    width: 250px;
+}
+.emailSearchDiv2 {
+    float: left;
+    width: 220px;
+}
+    .emailSearchDiv3 {
+    float: left;
+    width: 179px;
+}
+    .emailSearchDiv4 {
+    float: left;
+}
+/* End : EmailhistoryV2.aspx Search Panel */
+
+td.reContentCell iframe {
+min-height: 300px !important;
+} 
+div.AddSocialMediaPlatform
+{
+	padding: 2em 3em 3em 2em;
+}
